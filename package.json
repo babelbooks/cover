@@ -1,0 +1,33 @@
+{
+  "name": "@babelbooks/cover",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/server/server.js",
+  "scripts": {
+    "start": "gulp server:build && node dist/server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/babelbooks/cover.git"
+  },
+  "author": "",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/babelbooks/cover/issues"
+  },
+  "homepage": "https://github.com/babelbooks/cover#readme",
+  "devDependencies": {
+    "@types/express": "^4.0.35",
+    "@types/node": "^7.0.12",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^2.5.1",
+    "gulp-typescript": "^3.1.6",
+    "typescript": "^2.2.2"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "path": "^0.12.7"
+  }
+}

@@ -1,5 +1,11 @@
+# IDE related
+.idea/
+
 # Dist folder
 dist/
 
 # Node modules
 node_modules/
+
+# In case of bad manip
+server/**/*.js
