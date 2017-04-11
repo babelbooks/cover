@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as path    from 'path';
 
 // Configure params
-const baseFolder = path.resolve(__dirname + '/../../web');
+const baseFolder = path.resolve(__dirname + '/../../dist/client');
 
 // Create server app
 const app : any = express();
