@@ -1,11 +1,10 @@
-var path = require('path')
-var webpack = require('webpack')
+const path    = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/client/main.js',
   output: {
     path: path.resolve(__dirname, './dist/client'),
-    publicPath: '/src/client/',
     filename: 'build.js'
   },
   module: {
@@ -39,6 +38,8 @@ module.exports = {
     }
   },
   devServer: {
+    contentBase: './src/client/',
+    //publicPath: '/src/client/',
     historyApiFallback: true,
     noInfo: true
   },
@@ -46,14 +47,10 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map'
-}
+};
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map';
-  module.exports.output = {
-    path: path.resolve(__dirname, './dist/client'),
-    filename: 'build.js'
-  };
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
