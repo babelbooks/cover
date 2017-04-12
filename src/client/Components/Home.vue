@@ -1,7 +1,7 @@
 <template>
   <header id="top" class="header">
       <div class="text-vertical-center">
-          <h1>Babelbooks</h1>
+          <h1><img src="assets/img/logo-bb-title.svg" height="200px" alt="Babelbooks" class="svg"></h1>
           <h3>Biblioth&egrave;que coop&eacute;rative</h3>
           <br>
           <div class="col-md-6 col-md-offset-3">
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'login',
   data () {

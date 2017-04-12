@@ -5,6 +5,7 @@
  */
 
 /* Global Styles */
+@import "./color";
 
 html,
 body {
@@ -53,4 +54,11 @@ a {
   padding: 0;
   font-size: 4.5em;
   font-weight: 700;
+}
+
+path {
+    fill: $color-gray;
+}
+svg:hover path {
+    fill: $color-light;
 }
