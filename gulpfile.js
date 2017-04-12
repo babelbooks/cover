@@ -12,8 +12,10 @@ const distFolder    = 'dist';
 const srcFolder     = 'src';
 const serverRoot    = '/server';
 const clientRoot    = '/client';
+const assetsRoot    = clientRoot + '/assets';
 const serverFolder  = srcFolder + serverRoot;
 const clientFolder  = srcFolder + clientRoot;
+const assetsFolder  = srcFolder + assetsRoot;
 
 // External config
 const tsConfig = require(path.resolve(__dirname + '/' + serverFolder + '/tsconfig.json'));
@@ -43,7 +45,13 @@ gulp.task('client:build:index', () => {
     .pipe(gulp.dest(distFolder + clientRoot));
 });
 
-gulp.task('client:build', ['client:build:webpack', 'client:build:index']);
+gulp.task('client:build:assets', () => {
+  return gulp
+    .src(assetsFolder + '/**/*')
+    .pipe(gulp.dest(distFolder + assetsRoot));
+});
+
+gulp.task('client:build', ['client:build:webpack', 'client:build:index', 'client:build:assets']);
 
 gulp.task('server:clean', () => {
   return del(distFolder + serverRoot);
