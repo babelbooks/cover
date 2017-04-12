@@ -29,6 +29,10 @@ module.exports = {
         options: {
           name: 'assets/[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.s[c|a]ss$/,
+        loader: 'sass-loader'
       }
     ]
   },
