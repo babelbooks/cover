@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Brand</a>
+          <a class="navbar-brand" href="#"><img src="assets/img/logo-bb.svg" class="svg" alt="logo"></a>
         </div>
         <div>
           <ul class="nav navbar-nav navbar-right">
@@ -29,18 +29,44 @@
       </div>
     </nav>
     <router-view class="view"></router-view>
+
   </div>
 </template>
 
 <script>
+import inlineSVG from "./assets/js/inlineSVG.min.js";
+
 export default {
   name: 'app',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
-  }
+  },
+  mounted: function () {
+      this.$nextTick(function () {
+          inlineSVG.init({
+            svgSelector: 'img.svg', // the class attached to all images that should be inlined 
+            initClass: 'js-inlinesvg', // class added to <html> 
+          }, function () {
+            console.log('All SVGs inlined');
+          });
+      })
+  },
+  updated: function () {
+      this.$nextTick(function () {
+          inlineSVG.init({
+            svgSelector: 'img.svg', // the class attached to all images that should be inlined 
+            initClass: 'js-inlinesvg', // class added to <html> 
+          }, function () {
+            console.log('All SVGs inlined');
+          });
+      })
+  },  
 }
+
+
+
 </script>
 
 <style lang="sass">
