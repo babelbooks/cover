@@ -1,0 +1,25 @@
+@import "./color";
+@import "./fonts";
+
+.svg {
+    height: 100%;
+}
+
+.logo {
+    fill: $color-gray;
+}
+
+.logo:hover {
+    fill: $color-black;
+}
+
+li {
+    font-size: 1.5em;
+    font-family: 'Dosis', sans-serif;
+}
+
+nav {
+    background-color: $color-light !important; 
+    border: none !important;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}

@@ -73,7 +73,9 @@ export default {
 </script>
 
 <style lang="sass">
-@import "/assets/css/babelbooks";
+@import "/assets/css/navbar";
+@import "assets/css/babelbooks";
+
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
