@@ -1,5 +1,6 @@
 <template>
-  <header id="top" class="header">
+<div style="height:100%">
+   <header id="top" class="header">
       <div class="text-vertical-center">
           <h1><img src="assets/img/logo-bb-title.svg" height="200px" alt="Babelbooks" class="svg"></h1>
           <h3>Biblioth&egrave;que coop&eacute;rative</h3>
@@ -16,6 +17,11 @@
           </div>
       </div>
   </header>
+  <div>
+    <p>Lorem ipsum</p>
+  </div> 
+</div>
+
 </template>
 
 <script>

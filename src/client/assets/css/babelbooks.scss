@@ -17,6 +17,10 @@ h1, h2 {
   font-weight: normal;
 }
 
+h3 {
+  font-family: 'Dosis', sans-serif;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -36,7 +40,9 @@ a {
     position: relative;
     width: 100%;
     height: 100%;
+    background-attachment: fixed;
     background: url(/assets/img/babeltower.jpg) no-repeat center center scroll;
+    box-shadow: inset 0 0 10em 3em #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -58,7 +64,4 @@ a {
 
 path {
     fill: $color-gray;
-}
-svg:hover path {
-    fill: $color-light;
 }
