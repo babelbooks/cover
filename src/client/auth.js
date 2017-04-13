@@ -1,49 +1,82 @@
+
+const API_URL = 'http://localhost:3001/'
+const LOGIN_URL = API_URL + 'sessions/create/'
+const SIGNUP_URL = API_URL + 'users/'
+
 export default {
-  login (email, pass, cb) {
-    cb = arguments[arguments.length - 1]
-    if (localStorage.token) {
-      if (cb) cb(true)
-      this.onChange(true)
-      return
+
+  user: {
+    authenticated: false
+  },
+
+  login(context, creds, redirect) {
+
+    localStorage.setItem('id_token', "test")
+
+    this.user.authenticated = true
+
+    // context.error = "Mauvais identifiants"
+
+    if(redirect) {
+      context.$router.push({ name: redirect });
     }
-    pretendRequest(email, pass, (res) => {
-      if (res.authenticated) {
-        localStorage.token = res.token
-        if (cb) cb(true)
-        this.onChange(true)
-      } else {
-        if (cb) cb(false)
-        this.onChange(false)
+    // TODO connect with backend
+    /*
+    context.$http.post(LOGIN_URL, creds, (data) => {
+      localStorage.setItem('id_token', data.id_token)
+
+      this.user.authenticated = true
+
+      if(redirect) {
+        context.$router.push({ name: redirect });
       }
+
+    }).error((err) => {
+      context.error = err
     })
+    */
   },
 
-  getToken () {
-    return localStorage.token
+  signup(context, creds, redirect) {
+
+
+    // TODO connect with backend
+    /*
+    context.$http.post(SIGNUP_URL, creds, (data) => {
+      localStorage.setItem('id_token', data.id_token)
+
+      this.user.authenticated = true
+
+      if(redirect) {
+        router.go(redirect)
+      }
+
+    }).error((err) => {
+      context.error = err
+    })
+    */
   },
 
-  logout (cb) {
-    delete localStorage.token
-    if (cb) cb()
-    this.onChange(false)
+  logout(context) {
+    localStorage.removeItem('id_token')
+    this.user.authenticated = false
+    context.$router.push({ name: 'home' });
   },
 
-  loggedIn () {
-    return !!localStorage.token
-  },
-
-  onChange () {}
-}
-
-function pretendRequest (email, pass, cb) {
-  setTimeout(() => {
-    if (email === 'joe@example.com' && pass === 'password1') {
-      cb({
-        authenticated: true,
-        token: Math.random().toString(36).substring(7)
-      })
-    } else {
-      cb({ authenticated: false })
+  checkAuth() {
+    var jwt = localStorage.getItem('id_token')
+    if(jwt) {
+      this.user.authenticated = true
     }
-  }, 0)
+    else {
+      this.user.authenticated = false
+    }
+  },
+
+
+  getAuthHeader() {
+    return {
+      'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+    }
+  }
 }

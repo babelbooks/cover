@@ -9,35 +9,33 @@
 
           <h3>S'inscrire</h3>
           <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="col-xs-12 col-sm-6 col-md-6">
               <a href="#" class="btn btn-lg btn-primary btn-block">Facebook</a>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="col-xs-12 col-sm-6 col-md-6">
               <a href="#" class="btn btn-lg btn-info btn-block">Google</a>
             </div>
           </div>
           <div class="login-or">
             <hr class="hr-or">
           </div>
-          <form role="form">
-            <div class="form-group">
-              <label for="inputUsernameEmail">Courriel</label>
-              <input type="text" class="form-control" id="inputUsernameEmail">
-            </div>
-            <div class="form-group">
-              <label for="inputPassword">Mot de passe</label>
-              <input type="password" class="form-control" id="inputPassword">
-            </div>
-            <div class="form-group">
-              <label for="inputPassword">R&eacute;p&eacute;tez le mot de passe</label>
-              <input type="password" class="form-control" id="inputPassword">
-            </div>
-            <div>
-              <button type="submit" class="btn btn btn-primary">
-                S'inscrire
-              </button>
-            </div>
-          </form>
+          <div class="form-group">
+            <label for="inputUsernameEmail">Courriel</label>
+            <input type="text" class="form-control" id="inputUsernameEmail">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Mot de passe</label>
+            <input type="password" class="form-control" id="inputPassword">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">R&eacute;p&eacute;tez le mot de passe</label>
+            <input type="password" class="form-control" id="inputPassword">
+          </div>
+          <div>
+            <button class="btn btn btn-primary">
+              S'inscrire
+            </button>
+          </div>
 
         </div>
 

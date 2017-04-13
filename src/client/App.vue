@@ -2,16 +2,21 @@
   <div id="app">
     <navbar placement="top" type="default">
       <!-- Brand as slot -->
-        <a title="Home" slot="brand" class="navbar-brand" href="/"><img src="assets/img/logo-bb.svg" class="svg" alt="logo"></a>
+      <a title="Home" slot="brand" class="navbar-brand" href="/"><img src="assets/img/logo-bb.svg" class="svg" alt="logo"></a>
       <ul slot="right" class="nav navbar-nav navbar-right">
-        <li><router-link to="/login">Se connecter</router-link></li>
-        <li><router-link to="/signup">S'inscrire</router-link></li>
-          <dropdown text="Langue" role="menu">
-            <li><a href="#">Fr</a></li>
-            <li><a href="#">En</a></li>
-            <li><a href="#">De</a></li>
-            <li><a href="#">Jp</a></li>
-          </dropdown>
+        <dropdown v-if="user.authenticated" text="John" role="menu">
+          <li><router-link to="/profile">Mon profile</router-link></li>
+          <li><router-link to="/mylibrary">Ma biblioth&egrave;que</router-link></li>
+          <li><a href="#" @click="logout()">Se d&eacute;connecter</a></li>
+        </dropdown>
+        <li v-if="!user.authenticated"><router-link to="/login">Se connecter</router-link></li>
+        <li v-if="!user.authenticated"><router-link to="/signup">S'inscrire</router-link></li>
+        <dropdown text="Langue" role="menu">
+          <li><a href="#">Fr</a></li>
+          <li><a href="#">En</a></li>
+          <li><a href="#">De</a></li>
+          <li><a href="#">Jp</a></li>
+        </dropdown>
       </ul>
     </navbar>
     <router-view class="view"></router-view>
@@ -23,6 +28,8 @@
 import inlineSVG from "./assets/js/inlineSVG.min.js";
 import { navbar,dropdown } from 'vue-strap'
 
+import auth from './auth'
+
 export default {
   name: 'app',
   components:{
@@ -31,7 +38,7 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      user: auth.user
     }
   },
   methods:{
@@ -43,6 +50,9 @@ export default {
       else {
           div.style.display = 'block';
       }
+    },
+    logout: function(){
+      auth.logout(this);
     }
   },
   mounted: function () {
