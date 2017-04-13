@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/babelbooks/cover#readme",
   "dependencies": {
-    "bootstrap-vue": "^0.12.2",
     "express": "^4.15.2",
     "path": "^0.12.7",
     "vue": "^2.2.1",

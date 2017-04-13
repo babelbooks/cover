@@ -5,7 +5,9 @@
  */
 
 /* Global Styles */
-
+/*.svg {
+    box-shadow: inset 0 0 10em 3em #ff9;
+}*/
 
 @import "./color";
 
@@ -21,10 +23,13 @@ body {
 
 h1, h2 {
   font-weight: normal;
+
 }
 
 h3 {
   font-family: 'Dosis', sans-serif;
+  //text-shadow: 0 0 5px rgb(255, 255, 204);
+
 }
 
 ul {
@@ -46,17 +51,25 @@ a {
     position: relative;
     width: 100%;
     height: 100%;
+    min-height: 400px;
+    color: $color-black;
 }
 
 .logo {
-  width: 75%;
+  max-width: 60%;
+  max-height: 15%;
 }
+
 @media only screen and (min-width: 768px)
 {
   .logo {
     width: 500px;
   }
+}
 
+center-title
+{
+  margin: auto;
 }
 
 // Container for the cover background on the frontpage
@@ -72,7 +85,7 @@ a {
   width: 100%;
   height: 100%;
 
-  box-shadow: inset 0 0 10em 3em #000;
+  box-shadow: inset 0 0 5em 0.5em #000;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -98,16 +111,26 @@ a {
   vertical-align: middle;
 }
 
+.center-vertical {
+  padding-bottom: 15%;
+}
+
 .page-bottom {
   min-height: 100vh;
-  background: $color-black;
+  background: $color-white;
 }
 .block {
+  margin: auto;
+  width: 95%;
+  max-width: 1200px; 
   padding-top: 75px;
-  padding-left: 100px;
-  padding-right: 100px;
-  background-color: $color-white;
+  //padding-left: 100px;
+  //padding-right: 100px;
+  //background-color: $color-white;
   width: 100%;
+
+  font-family: 'Sorts Mill Goudy', serif;
+  color: $color-gray;
 }
 
 .block .column {
@@ -119,6 +142,7 @@ a {
 .block .column span {
   font-size: 50px;
   margin-bottom: 30px;
+  color: $color-dark;
 }
 
 .block .column p {
@@ -134,7 +158,19 @@ a {
   background-position: fixed;
   height: 300px;
   box-shadow: inset 0 0 2em 1em rgba(0,0,0,.5);
+  display: table;
+}
 
+.heading {
+  font-family: 'Sorts Mill Goudy', serif;
+  font-size: 4em;
+  color: $color-white;
+  text-shadow: 2px 2px 8px rgba(0,0,0,.8);
+}
+
+.footer {
+  height: 250px;
+  background-color: $color-gray;
 }
 
 
@@ -169,14 +205,14 @@ a {
 }
 
 path {
-    fill: $color-gray;
+    fill: $color-dark;
 }
 
 // Scroll button for homepage
 
 .header a.scroll {
   position: absolute;
-  bottom: 10px;
+  bottom: 0px;
   margin: auto;
   left: 0;
   width: 200px;
@@ -185,7 +221,7 @@ path {
   display: inline-block;
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
-  color: $color-gray;
+  color: $color-black;
   font : normal 400 20px/1 'Josefin Sans', sans-serif;
   text-align: center;
   letter-spacing: .1em;
@@ -198,7 +234,7 @@ path {
 }
 
 .header a.scroll {
-  padding-top: 60px;
+  padding-top: 40px;
 }
 .header a.scroll span {
   position: absolute;
@@ -214,9 +250,20 @@ path {
   box-sizing: border-box;
   transition:  .3s;
   transition: top border-left border-bottom .3s;
+
+  animation-name: hover-float;
+  animation-duration: 1s;
+  animation-iteration-count: infinite; 
 }
 .header a.scroll:hover span {
   top: 5px;
   border-left: 1px solid $color-black !important;
   border-bottom: 1px solid $color-black !important;
+  animation: none;
+}
+
+@keyframes hover-float {
+    0% {top: 0px;}
+    50% {top: 3px;}
+    100% {top: 0px;}
 }
