@@ -9,7 +9,7 @@
               <input type="text" class="form-control" placeholder="Trouver un livre">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button">
-                  <i class="fa fa-search"></i>
+                  <i class="glyphicon glyphicon-search"></i>
                 </button>
               </span>
             </div><!-- /input-group -->
@@ -31,6 +31,6 @@ export default {
 </script>
 
 <style lang="sass">
-@import "../assets/css/babelbooks"
+@import "../assets/css/babelbooks";
 
 </style>
