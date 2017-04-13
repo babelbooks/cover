@@ -16,26 +16,26 @@
             <div class="login-or">
               <hr class="hr-or">
             </div>
-            <form role="form">
-              <div class="form-group">
-                <label for="inputUsernameEmail">Courriel</label>
-                <input type="text" class="form-control" id="inputUsernameEmail">
-              </div>
-              <div class="form-group">
-                <label for="inputPassword">Mot de passe</label>
-                <input type="password" class="form-control" id="inputPassword">
-              </div>
-              <div>
-                <button type="submit" class="btn btn btn-primary">
+            <div class="form-group">
+              <label for="inputUsernameEmail">Courriel</label>
+              <input type="text" class="form-control" id="inputUsernameEmail">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword">Mot de passe</label>
+              <input type="password" class="form-control" id="inputPassword">
+            </div>
+            <div>
+              <router-link to="/mylibrary">
+                <button class="btn btn btn-primary">
                   Se connecter
                 </button>
-              </div>
-              <div class="checkbox pull-right">
-                <label>
-                  <input type="checkbox">
-                  Se souvenir de moi </label>
-              </div>
-            </form>
+              </router-link>
+            </div>
+            <div class="checkbox pull-right">
+              <label>
+                <input type="checkbox">
+                Se souvenir de moi </label>
+            </div>
 
           </div>
 

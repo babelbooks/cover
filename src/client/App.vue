@@ -2,8 +2,7 @@
   <div id="app">
     <navbar placement="top" type="default">
       <!-- Brand as slot -->
-      <a slot="brand" href="/" title="Home" class="navbar-brand">B</a>
-
+        <a title="Home" slot="brand" class="navbar-brand" href="/"><img src="assets/img/logo-bb.svg" class="svg" alt="logo"></a>
       <ul slot="right" class="nav navbar-nav navbar-right">
         <li><router-link to="/login">Se connecter</router-link></li>
         <li><router-link to="/signup">S'inscrire</router-link></li>

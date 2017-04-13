@@ -2,7 +2,7 @@
 <div style="height:100%">
    <header id="top" class="header">
       <div class="header-bg">
-        
+
       </div>
       <div class="text-vertical-center">
           <h1><img src="assets/img/logo-bb-title.svg"  alt="Babelbooks" class="svg logo"></h1>
@@ -13,14 +13,10 @@
               <input type="text" class="form-control" placeholder="Trouver un livre">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button">
-<<<<<<< HEAD
-                  <i class="glyphicon glyphicon-search"></i>
-=======
                   <span class="glyphicon glyphicon-search"></span>
->>>>>>> 934aee7ff4a95ef2faff8cf9160ca93eee4cb2f4
                 </button>
               </span>
-            </div><!-- /input-group -->
+            </div>
           </div>
       </div>
 
@@ -59,7 +55,7 @@
 
 
   </div>
-  <div class="fixed-bg" style="background: url('../assets/img/books.jpeg') no-repeat center center fixed;"></div> 
+  <div class="fixed-bg" style="background: url('../assets/img/books.jpeg') no-repeat center center fixed;"></div>
   </div>
 </div>
 
