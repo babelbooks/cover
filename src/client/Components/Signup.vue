@@ -7,7 +7,7 @@
 
         <div class="main">
 
-          <h3>S'inscrire</h3>
+          <h3>{{ l('signup.title') }}</h3>
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
               <a href="#" class="btn btn-lg btn-primary btn-block">Facebook</a>
@@ -20,20 +20,20 @@
             <hr class="hr-or">
           </div>
           <div class="form-group">
-            <label for="inputUsernameEmail">Courriel</label>
+            <label for="inputUsernameEmail">{{ l('email') }}</label>
             <input type="text" class="form-control" id="inputUsernameEmail">
           </div>
           <div class="form-group">
-            <label for="inputPassword">Mot de passe</label>
+            <label for="inputPassword">{{ l('password') }}</label>
             <input type="password" class="form-control" id="inputPassword">
           </div>
           <div class="form-group">
-            <label for="inputPassword">R&eacute;p&eacute;tez le mot de passe</label>
+            <label for="inputPassword">{{ l('signup.repeatPassword') }}</label>
             <input type="password" class="form-control" id="inputPassword">
           </div>
           <div>
             <button class="btn btn btn-primary">
-              S'inscrire
+              {{ l('signup.title') }}
             </button>
           </div>
 

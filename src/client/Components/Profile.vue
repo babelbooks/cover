@@ -9,7 +9,7 @@
         <div class="col-xs-12 col-md-8 col-md-offset-2">
           <div id="profile-body">
             <tabs v-model="activeTab" nav-style="tabs" justified>
-              <tab header="Mes infos">
+              <tab v-bind:header="l('profile.infos')">
                 <table style="width:100%">
                   <tr>
                     <td class="tableau-cell"><p><b>Mes points</b></p></td>
@@ -21,10 +21,10 @@
                   </tr>
                 </table>
               </tab>
-              <tab header="Mes rendez-vous">
+              <tab v-bind:header="l('profile.appointment')">
                 ...
               </tab>
-              <tab header="Mon compte">
+              <tab v-bind:header="l('profile.param')">
                 ...
               </tab>
             </tabs>

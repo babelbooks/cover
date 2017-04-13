@@ -1,0 +1,34 @@
+{
+  "appName": "Babelbooks",
+  "home": {
+	   "title": "Co-operative library",
+     "knowMore": "Find out more",
+     "search": "Find a book",
+     "title2": "A library for everybody"
+  },
+  "myLibrary": {
+    "title": "My library"
+  },
+  "profile":{
+    "infos": "My information",
+    "appointment": "My appointments",
+    "param": "Params",
+    "points": "My points",
+    "level": "My level"
+  },
+  "navbar": {
+    "myProfil": "My profil",
+    "logout": "Logout",
+    "lang": "Langage"
+  },
+  "email": "Email",
+  "password": "Password",
+  "login": {
+    "title": "Log in",
+    "remember": "Remember me"
+  },
+  "signup":{
+    "title": "Signup",
+    "repeatPassword": "Repeat password"
+  }
+}

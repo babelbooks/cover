@@ -6,11 +6,11 @@
       </div>
       <div class="text-vertical-center">
           <h1><img src="assets/img/logo-bb-title.svg"  alt="Babelbooks" class="svg logo"></h1>
-          <h3>Biblioth&egrave;que coop&eacute;rative</h3>
+          <h3>{{ l('home.title') }}</h3>
           <br>
           <div class="col-md-6 col-md-offset-3">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Trouver un livre">
+              <input type="text" class="form-control" v-bind:placeholder="l('home.search')">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button">
                   <span class="glyphicon glyphicon-search"></span>
@@ -20,11 +20,11 @@
           </div>
       </div>
 
-      <a class="scroll" href="#block"><span></span>En savoir plus</a>
+      <a class="scroll" href="#block"><span></span>{{ l('home.knowMore') }}</a>
   </header>
   <div class="page-bottom">
     <div class="container block" id="block">
-    <h2>Une bibliothéque pour tout le monde</h2>
+    <h2>{{ l('home.title2') }}</h2>
     <div class="col-12 col-md-4 column">
       <span class="glyphicon glyphicon-book"></span>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

@@ -4,7 +4,7 @@
       <div class="container col-xs-12 col-md-6 col-md-offset-3 login-container">
         <div class="row">
           <div class="main">
-            <h3>Se connecter</h3>
+            <h3>{{ l('login.title') }}</h3>
             <div class="alert alert-danger" v-if="error">
               <p>{{ error }}</p>
             </div>
@@ -20,22 +20,22 @@
               <hr class="hr-or">
             </div>
             <div class="form-group">
-              <label for="inputUsernameEmail">Courriel</label>
+              <label for="inputUsernameEmail">{{ l('email') }}</label>
               <input type="text" class="form-control" v-model="credentials.username">
             </div>
             <div class="form-group">
-              <label for="inputPassword">Mot de passe</label>
+              <label for="inputPassword">{{ l('password') }}</label>
               <input type="password" class="form-control" v-model="credentials.password">
             </div>
             <div>
               <button class="btn btn btn-primary" @click="submit()">
-                Se connecter
+                {{ l('login.title') }}
               </button>
             </div>
             <div class="checkbox pull-right">
               <label>
                 <input type="checkbox">
-                Se souvenir de moi </label>
+                {{ l('login.remember') }} </label>
             </div>
 
           </div>
