@@ -5,7 +5,13 @@
  */
 
 /* Global Styles */
+
+
 @import "./color";
+
+* {
+    box-sizing: border-box;
+}
 
 html,
 body {
@@ -40,13 +46,37 @@ a {
     position: relative;
     width: 100%;
     height: 100%;
-    background-attachment: fixed;
-    background: url(/assets/img/babeltower.jpg) no-repeat center center scroll;
-    box-shadow: inset 0 0 10em 3em #000;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+}
+
+.logo {
+  width: 75%;
+}
+@media only screen and (min-width: 768px)
+{
+  .logo {
+    width: 500px;
+  }
+
+}
+
+// Container for the cover background on the frontpage
+// Displays a fixed background with a vignette
+.header-bg {
+  $offset: 25px;
+
+  background: url(/assets/img/babeltower.jpg) no-repeat center center fixed;
+  position: fixed;
+  top: $offset;
+  left: 0;
+  z-index: -100;
+  width: 100%;
+  height: 100%;
+
+  box-shadow: inset 0 0 10em 3em #000;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 }
 
 .text-vertical-center {
@@ -54,6 +84,69 @@ a {
   text-align: center;
   vertical-align: middle;
 }
+
+.page-bottom {
+  min-height: 100vh;
+  background: $color-black;
+}
+.block {
+  padding-top: 75px;
+  padding-left: 100px;
+  padding-right: 100px;
+  background-color: $color-white;
+  width: 100%;
+}
+
+.block .column {
+  margin: 0;
+  padding: 15px;
+  padding-top: 50px;
+}
+
+.block .column span {
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+
+.block .column p {
+  font-size: 20px;
+}
+
+.fixed-bg {
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-position: fixed;
+  height: 300px;
+  box-shadow: inset 0 0 2em 1em rgba(0,0,0,.5);
+
+}
+
+
+/*.flex-col {
+  width: 100%;
+  margin: 0;
+  margin-top: 80px;
+  padding: 15px;
+  height: 100%;
+  background-color: red;
+  float: left;
+  box-sizing: border-box;
+}
+
+.flex-col::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media only screen and (min-width: 768px) {
+  .flex-col {
+    width: 33.33%;
+  }
+}*/
 
 .text-vertical-center h1 {
   margin: 0;
@@ -65,3 +158,53 @@ a {
 path {
     fill: $color-gray;
 }
+
+// Scroll button for homepage
+
+.header a.scroll {
+  position: absolute;
+  bottom: 10px;
+  margin: auto;
+  left: 0;
+  width: 200px;
+  right: 0;
+  z-index: 2;
+  display: inline-block;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  color: $color-gray;
+  font : normal 400 20px/1 'Josefin Sans', sans-serif;
+  text-align: center;
+  letter-spacing: .1em;
+  text-decoration: none;
+  transition: color .3s;
+}
+.header a.scroll:hover {
+  color: $color-black !important;
+
+}
+
+.header a.scroll {
+  padding-top: 60px;
+}
+.header a.scroll span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid $color-gray;
+  border-bottom: 1px solid $color-gray;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  box-sizing: border-box;
+  transition:  .3s;
+  transition: top border-left border-bottom .3s;
+}
+.header a.scroll:hover span {
+  top: 5px;
+  border-left: 1px solid $color-black !important;
+  border-bottom: 1px solid $color-black !important;
+}
+
