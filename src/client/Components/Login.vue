@@ -82,7 +82,6 @@ export default {
 }
 .main{
 	padding: 30px;
-    font-family: 'Dosis', sans-serif;
-
+  font-family: 'Dosis', sans-serif;
 }
 </style>
