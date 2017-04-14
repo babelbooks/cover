@@ -4,7 +4,7 @@
       <!-- Brand as slot -->
       <a title="Home" slot="brand" class="navbar-brand" href="/"><img src="assets/img/logo-bb.svg" class="svg" alt="logo"></a>
       <ul slot="right" class="nav navbar-nav navbar-right">
-        <dropdown v-if="user.authenticated" text="John" role="menu">
+        <dropdown v-if="user.authenticated" v-bind:text="user.username" role="menu">
           <li><router-link to="/profile">{{ l('navbar.myProfil') }}</router-link></li>
           <li><router-link to="/mylibrary">{{ l('myLibrary.title') }}</router-link></li>
           <li><a href="#" @click="logout()">{{ l('navbar.logout') }}</a></li>
@@ -20,42 +20,50 @@
       </ul>
     </navbar>
     <router-view class="view"></router-view>
-
+    <spinner ref="spinner" global v-model="spinner" size="lg" fixed v-bind:text="l('loading')"></spinner>
   </div>
 </template>
 
 <script>
 import inlineSVG from "./assets/js/inlineSVG.min.js";
-import { navbar,dropdown } from 'vue-strap'
-
+import { navbar,dropdown,spinner } from 'vue-strap'
+import store from './store/store'
 import auth from './auth'
 
 export default {
   name: 'app',
+  store,
   components:{
     navbar,
-    dropdown
+    dropdown,
+    spinner
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
   },
   data () {
     return {
-      user: auth.user
+      spinner: false
     }
   },
   methods:{
-    toggleMenu: function () {
-      var div = document.getElementById('bs-example-navbar-collapse');
-      if (div.style.display !== 'none') {
-          div.style.display = 'none';
-      }
-      else {
-          div.style.display = 'block';
-      }
-    },
     changeLang(lang){
-      this.changeLanguage(lang)
+      this.spinner = true;
+      var self = this;
+      setTimeout(function(){
+        self.spinner = false;
+        self.changeLanguage(lang);
+      }, 1500);
     },
     logout: function(){
-      auth.logout(this);
+      this.spinner = true;
+      var self = this;
+      setTimeout(function(){
+        auth.logout(self);
+        self.spinner = false;
+      }, 1000);
     }
   },
   mounted: function () {
@@ -69,6 +77,7 @@ export default {
       })
   },
   updated: function () {
+
       this.$nextTick(function () {
           inlineSVG.init({
             svgSelector: 'img.svg', // the class attached to all images that should be inlined

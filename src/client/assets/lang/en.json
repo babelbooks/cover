@@ -1,5 +1,11 @@
 {
   "appName": "Babelbooks",
+  "monthNames": [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ],
   "home": {
 	   "title": "Co-operative library",
      "knowMore": "Find out more",
@@ -14,7 +20,8 @@
     "appointment": "My appointments",
     "param": "Params",
     "points": "My points",
-    "level": "My level"
+    "level": "My score",
+    "memberSince": "Member since"
   },
   "navbar": {
     "myProfil": "My profil",
@@ -30,5 +37,6 @@
   "signup":{
     "title": "Signup",
     "repeatPassword": "Repeat password"
-  }
+  },
+  "loading": "Loading..."
 }
