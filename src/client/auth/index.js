@@ -1,3 +1,4 @@
+import {router} from '../router'
 
 const API_URL = 'http://localhost:3001/'
 const LOGIN_URL = API_URL + 'sessions/create/'
@@ -11,14 +12,12 @@ export default {
 
   login(context, creds, redirect) {
 
-    localStorage.setItem('id_token', "test")
+    localStorage.setItem('id_token', data.id_token)
 
     this.user.authenticated = true
 
-    // context.error = "Mauvais identifiants"
-
     if(redirect) {
-      context.$router.push({ name: redirect });
+      router.go(redirect)
     }
     // TODO connect with backend
     /*
@@ -28,7 +27,7 @@ export default {
       this.user.authenticated = true
 
       if(redirect) {
-        context.$router.push({ name: redirect });
+        router.go(redirect)
       }
 
     }).error((err) => {
@@ -57,10 +56,9 @@ export default {
     */
   },
 
-  logout(context) {
+  logout() {
     localStorage.removeItem('id_token')
     this.user.authenticated = false
-    context.$router.push({ name: 'home' });
   },
 
   checkAuth() {

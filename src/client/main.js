@@ -1,27 +1,19 @@
 import Vue from 'vue'
-import App from './App.vue'
-import Home from './Components/Home.vue'
-import Login from './Components/Login.vue'
-import Signup from './Components/Signup.vue'
-import MyLibrary from './Components/MyLibrary.vue'
 import VueRouter from 'vue-router'
-Vue.use(VueRouter)
+import Vuex from 'vuex'
+import App from './App.vue'
 
-const router = new VueRouter({
-  mode: 'history',
-  routes: [
-    { path: '/', component: Home },
-    { path: '/login', component: Login },
-    { path: '/signup', component: Signup },
-    { path: '/mylibrary', component: MyLibrary},
-    { path: '/logout',
-      beforeEnter (to, from, next) {
-        auth.logout()
-        next('/')
-      }
-    }
-  ]
-});
+Vue.use(VueRouter)
+Vue.use(Vuex)
+
+import MultiLanguage from 'vue-multilanguage'
+import Store from './store/store'
+Vue.use( MultiLanguage, { path: '/assets/lang', d_language: 'fr', store: Store } )
+
+import router from './router'
+import auth from './auth'
+
+auth.checkAuth()
 
 new Vue({
   el: '#app',

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="my-library-header">
-      <p><h3>Ma biblioth&egrave;que</h3></p>
+      <p><h3>{{ l('myLibrary.title') }}</h3></p>
     </div>
     <div style="padding-top:10px;">
       <div class="pull-left" style="padding-left:35px;">

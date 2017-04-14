@@ -7,37 +7,35 @@
 
         <div class="main">
 
-          <h3>S'inscrire</h3>
+          <h3>{{ l('signup.title') }}</h3>
           <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="col-xs-12 col-sm-6 col-md-6">
               <a href="#" class="btn btn-lg btn-primary btn-block">Facebook</a>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="col-xs-12 col-sm-6 col-md-6">
               <a href="#" class="btn btn-lg btn-info btn-block">Google</a>
             </div>
           </div>
           <div class="login-or">
             <hr class="hr-or">
           </div>
-          <form role="form">
-            <div class="form-group">
-              <label for="inputUsernameEmail">Courriel</label>
-              <input type="text" class="form-control" id="inputUsernameEmail">
-            </div>
-            <div class="form-group">
-              <label for="inputPassword">Mot de passe</label>
-              <input type="password" class="form-control" id="inputPassword">
-            </div>
-            <div class="form-group">
-              <label for="inputPassword">R&eacute;p&eacute;tez le mot de passe</label>
-              <input type="password" class="form-control" id="inputPassword">
-            </div>
-            <div>
-              <button type="submit" class="btn btn btn-primary">
-                S'inscrire
-              </button>
-            </div>
-          </form>
+          <div class="form-group">
+            <label for="inputUsernameEmail">{{ l('email') }}</label>
+            <input type="text" class="form-control" id="inputUsernameEmail">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">{{ l('password') }}</label>
+            <input type="password" class="form-control" id="inputPassword">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">{{ l('signup.repeatPassword') }}</label>
+            <input type="password" class="form-control" id="inputPassword">
+          </div>
+          <div>
+            <button class="btn btn btn-primary">
+              {{ l('signup.title') }}
+            </button>
+          </div>
 
         </div>
 
@@ -61,10 +59,11 @@ export default {
 @import "../assets/css/babelbooks";
 
 .login-container{
-    border:1px solid black;
-    margin-bottom:15px;
-    background-color: rgba(255,255,255,0.8);
-    border-radius: 25px;
+   /*border:1px solid black;*/
+    margin-bottom:25px;
+    background-color: rgb(255,255,255);
+    box-shadow: 0 2px 5px 3px rgba(0,0,0,0.5);
+    /*border-radius: 25px;*/
 }
 .main{
 	padding: 15px;

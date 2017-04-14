@@ -7,11 +7,11 @@
       <div class="text-vertical-center">
         <div class="center-vertical">
           <h1><img src="assets/img/logo-bb-title.svg"  alt="Babelbooks" class="svg logo"></h1>
-          <h3>La biblioth&egrave;que coop&eacute;rative</h3>
+          <h3>{{ l('home.title') }}</h3>
           <br>
           <div class="col-md-6 col-md-offset-3">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Trouver un livre">
+              <input type="text" class="form-control" v-bind:placeholder="l('home.search')">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button">
                   <span class="glyphicon glyphicon-search"></span>
@@ -24,12 +24,12 @@
 
       </div>
 
-      <a class="scroll" href="#block"><span></span>En savoir plus</a>
+      <a class="scroll" href="#block"><span></span>{{ l('home.knowMore') }}</a>
   </header>
 
   <div class="page-bottom">
     <div class="container block" id="block">
-    <h2>Partagez vos livres avec le monde !</h2>
+    <h2>{{ l('home.title2') }}</h2>
     <div class="col-12 col-md-4 column">
       <span class="glyphicon glyphicon-book"></span>
       <p>Vos livres prennent la poussière dans votre bibliothéque ? BabelBooks est une librarie partagée et 
