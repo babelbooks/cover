@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import "../assets/css/babelbooks";
+/*@import "../assets/css/babelbooks";*/
 
 .login-container{
    /*border:1px solid black;*/
