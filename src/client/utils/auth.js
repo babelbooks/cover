@@ -1,5 +1,5 @@
 import config from './config'
-import store from './store/store'
+import store from '../store/store'
 import Vue from 'vue'
 
 const LOGIN_URL = config.apiUrl + 'sessions/create/'
@@ -75,21 +75,6 @@ export default {
       // Get User informations to store in cache
       store.dispatch('updateUser', idUser);
     }
-  },
-
-  storeUserInfo(idUser,context,redirect){
-    // Get user info from server to put it in the cache
-
-    response.data.authenticated = true;
-
-    Vue.http.get(USER_URL).then(response => {
-
-
-      store.dispatch('updateUser', response.data)
-      return true
-    }, response => {
-      return false
-    });
   },
 
   getAuthHeader() {

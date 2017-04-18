@@ -18,43 +18,13 @@
     <hr>
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-md-4">
-          <div class="panel panel-success">
+        <div v-for="book in books" class="col-xs-12 col-md-4">
+          <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">Livre #1</h3>
+              <h3 class="panel-title"><b>{{book.title}}</b> - {{book.author}}</h3>
             </div>
             <div class="panel-body">
-              Description<br> auteur<br> annee<br>photo
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h3 class="panel-title">Livre #2</h3>
-            </div>
-            <div class="panel-body">
-              Description<br> auteur<br> annee<br>photo
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h3 class="panel-title">Livre #3</h3>
-            </div>
-            <div class="panel-body">
-              Description<br> auteur<br> annee<br>photo
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h3 class="panel-title">Livre #4</h3>
-            </div>
-            <div class="panel-body">
-              Description<br> auteur<br> annee<br>photo
+              <h4><span v-for="genre in book.genres" class="label label-primary book-genre">{{genre}}</span></h4>
             </div>
           </div>
         </div>
@@ -64,12 +34,39 @@
 </template>
 
 <script>
+import config from '../utils/config'
+
 export default {
   name: 'myLibrary',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      books: []
     }
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
+  },
+  created: function () {
+
+    const USER_URL = config.apiUrl + "user/books/" + this.user.userID;
+    var self = this;
+    this.$http.get(USER_URL).then(response => {
+      if (response.data.booksId.length > 0){
+        for (var i = 0; i < response.data.booksId.length; i++){
+          const BOOK_URL = config.apiUrl + "book/" + response.data.booksId[i];
+
+          this.$http.get(BOOK_URL).then(response => {
+            self.books.push(response.data)
+          }, response => {
+            self.error = "Cannot contact server"
+          });
+        }
+      }
+    }, response => {
+      self.error = "Cannot contact server"
+    });
   }
 }
 </script>
@@ -81,6 +78,11 @@ export default {
   background:linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
   padding:15px;
   color:white;
+}
+
+.book-genre{
+  padding:15px;
+  margin:15px;
 }
 
 </style>

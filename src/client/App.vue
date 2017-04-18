@@ -3,6 +3,14 @@
     <navbar placement="top" type="default">
       <!-- Brand as slot -->
       <a title="Home" slot="brand" class="navbar-brand" href="/"><img src="assets/img/logo-bb.svg" class="svg" alt="logo"></a>
+        <div class="navbar-form search-nav">
+          <div class="input-group search-nav-input">
+              <input type="text" class="form-control search-nav-input-bar" placeholder="Search" name="q">
+              <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+              </div>
+          </div>
+        </div>
       <ul slot="right" class="nav navbar-nav navbar-right">
         <dropdown v-if="user.authenticated" v-bind:text="user.username" role="menu">
           <li><router-link to="/profile">{{ l('navbar.myProfil') }}</router-link></li>
@@ -19,8 +27,10 @@
         </dropdown>
       </ul>
     </navbar>
-    <router-view class="view"></router-view>
-    <spinner ref="spinner" global v-model="spinner" size="lg" fixed v-bind:text="l('loading')"></spinner>
+    <transition name="fade" mode="out-in">
+      <router-view class="view"></router-view>
+    </transition>
+    <spinner global size="lg" fixed v-bind:text="l('loading')"></spinner>
   </div>
 </template>
 
@@ -28,7 +38,7 @@
 import inlineSVG from "./assets/js/inlineSVG.min.js";
 import { navbar,dropdown,spinner } from 'vue-strap'
 import store from './store/store'
-import auth from './auth'
+import auth from './utils/auth'
 
 export default {
   name: 'app',
@@ -45,24 +55,24 @@ export default {
   },
   data () {
     return {
-      spinner: false
+      msg:''
     }
   },
   methods:{
     changeLang(lang){
-      this.spinner = true;
+      this.$root.$emit('spinner::show')
       var self = this;
       setTimeout(function(){
-        self.spinner = false;
         self.changeLanguage(lang);
+        self.$root.$emit('spinner::hide')
       }, 1500);
     },
     logout: function(){
-      this.spinner = true;
+      this.$root.$emit('spinner::show')
       var self = this;
       setTimeout(function(){
         auth.logout(self);
-        self.spinner = false;
+        self.$root.$emit('spinner::hide')
       }, 1000);
     }
   },
@@ -112,5 +122,16 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0;
+}
+
+@media(min-width:992px){
+  .search-nav-input-bar{
+    min-width:500px;
+  }
+}
+
+.search-nav-input{
+  margin-right:15px;
+  margin-left:15px;
 }
 </style>

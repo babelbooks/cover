@@ -14,7 +14,8 @@ const state = {
     signUpDate: '',
     authenticated: false
   },
-  mlang:{}
+  mlang:{},
+  search: ''
 }
 
 const mutations = {
@@ -32,6 +33,9 @@ const mutations = {
       signUpDate: '',
       authenticated: false
     }
+  },
+  UPDATE_SEARCH(state, search){
+    state.search = search;
   }
 }
 

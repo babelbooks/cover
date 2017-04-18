@@ -87,8 +87,7 @@ export default {
       var day = d.getDate();
       var monthIndex = d.getMonth();
       var year = d.getFullYear();
-      console.log(this.l('monthNames'))
-      return day + ' ' + this.l('monthNames')[monthIndex] + ' ' + year;
+      return day + ' ' + this.$store.state.mlang.monthNames[monthIndex] + ' ' + year;
     }
   },
   data () {
@@ -106,6 +105,7 @@ export default {
   background:linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
   padding:15px;
   color:white;
+  margin-bottom:25px;
 }
 
 #profile-body{

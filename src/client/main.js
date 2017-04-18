@@ -20,8 +20,8 @@ import MultiLanguage from 'vue-multilanguage'
 import Store from './store/store'
 Vue.use( MultiLanguage, { path: '/assets/lang', d_language: 'fr', store: Store } )
 
-import router from './router'
-import auth from './auth'
+import router from './utils/router'
+import auth from './utils/auth'
 
 auth.checkAuth()
 

@@ -32,15 +32,6 @@ h3 {
 
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
 
 a {
   color: #42b983;
@@ -263,12 +254,12 @@ path {
   animation: none;
 }
 
-.btn {
-  border-radius: 0px;
-  border: 0px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
-  transform: top 0.3s;
-}
+// .btn {
+//   border-radius: 0px;
+//   border: 0px;
+//   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+//   transform: top 0.3s;
+// }
 
 .btn:hover {
     //position:relative;

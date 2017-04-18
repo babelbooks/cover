@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import config from '../config'
+import config from '../utils/config'
 
 export const updateUser =  function({ commit },idUser) {
   return new Promise((resolve, reject) => {
@@ -17,4 +17,8 @@ export const updateUser =  function({ commit },idUser) {
 
 export const logoutUser = ({ commit }) => {
   commit('LOGOUT_USER')
+}
+
+export const updateSearch =  function({ commit },search) {
+  commit('UPDATE_SEARCH', search)
 }

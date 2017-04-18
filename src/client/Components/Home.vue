@@ -11,7 +11,9 @@
           <br>
           <div class="col-md-6 col-md-offset-3">
             <div class="input-group">
-              <input type="text" class="form-control" v-bind:placeholder="l('home.search')">
+              <input v-on:keyup.enter="submitSearch()" type="text" class="form-control"
+              v-bind:placeholder="l('home.search')"
+              v-model="search">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button">
                   <span class="glyphicon glyphicon-search"></span>
@@ -92,7 +94,7 @@
     </div>
 
     <div class="footer">
-      
+
     </div>
 </div>
 
@@ -105,7 +107,13 @@ export default {
   name: 'login',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      search: ''
+    }
+  },
+  methods:{
+    submitSearch: function(){
+      this.$store.dispatch('updateSearch',this.search);
+      this.$router.push({ name: 'search' });
     }
   },
   mounted: function(){

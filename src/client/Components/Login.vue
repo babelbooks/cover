@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import auth from '../auth'
+import auth from '../utils/auth'
 
 export default {
   name: 'login',
