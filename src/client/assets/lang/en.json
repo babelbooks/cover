@@ -10,7 +10,12 @@
 	   "title": "Co-operative library",
      "knowMore": "Find out more",
      "search": "Find a book",
-     "title2": "A library for everybody"
+     "title2": "A library for everybody",
+     "contact": "Contact us",
+     "yourName": "Your name",
+     "yourEmail": "Your email",
+     "yourMessage": "Your message",
+     "submit": "Submit"
   },
   "myLibrary": {
     "title": "My library"

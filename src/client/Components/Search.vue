@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="profile-header">
+    <div id="pages-header">
       <p><h3>Results for: <b>{{ $route.params.search }}</b></h3></p>
     </div>
     <div>
@@ -120,12 +120,6 @@ export default {
 
 <style lang="sass">
 @import "../assets/css/babelbooks";
-
-#profile-header{
-  background:linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
-  padding:15px;
-  color:white;
-}
 
 .book-wrapper{
   background: rgb(30, 30, 30);

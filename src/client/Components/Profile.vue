@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="profile-header">
+    <div id="pages-header">
       <avatar style="display:inline-block;" v-bind:username="user.firstName + ' ' + user.lastName" :size="100"></avatar>
       <p><h3>{{user.firstName}} {{user.lastName}}</h3></p>
     </div>
@@ -100,13 +100,6 @@ export default {
 
 <style lang="sass">
 @import "../assets/css/babelbooks";
-
-#profile-header{
-  background:linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
-  padding:15px;
-  color:white;
-  margin-bottom:25px;
-}
 
 #profile-body{
   margin-top:20px;

@@ -10,7 +10,12 @@
 	   "title": "Biblioth\u00E8que coop\u00E9rative",
      "knowMore": "En savoir plus",
      "search": "Trouver un livre",
-     "title2": "Une biblioth\u00E8que pour tout le monde"
+     "title2": "Une biblioth\u00E8que pour tout le monde",
+     "contact": "Contactez nous",
+     "yourName": "Votre nom",
+     "yourEmail": "Votre courriel",
+     "yourMessage": "Votre message",
+     "submit": "Envoyer"
   },
   "myLibrary": {
     "title": "Ma biblioth\u00E8que"

@@ -120,6 +120,7 @@ center-title
   width: 95%;
   max-width: 1200px;
   padding-top: 75px;
+  padding-bottom: 75px;
   //padding-left: 100px;
   //padding-right: 100px;
   //background-color: $color-white;
@@ -271,6 +272,13 @@ path {
     //box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
     //top: 1px;
 // }
+
+#pages-header{
+  background:linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  padding:15px;
+  color:white;
+  margin-bottom:25px;
+}
 
 @keyframes hover-float {
     0% {top: 0px;}

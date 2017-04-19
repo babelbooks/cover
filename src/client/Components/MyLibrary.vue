@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="my-library-header">
+    <div id="pages-header">
       <p><h3>{{ l('myLibrary.title') }}</h3></p>
     </div>
     <table style="width:100%">
@@ -197,13 +197,7 @@ export default {
 
 <style lang="sass">
 @import "../assets/css/babelbooks";
-
-#my-library-header{
-  background:linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
-  padding:15px;
-  color:white;
-}
-
+  
 .book-wrapper{
   background: rgb(30, 30, 30);
   width:100%;
