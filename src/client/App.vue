@@ -3,11 +3,13 @@
     <navbar placement="top" type="default">
       <!-- Brand as slot -->
       <a title="Home" slot="brand" class="navbar-brand" href="/"><img src="assets/img/logo-bb.svg" class="svg" alt="logo"></a>
-        <div class="navbar-form search-nav">
+        <div v-show="displaySearchNavbar" class="navbar-form search-nav">
           <div class="input-group search-nav-input">
-              <input type="text" class="form-control search-nav-input-bar" placeholder="Search" name="q">
+              <input  v-on:keyup.enter="submitSearch()" type="text" class="form-control search-nav-input-bar"
+              v-bind:placeholder="l('home.search')"
+              v-model="search">
               <div class="input-group-btn">
-                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                  <button @click="submitSearch()" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
               </div>
           </div>
         </div>
@@ -22,8 +24,8 @@
         <dropdown v-bind:text="l('navbar.lang')" role="menu">
           <li @click="changeLang('fr')"><a href="#">Fr</a></li>
           <li @click="changeLang('en')"><a href="#">En</a></li>
-          <li @click="changeLang('de')"><a href="#">De</a></li>
-          <li @click="changeLang('jp')"><a href="#">Jp</a></li>
+          <!-- <li @click="changeLang('de')"><a href="#">De</a></li>
+          <li @click="changeLang('jp')"><a href="#">Jp</a></li> -->
         </dropdown>
       </ul>
     </navbar>
@@ -51,11 +53,18 @@ export default {
   computed: {
     user() {
       return this.$store.state.user
+    },
+    displaySearchNavbar() {
+      if ((this.$route.name === 'home') || (this.$route.name === 'signup') || (this.$route.name === 'login')){
+        return false
+      }else{
+        return true
+      }
     }
   },
   data () {
     return {
-      msg:''
+      search:''
     }
   },
   methods:{
@@ -74,6 +83,9 @@ export default {
         auth.logout(self);
         self.$root.$emit('spinner::hide')
       }, 1000);
+    },
+    submitSearch: function(){
+      this.$router.push({ name: 'search', params: { search: this.search }})
     }
   },
   mounted: function () {

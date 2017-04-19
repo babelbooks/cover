@@ -6,7 +6,7 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
           <div id="profile-body">
             <tabs v-model="activeTab" nav-style="tabs" justified>
               <tab v-bind:header="l('profile.infos')">

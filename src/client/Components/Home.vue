@@ -15,7 +15,7 @@
               v-bind:placeholder="l('home.search')"
               v-model="search">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
+                <button @click="submitSearch()" class="btn btn-default" type="button">
                   <span class="glyphicon glyphicon-search"></span>
                 </button>
               </span>
@@ -112,8 +112,7 @@ export default {
   },
   methods:{
     submitSearch: function(){
-      this.$store.dispatch('updateSearch',this.search);
-      this.$router.push({ name: 'search' });
+      this.$router.push({ name: 'search', params: { search: this.search }})
     }
   },
   mounted: function(){
