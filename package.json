@@ -21,9 +21,12 @@
   },
   "homepage": "https://github.com/babelbooks/cover#readme",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "path": "^0.12.7",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0",
     "vue": "^2.2.1",
     "vue-avatar": "^2.0.0",
     "vue-awesome": "^2.2.4",
@@ -34,9 +37,11 @@
     "vuex": "^2.3.0"
   },
   "devDependencies": {
+    "@types/bluebird": "^3.5.2",
     "@types/body-parser": "^1.16.3",
     "@types/express": "^4.0.35",
     "@types/node": "^7.0.12",
+    "@types/request-promise": "^4.1.33",
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
     "babel-preset-latest": "^6.0.0",
