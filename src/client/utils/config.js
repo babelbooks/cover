@@ -1,4 +1,4 @@
 export default{
   environment: 'DEV',
-  apiUrl: 'http://localhost:3000/'
+  apiUrl: 'http://localhost:3001/api/'
 }

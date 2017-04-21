@@ -2,8 +2,8 @@ import config from './config'
 import store from '../store/store'
 import Vue from 'vue'
 
-const LOGIN_URL = config.apiUrl + 'sessions/create/'
-const SIGNUP_URL = config.apiUrl + 'users/'
+const LOGIN_URL   = config.apiUrl + 'login'
+const SIGNUP_URL  = config.apiUrl + 'users/'      // Not implemented yet
 
 export default {
 
@@ -12,12 +12,11 @@ export default {
   },
   login(context, creds, redirect) {
 
-    localStorage.setItem('id_token', "test")
+    localStorage.setItem('id_token', 'test')
+    localStorage.setItem('id_user', creds.username)
 
-    localStorage.setItem('id_user', 1) // replace this by real user id
-
-    // Get User informations to store in cache
-    store.dispatch('updateUser', 1).then(() => {
+    // Get User information to store in cache
+    store.dispatch('updateUser', creds.username).then(() => {
       if(redirect) {
         context.$router.push({ name: redirect });
       }
@@ -25,9 +24,8 @@ export default {
       context.error = "Connexion au serveur impossible";
     });
 
-    // TODO connect with backend
-    /*
-    context.$http.post(LOGIN_URL, creds, (data) => {
+    context.$http.post(LOGIN_URL, { user: creds }, (data) => {
+      // (Sn0wFox) Well, I don't send a token. A cookie is set and stores the session's ID
       localStorage.setItem('id_token', data.id_token)
 
       this.user.authenticated = true
@@ -39,7 +37,6 @@ export default {
     }).error((err) => {
       context.error = err
     })
-    */
   },
 
   signup(context, creds, redirect) {

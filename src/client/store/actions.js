@@ -3,7 +3,7 @@ import config from '../utils/config'
 
 export const updateUser =  function({ commit },idUser) {
   return new Promise((resolve, reject) => {
-    const USER_URL = config.apiUrl + "user/" + idUser;
+    const USER_URL = config.apiUrl + 'user/me';
 
     Vue.http.get(USER_URL).then(response => {
       response.data.authenticated = true;
