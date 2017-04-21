@@ -159,11 +159,12 @@ export default {
     }
   },
   mounted: function(){
-    var self = this;
+    let self = this;
     setTimeout(function(){
       self.serverResponded = true;
     }, 1000);
   },
+
   computed: {
     user() {
       return this.$store.state.user
@@ -172,21 +173,18 @@ export default {
       return this.bookView === 'blocks'
     }
   },
+
   created: function () {
-
-    const USER_URL = config.apiUrl + "user/books/" + this.user.userID;
-    var self = this;
+    const USER_URL = config.apiUrl + 'user/' + this.user.username + '/books/';
+    let self = this;
     this.$http.get(USER_URL).then(response => {
-      if (response.data.booksId.length > 0){
-        for (var i = 0; i < response.data.booksId.length; i++){
-          const BOOK_URL = config.apiUrl + "book/" + response.data.booksId[i];
-
-          this.$http.get(BOOK_URL).then(response => {
-            self.books.push(response.data)
-          }, response => {
-            self.error = "Cannot contact server"
-          });
-        }
+      console.log('---------- RESPONSE FROM SERVER: ');
+      console.log(response.data);
+      if (response.data.length > 0) {
+        self.books = response.data;
+//        for (let i = 0; i < response.data.books.length; i++){
+//          self.books.push();
+//        }
       }
     }, response => {
       // self.error = "Cannot contact server"
