@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="pages-header">
-      <h3>Book title</h3>
+      <h3>{{book.title}}</h3>
     </div>
     <div class="container">
       <div v-if="myBook">
@@ -31,7 +31,7 @@
       <hr>
       <div class="row">
         <div class="col-xs-12 col-sm-4" style="margin-bottom:20px;">
-          <img src="https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api" id="book-img" alt="" />
+          <img v-bind:src="book.cover" id="book-img" alt="" />
         </div>
         <div class="col-xs-12 col-sm-8">
           <div class="row">
@@ -39,7 +39,7 @@
               <b>Auteur</b>
             </div>
             <div class="col-xs-12 col-sm-8">
-              blablabla
+              {{book.author}}
             </div>
           </div>
           <hr>
@@ -48,7 +48,7 @@
               <b>Description</b>
             </div>
             <div class="col-xs-12 col-sm-8">
-              blablabla
+              {{book.abstract}}
             </div>
           </div>
           <hr>
@@ -57,7 +57,9 @@
               <b>Genre(s)</b>
             </div>
             <div class="col-xs-12 col-sm-8">
-              blablabla
+              <div v-for="genre in book.genres">
+                <p>{{genre}}</p>
+              </div>
             </div>
           </div>
           <hr>
@@ -66,7 +68,7 @@
               <b>ISBN</b>
             </div>
             <div class="col-xs-12 col-sm-8">
-              blablabla
+              {{book.isbn}}
             </div>
           </div>
         </div>
@@ -89,7 +91,17 @@ export default {
   data () {
     return {
       myBook: false,
-      readyToRent: false
+      readyToRent: false,
+      book: {
+   "isbn": 9782266232999,
+   "title": "Le Seigneur des Anneaux / Intégrale",
+   "abstract": "...",
+   "genres": ["Fantasy","Science-Fiction"],
+   "author": "J. R. R. Tolkien",
+   "edition": "Pocket",
+   "majorForm": "Novel",
+   "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
+}
     }
   }
 }

@@ -19,6 +19,7 @@ import 'vue-awesome/icons';
 // Register components
 Vue.component('icon', Icon);
 
+
 // Use modules
 Vue.use(VueRouter);
 Vue.use(Vuex);
@@ -28,6 +29,9 @@ Vue.use(MultiLanguage, {
   d_language: 'fr',
   store: Store
 });
+
+import BookDisplay from './Components/BookDisplay.vue'
+Vue.component('book-display', BookDisplay);
 
 // Initialize vue.js
 new Vue({

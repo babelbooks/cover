@@ -27,37 +27,12 @@
           <h3>Livres en votre possession (en cours de lecture)</h3>
           <div class="row">
             <div v-for="(book,index) in booksReading" class="col-xs-12 col-sm-6 col-md-4">
-              <div class="panel panel-default">
-                <router-link to="/book/1">
-                  <div class="book-wrapper">
-                    <img src="https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api" class="book-img" alt="" />
-                    <span class="glyphicon glyphicon-option-horizontal more-options"></span>
-                    <div class="book-txt-wrapper">
-                      <h4>
-                        <b>Titre {{index}}</b>
-                      </h4>
-                    </div>
-                  </div>
-                </router-link>
-                <div class="panel-footer">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <span class="glyphicon glyphicon-send" aria-hidden="true"></span> 1
-                    </div>
-                    <div class="col-xs-4">
-                      <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 22
-                    </div>
-                    <div class="col-xs-4">
-                      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 6
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <book-display :book="book"></book-display>
             </div>
           </div>
           <br>
           <h3>Livres en votre possession (en attente d'emprunt)</h3>
-          <div class="row">
+          <!-- <div class="row">
             <div v-for="(book,index) in booksRenting" class="col-xs-12 col-sm-6 col-md-4">
               <div class="panel panel-default">
                 <router-link to="/book/1">
@@ -65,7 +40,7 @@
                     <img src="https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api" class="book-img" alt="" />
                     <div class="book-txt-wrapper">
                       <h4>
-                        <b>Titre {{index}}</b>
+                        <b>Titre {{book.title}}</b>
                       </h4>
                     </div>
                   </div>
@@ -86,14 +61,14 @@
               </div>
             </div>
           </div>
-          <br>
+          <br> -->
           <h3>Livres que vous avez mis en circulation</h3>
-          <div class="row">
+          <!-- <div class="row">
             <div v-for="(book,index) in booksInitiated" class="col-xs-12 col-sm-6 col-md-4">
               <div class="panel panel-default">
                 <router-link to="/book/1">
                   <div class="book-wrapper">
-                    <img src="https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api" class="book-img" alt="" />
+                    <img v-bind:src="book.cover" class="book-img" alt="" />
                     <div class="book-txt-wrapper">
                       <h4>
                         <b>Titre {{index}}</b>
@@ -117,7 +92,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div v-else>
           <ul class="list-group">
             <li v-for="(book,index) in booksInitiated" class="list-group-item">
@@ -147,15 +122,56 @@
 <script>
 import config from '../utils/config'
 
+
 export default {
   name: 'myLibrary',
   data () {
     return {
       serverResponded: false,
       bookView: 'blocks',
-      booksReading: ['',''],
-      booksRenting: ['','',''],
-      booksInitiated: ['']
+      booksReading: [
+{
+   "isbn": 9782266232999,
+   "title": "Le Seigneur des Anneaux / Intégrale",
+   "abstract": "...",
+   "genres": ["Fantasy","Science-Fiction"],
+   "author": "J. R. R. Tolkien",
+   "edition": "Pocket",
+   "majorForm": "Novel",
+   "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
+},
+{
+   "isbn": 9782266232999,
+   "title": "Le Seigneur des Anneaux / Intégrale",
+   "abstract": "...",
+   "genres": ["Fantasy","Science-Fiction"],
+   "author": "J. R. R. Tolkien",
+   "edition": "Pocket",
+   "majorForm": "Novel",
+   "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
+},
+{
+   "isbn": 9782266232999,
+   "title": "Le Seigneur des Anneaux / Intégrale",
+   "abstract": "...",
+   "genres": ["Fantasy","Science-Fiction"],
+   "author": "J. R. R. Tolkien",
+   "edition": "Pocket",
+   "majorForm": "Novel",
+   "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
+},
+{
+   "isbn": 9782266232999,
+   "title": "Le Seigneur des Anneaux / Intégrale",
+   "abstract": "...",
+   "genres": ["Fantasy","Science-Fiction"],
+   "author": "J. R. R. Tolkien",
+   "edition": "Pocket",
+   "majorForm": "Novel",
+   "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
+}],
+      booksRenting: [],
+      booksInitiated: []
     }
   },
   mounted: function(){
