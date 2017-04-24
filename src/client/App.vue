@@ -42,14 +42,15 @@ import { navbar,dropdown,spinner } from 'vue-strap'
 import store from './store/store'
 import auth from './utils/auth'
 
+
 export default {
   name: 'app',
   store,
   components:{
     navbar,
     dropdown,
-    spinner
-  },
+    spinner,
+      },
   computed: {
     user() {
       return this.$store.state.user
