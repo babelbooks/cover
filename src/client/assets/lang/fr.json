@@ -1,10 +1,21 @@
 {
   "appName": "Babelbooks",
+  "monthNames": [
+    "Janvier", "F\u00E9vrier", "Mars",
+    "Avril", "Mai", "Juin", "Juillet",
+    "Ao\u00FBt", "Septembre", "Octobre",
+    "Novembre", "D\u00E9cembre"
+  ],
   "home": {
 	   "title": "Biblioth\u00E8que coop\u00E9rative",
      "knowMore": "En savoir plus",
      "search": "Trouver un livre",
-     "title2": "Une biblioth\u00E8que pour tout le monde"
+     "title2": "Une biblioth\u00E8que pour tout le monde",
+     "contact": "Contactez nous",
+     "yourName": "Votre nom",
+     "yourEmail": "Votre courriel",
+     "yourMessage": "Votre message",
+     "submit": "Envoyer"
   },
   "myLibrary": {
     "title": "Ma biblioth\u00E8que"
@@ -14,7 +25,8 @@
     "appointment": "Mes rendez-vous",
     "param": "Param\u00EAtre",
     "points": "Mes points",
-    "level": "Mon niveau"
+    "level": "Mon score",
+    "memberSince": "Membre depuis"
   },
   "navbar": {
     "myProfil": "Mon profile",
@@ -30,5 +42,6 @@
   "signup":{
     "title": "S'inscrire",
     "repeatPassword": "R\u00E9p\u00E9ter le mot de passe"
-  }
+  },
+  "loading": "Chargement..."
 }

@@ -21,6 +21,24 @@ npm run dev
 ```
 This will serve with hot reload at `localhost:8080`.
 
+## API
+### POST /api/login
+`Content-Type: application/json`
+```json
+{
+    "user": {
+       "username": ID,
+       "password": string
+    }
+}
+```
+
+### POST /api/logout
+### GET /api/user/me
+### GET /api/user/:userId/books
+### GET /api/user/:userId/books/reading
+### GET /api/user/:userId/books/borrowed
+
 ## Build commands
 ### Build the server
 ```shell
