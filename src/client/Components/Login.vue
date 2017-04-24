@@ -3,10 +3,54 @@
   <h2><img src="assets/img/logo-bb-title.svg" height="100px" alt="Babelbooks" class="svg"></h2>
       <div class="container col-xs-12 col-md-6 col-md-offset-3 login-container">
         <div class="row">
-          <div class="main">
+          <div class=" main ">
             <h3>{{ l('login.title') }}</h3>
             <div class="alert alert-danger" v-if="error">
               <p>{{ error }}</p>
+            </div>
+
+
+            <div class="form-group col-md-6 col-sm-12 col-centered">
+              <label for="inputUsernameEmail"></label>
+
+
+                
+              <div class="form-group" >
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </div>
+                  <input type="text" class="form-control input-lg" v-model="credentials.username" v-bind:placeholder="l('email')">
+                </div>
+              </div>
+
+              <div class="form-group" >
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="  glyphicon glyphicon-lock"></i>
+                  </div>
+                  <input type="password" class="form-control input-lg" v-model="credentials.password" v-bind:placeholder="l('password')">
+                </div>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label for="inputPassword"></label>
+
+            </div>
+            <div>
+              <button class="btn btn-lg btn-primary" @click="submit()">
+                {{ l('login.title') }}
+              </button>
+            </div>
+            <div class="checkbox ">
+              <label>
+                <input type="checkbox">
+                {{ l('login.remember') }} </label>
+            </div>
+
+            <div class="login-or">
+              <hr class="hr-or">
             </div>
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-md-6" style="margin-bottom:10px;">
@@ -15,27 +59,6 @@
               <div class="col-xs-12 col-sm-6 col-md-6">
                 <a href="#" class="btn btn-lg btn-info btn-block">Google</a>
               </div>
-            </div>
-            <div class="login-or">
-              <hr class="hr-or">
-            </div>
-            <div class="form-group">
-              <label for="inputUsernameEmail">{{ l('email') }}</label>
-              <input type="text" class="form-control" v-model="credentials.username">
-            </div>
-            <div class="form-group">
-              <label for="inputPassword">{{ l('password') }}</label>
-              <input type="password" class="form-control" v-model="credentials.password">
-            </div>
-            <div>
-              <button class="btn btn btn-primary" @click="submit()">
-                {{ l('login.title') }}
-              </button>
-            </div>
-            <div class="checkbox pull-right">
-              <label>
-                <input type="checkbox">
-                {{ l('login.remember') }} </label>
             </div>
 
           </div>
