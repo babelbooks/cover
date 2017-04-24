@@ -19,11 +19,11 @@ export default {
               context.$router.push({ name: redirect });
             }
           })
-          .error(() => {
+          .catch(() => {
             context.error = "Failed to login";
           });
       })
-      .error((err) => {
+      .catch((err) => {
         context.error = err
       });
   },
