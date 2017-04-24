@@ -1,13 +1,19 @@
-import VueRouter from 'vue-router'
+import VueRouter  from 'vue-router';
 
-import Home from '../Components/Home.vue'
-import Login from '../Components/Login.vue'
-import Signup from '../Components/Signup.vue'
-import MyLibrary from '../Components/MyLibrary.vue'
-import Profile from '../Components/Profile.vue'
-import Search from '../Components/Search.vue'
-import Book from '../Components/Book.vue'
+// Import all components needed
+import Home       from '../Components/Home.vue';
+import Login      from '../Components/Login.vue';
+import Signup     from '../Components/Signup.vue';
+import MyLibrary  from '../Components/MyLibrary.vue';
+import Profile    from '../Components/Profile.vue';
+import Search     from '../Components/Search.vue';
+import Book       from '../Components/Book.vue';
 
+/**
+ * Client side router.
+ * Each route displays a component.
+ * @type {VueRouter}
+ */
 const router = new VueRouter({
   //mode: 'history', TODO: When in production, use this mode. Use this in the NodeJS server: https://github.com/bripkens/connect-history-api-fallback
   routes: [
