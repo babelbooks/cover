@@ -23,6 +23,9 @@ Vue.use( MultiLanguage, { path: '/assets/lang', d_language: 'fr', store: Store }
 import router from './utils/router'
 import auth from './utils/auth'
 
+import BookDisplay from './Components/BookDisplay.vue'
+Vue.component('book-display', BookDisplay);
+
 auth.checkAuth()
 
 new Vue({
