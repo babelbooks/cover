@@ -81,6 +81,8 @@ gulp.task('client:clean', () => {
   return del(distFolder + clientRoot);
 });
 
+gulp.task('hot', ['server:build', 'client:build:libs']);
+
 gulp.task('clean', () => {
   return del(distFolder);
 });

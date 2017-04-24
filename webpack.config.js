@@ -1,5 +1,6 @@
-const path    = require('path');
-const webpack = require('webpack');
+const path      = require('path');
+const webpack   = require('webpack');
+const apiConfig = require('./dist/server/server.config');
 
 module.exports = {
   entry: './src/client/main.js',
@@ -45,7 +46,11 @@ module.exports = {
     contentBase: './src/client/',
     //publicPath: '/src/client/',
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    setup: (app) => {
+      apiConfig.configureApp(app);
+    },
+    port: 3001
   },
   performance: {
     hints: false
