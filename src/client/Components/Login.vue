@@ -10,10 +10,8 @@
             </div>
 
 
-            <div class="form-group col-md-6 col-sm-12 col-centered">
+            <div class="form-group col-md-8 col-sm-12 col-centered">
               <label for="inputUsernameEmail"></label>
-
-
                 
               <div class="form-group" >
                 <div class="input-group">
@@ -42,12 +40,13 @@
               <button class="btn btn-lg btn-primary" @click="submit()">
                 {{ l('login.title') }}
               </button>
-            </div>
-            <div class="checkbox ">
+              <div class="checkbox">
               <label>
                 <input type="checkbox">
                 {{ l('login.remember') }} </label>
             </div>
+            </div>
+            
 
             <div class="login-or">
               <hr class="hr-or">
