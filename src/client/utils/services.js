@@ -1,34 +1,30 @@
-import Vue    from 'vue';
-import VueRes from 'vue-resource';
-import config from './config';
-
-Vue.use(VueRes);
+import config   from './config';
 
 const LOGIN_URL   = config.apiUrl + 'login';
 const SIGNUP_URL  = config.apiUrl + 'users/';   // Not implemented yet
 
 export default {
-  login: (credentials) => {
-    return Vue
-      .http
+  login: (context, credentials) => {
+    return context
+      .$http
       .post(LOGIN_URL, { user: credentials });
   },
 
-  logout: () => {
+  logout: (context) => {
 
   },
 
-  signup: (user) => {
+  signup: (context, user) => {
 
   },
 
-  getCurrentUser: () => {
-    return Vue
-      .http
+  getCurrentUser: (context) => {
+    return context
+      .$http
       .get(config.apiUrl + 'user/me');
   },
 
-  getCurrentUserLib: () => {
+  getCurrentUserLib: (context) => {
     return getHardUserLib();
     // return context
     //   .$http
