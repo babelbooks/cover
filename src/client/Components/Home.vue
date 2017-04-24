@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import $ from "../assets/js/jQuery.js";
+import $ from 'jquery';
 
 export default {
   name: 'login',

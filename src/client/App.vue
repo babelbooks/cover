@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import inlineSVG from "./assets/js/inlineSVG.min.js";
+import inlineSVG from 'inline-svg';
 import { navbar,dropdown,spinner } from 'vue-strap'
 import store from './store/store'
 import auth from './utils/auth'
@@ -117,7 +117,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import "/assets/css/navbar";
+@import "assets/css/navbar";
 @import "assets/css/babelbooks";
 
 
