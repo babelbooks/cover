@@ -25,7 +25,7 @@ export default {
   },
 
   getCurrentUserLib: (context) => {
-    return getHardUserLib();
+    return Promise.resolve(getHardUserLib());
     // return context
     //   .$http
     //   .get(config.apiUrl + 'user/me/books');
@@ -34,13 +34,43 @@ export default {
 
 function getHardUserLib() {
   return [{
-    "isbn": 9782266232999,
-    "title": "Le Seigneur des Anneaux / Intégrale",
-    "abstract": "...",
-    "genres": ["Fantasy","Science-Fiction"],
-    "author": "J. R. R. Tolkien",
-    "edition": "Pocket",
-    "majorForm": "Novel",
-    "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
-  }];
+      "isbn": 9782266232999,
+      "title": "Le Seigneur des Anneaux / Intégrale",
+      "abstract": "...",
+      "genres": ["Fantasy","Science-Fiction"],
+      "author": "J. R. R. Tolkien",
+      "edition": "Pocket",
+      "majorForm": "Novel",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
+    },
+    {
+      "isbn": 9782266232999,
+      "title": "Le Seigneur des Anneaux / Intégrale",
+      "abstract": "...",
+      "genres": ["Fantasy","Science-Fiction"],
+      "author": "J. R. R. Tolkien",
+      "edition": "Pocket",
+      "majorForm": "Novel",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
+    },
+    {
+      "isbn": 9782266232999,
+      "title": "Le Seigneur des Anneaux / Intégrale",
+      "abstract": "...",
+      "genres": ["Fantasy","Science-Fiction"],
+      "author": "J. R. R. Tolkien",
+      "edition": "Pocket",
+      "majorForm": "Novel",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
+    },
+    {
+      "isbn": 9782266232999,
+      "title": "Le Seigneur des Anneaux / Intégrale",
+      "abstract": "...",
+      "genres": ["Fantasy","Science-Fiction"],
+      "author": "J. R. R. Tolkien",
+      "edition": "Pocket",
+      "majorForm": "Novel",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
+    }];
 }
