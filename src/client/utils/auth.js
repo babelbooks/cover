@@ -54,15 +54,6 @@ export default {
     context.$router.push({ name: 'home' });
   },
 
-  checkAuth() {
-    var jwt = localStorage.getItem('id_token')
-    var idUser = localStorage.getItem('id_user')
-    if(jwt && idUser) { // TODO: Eventually, check if the token match the session ID in the backend
-      // Get User informations to store in cache
-      store.dispatch('updateUser', idUser);
-    }
-  },
-
   getAuthHeader() {
     return {
       'Authorization': 'Bearer ' + localStorage.getItem('id_token')
