@@ -1,6 +1,7 @@
 import config   from './config';
 
 const LOGIN_URL   = config.apiUrl + 'login';
+const LOGOUT_URL  = config.apiUrl + 'logout';
 const SIGNUP_URL  = config.apiUrl + 'users/';   // Not implemented yet
 
 export default {
@@ -11,7 +12,9 @@ export default {
   },
 
   logout: (context) => {
-
+    return context
+      .$http
+      .post(LOGOUT_URL);
   },
 
   signup: (context, user) => {

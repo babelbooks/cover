@@ -1,46 +1,56 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import * as actions from './actions'
-Vue.use(Vuex)
+import Vue          from 'vue';
+import Vuex         from 'vuex';
+import * as actions from './actions';
 
+/**
+ * Use Vuex locally
+ */
+Vue.use(Vuex);
+
+/**
+ * Define default state
+ */
 const state = {
-  user:{
-    userID: 1,
-    username: '',
-    lastName: '',
-    firstName: '',
-    points: 1,
-    score: 1,
-    signUpDate: '',
-    authenticated: false
-  },
-  mlang:{},
-  search: ''
-}
+  user: {},         // At first, no user is logged in
+  mlang:{},         // No lang is selected
+  search: ''        // No search term has been typed
+};
 
+/**
+ * Define possible mutations
+ */
 const mutations = {
+  // Update an user (upon login only)
   UPDATE_USER (state, user) {
     state.user = user;
   },
+
+  // Update an user (upon logout only)
   LOGOUT_USER (state) {
-    state.user = {
-      userID: 1,
-      username: '',
-      lastName: '',
-      firstName: '',
-      points: 1,
-      score: 1,
-      signUpDate: '',
-      authenticated: false
-    }
+    state.user = {};
   },
-  UPDATE_SEARCH(state, search){
+
+  // Update search terms
+  UPDATE_SEARCH (state, search) {
     state.search = search;
   }
-}
+};
 
+/**
+ * Define possible getters
+ */
+const getters = {
+  currentUser: (state) => {
+    return state.user;
+  }
+};
+
+/**
+ * Eventually export the new store
+ */
 export default new Vuex.Store({
-  state,
-  actions,
-  mutations
-})
+  state: state,
+  actions: actions,
+  mutations: mutations,
+  getters: getters
+});

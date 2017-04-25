@@ -7,20 +7,19 @@ export default {
   },
 
   login(context, creds, redirect) {
-    // TODO: check if user is already connected
     return services
       .login(context, creds)
       .then(() => {
         // Get User information to store in cache
         return store
-          .dispatch('updateUser', creds.username)
+          .dispatch('updateUser')
           .then(() => {
             if(redirect) {
               context.$router.push({ name: redirect });
             }
           })
           .catch(() => {
-            context.error = "Failed to login";
+            context.error = 'Failed to login';
           });
       })
       .catch((err) => {
@@ -49,9 +48,15 @@ export default {
   },
 
   logout(context) {
-    localStorage.removeItem('id_token')
-    context.$store.dispatch('logoutUser')
-    context.$router.push({ name: 'home' });
+    return services
+      .logout(context)
+      .then(() => {
+        return store.dispatch('logoutUser');
+      })
+      .catch((err) => {
+        context.error = err;
+        return store.dispatch('logoutUser');
+      });
   },
 
   getAuthHeader() {
