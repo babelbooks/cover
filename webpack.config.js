@@ -1,6 +1,6 @@
 const path      = require('path');
 const webpack   = require('webpack');
-const apiConfig = require('./dist/server/server.config');
+const colors    = require('colors');
 
 module.exports = {
   entry: './src/client/main.js',
@@ -48,7 +48,13 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true,
     setup: (app) => {
-      apiConfig.configureApp(app);
+      try {
+        const apiConfig = require('./dist/server/server.config');
+        apiConfig.configureApp(app);
+      } catch (err) {
+        console.log('WARN'.yellow + ': Server config not found. Did you build it?');
+        console.log('WARN'.yellow + ': Skipping server config...');
+      }
     },
     port: 3001
   },
