@@ -47,6 +47,20 @@ export function logout(): Bluebird<any> {
 }
 
 /**
+ * Tries to register the given user.
+ * @param user The user to register.
+ * @returns {Bluebird<any>}
+ */
+export function signup(user: any): Bluebird<any> {
+  return Bluebird.resolve(request({
+    method: 'POST',
+    url: 'http://localhost:3000/user/add',
+    json: true,
+    body: user
+  }));
+}
+
+/**
  * Gathers information about the currently logged-in user.
  * @param options Request's options.
  * @returns {Bluebird<any>}
