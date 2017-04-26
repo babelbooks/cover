@@ -10,15 +10,16 @@ import Store  from './store/store';
 import router from './utils/router';
 
 // Import components
-import Icon   from 'vue-awesome/components/Icon.vue';
-import App    from './App.vue';
+import Icon         from 'vue-awesome/components/Icon.vue';
+import App          from './App.vue';
+import BookDisplay  from './Components/BookDisplay.vue'
 
 // Import all icons (don't care about bundle size)
 import 'vue-awesome/icons';
 
 // Register components
 Vue.component('icon', Icon);
-
+Vue.component('book-display', BookDisplay);
 
 // Use modules
 Vue.use(VueRouter);
@@ -29,9 +30,6 @@ Vue.use(MultiLanguage, {
   d_language: 'fr',
   store: Store
 });
-
-import BookDisplay from './Components/BookDisplay.vue'
-Vue.component('book-display', BookDisplay);
 
 // Initialize vue.js
 new Vue({

@@ -91,8 +91,8 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div> -->
+          </div> -->
+        </div>
         <div v-else>
           <ul class="list-group">
             <li v-for="(book,index) in booksInitiated" class="list-group-item">
@@ -120,8 +120,8 @@
 </template>
 
 <script>
-import config from '../utils/config'
-
+import config   from '../utils/config';
+import services from '../utils/services';
 
 export default {
   name: 'myLibrary',
@@ -129,56 +129,19 @@ export default {
     return {
       serverResponded: false,
       bookView: 'blocks',
-      booksReading: [
-{
-   "isbn": 9782266232999,
-   "title": "Le Seigneur des Anneaux / Intégrale",
-   "abstract": "...",
-   "genres": ["Fantasy","Science-Fiction"],
-   "author": "J. R. R. Tolkien",
-   "edition": "Pocket",
-   "majorForm": "Novel",
-   "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
-},
-{
-   "isbn": 9782266232999,
-   "title": "Le Seigneur des Anneaux / Intégrale",
-   "abstract": "...",
-   "genres": ["Fantasy","Science-Fiction"],
-   "author": "J. R. R. Tolkien",
-   "edition": "Pocket",
-   "majorForm": "Novel",
-   "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
-},
-{
-   "isbn": 9782266232999,
-   "title": "Le Seigneur des Anneaux / Intégrale",
-   "abstract": "...",
-   "genres": ["Fantasy","Science-Fiction"],
-   "author": "J. R. R. Tolkien",
-   "edition": "Pocket",
-   "majorForm": "Novel",
-   "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
-},
-{
-   "isbn": 9782266232999,
-   "title": "Le Seigneur des Anneaux / Intégrale",
-   "abstract": "...",
-   "genres": ["Fantasy","Science-Fiction"],
-   "author": "J. R. R. Tolkien",
-   "edition": "Pocket",
-   "majorForm": "Novel",
-   "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
-}],
+      booksReading: [],
       booksRenting: [],
       booksInitiated: []
     }
   },
   mounted: function(){
     let self = this;
-    setTimeout(function(){
-      self.serverResponded = true;
-    }, 1000);
+    return services
+      .getCurrentUserLib(self)
+      .then((res) => {
+        self.serverResponded = true;
+        self.booksReading = res;
+      });
   },
 
   computed: {
@@ -192,19 +155,19 @@ export default {
 
   created: function () {
     const USER_URL = config.apiUrl + 'user/' + this.user.username + '/books/';
-    let self = this;
-    this.$http.get(USER_URL).then(response => {
-      console.log('---------- RESPONSE FROM SERVER: ');
-      console.log(response.data);
-      if (response.data.length > 0) {
-        self.books = response.data;
-//        for (let i = 0; i < response.data.books.length; i++){
-//          self.books.push();
-//        }
-      }
-    }, response => {
-      // self.error = "Cannot contact server"
-    });
+//    let self = this;
+//    this.$http.get(USER_URL).then(response => {
+//      console.log('---------- RESPONSE FROM SERVER: ');
+//      console.log(response.data);
+//      if (response.data.length > 0) {
+//        self.books = response.data;
+////        for (let i = 0; i < response.data.books.length; i++){
+////          self.books.push();
+////        }
+//      }
+//    }, response => {
+//      // self.error = "Cannot contact server"
+//    });
   }
 }
 </script>

@@ -1,5 +1,6 @@
-const path    = require('path');
-const webpack = require('webpack');
+const path      = require('path');
+const webpack   = require('webpack');
+const colors    = require('colors');
 
 module.exports = {
   entry: './src/client/main.js',
@@ -45,7 +46,17 @@ module.exports = {
     contentBase: './src/client/',
     //publicPath: '/src/client/',
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    setup: (app) => {
+      try {
+        const apiConfig = require('./dist/server/server.config');
+        apiConfig.configureApp(app);
+      } catch (err) {
+        console.log('WARN'.yellow + ': Server config not found. Did you build it?');
+        console.log('WARN'.yellow + ': Skipping server config...');
+      }
+    },
+    port: 3001
   },
   performance: {
     hints: false

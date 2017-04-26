@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import inlineSVG from "./assets/js/inlineSVG.min.js";
+import inlineSVG from 'inline-svg';
 import { navbar,dropdown,spinner } from 'vue-strap'
 import store from './store/store'
 import auth from './utils/auth'
@@ -56,11 +56,7 @@ export default {
       return this.$store.state.user
     },
     displaySearchNavbar() {
-      if ((this.$route.name === 'home') || (this.$route.name === 'signup') || (this.$route.name === 'login')){
-        return false
-      }else{
-        return true
-      }
+      return !((this.$route.name === 'home') || (this.$route.name === 'signup') || (this.$route.name === 'login'));
     }
   },
   data () {
@@ -71,7 +67,7 @@ export default {
   methods:{
     changeLang(lang){
       this.$root.$emit('spinner::show')
-      var self = this;
+      let self = this;
       setTimeout(function(){
         self.changeLanguage(lang);
         self.$root.$emit('spinner::hide')
@@ -79,7 +75,7 @@ export default {
     },
     logout: function(){
       this.$root.$emit('spinner::show')
-      var self = this;
+      let self = this;
       setTimeout(function(){
         auth.logout(self);
         self.$root.$emit('spinner::hide')
@@ -117,7 +113,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import "/assets/css/navbar";
+@import "assets/css/navbar";
 @import "assets/css/babelbooks";
 
 
