@@ -53,7 +53,7 @@ export function logout(): Bluebird<any> {
  */
 export function signup(user: any): Bluebird<any> {
   return Bluebird.resolve(request({
-    method: 'POST',
+    method: 'PUT',
     url: 'http://localhost:3000/user/add',
     json: true,
     body: user
