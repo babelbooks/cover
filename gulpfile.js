@@ -47,7 +47,7 @@ gulp.task('client:build:index', () => {
 
 gulp.task('client:build:assets', () => {
   return gulp
-    .src(assetsFolder + '/**/*')
+    .src([assetsFolder + '/**/*', '!' + assetsFolder + '/**/*.scss'])
     .pipe(gulp.dest(distFolder + assetsRoot));
 });
 
