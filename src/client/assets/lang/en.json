@@ -7,15 +7,15 @@
     "November", "December"
   ],
   "home": {
-	   "title": "Co-operative library",
-     "knowMore": "Find out more",
-     "search": "Find a book",
-     "title2": "A library for everybody",
-     "contact": "Contact us",
-     "yourName": "Your name",
-     "yourEmail": "Your email",
-     "yourMessage": "Your message",
-     "submit": "Submit"
+    "title": "Co-operative library",
+    "knowMore": "Find out more",
+    "search": "Find a book",
+    "title2": "A library for everybody",
+    "contact": "Contact us",
+    "yourName": "Your name",
+    "yourEmail": "Your email",
+    "yourMessage": "Your message",
+    "submit": "Submit"
   },
   "myLibrary": {
     "title": "My library"
@@ -33,8 +33,10 @@
     "logout": "Logout",
     "lang": "Language"
   },
-  "email": "Email",
+  "email": "Email or Username",
   "password": "Password",
+  "first-name": "First Name",
+  "last-name": "Last Name",
   "login": {
     "title": "Log in",
     "remember": "Remember me"

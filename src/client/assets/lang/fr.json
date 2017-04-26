@@ -7,15 +7,15 @@
     "Novembre", "D\u00E9cembre"
   ],
   "home": {
-	   "title": "Biblioth\u00E8que coop\u00E9rative",
-     "knowMore": "En savoir plus",
-     "search": "Trouver un livre",
-     "title2": "Une biblioth\u00E8que pour tout le monde",
-     "contact": "Contactez nous",
-     "yourName": "Votre nom",
-     "yourEmail": "Votre courriel",
-     "yourMessage": "Votre message",
-     "submit": "Envoyer"
+    "title": "Biblioth\u00E8que coop\u00E9rative",
+    "knowMore": "En savoir plus",
+    "search": "Trouver un livre",
+    "title2": "Une biblioth\u00E8que pour tout le monde",
+    "contact": "Contactez nous",
+    "yourName": "Votre nom",
+    "yourEmail": "Votre courriel",
+    "yourMessage": "Votre message",
+    "submit": "Envoyer"
   },
   "myLibrary": {
     "title": "Ma biblioth\u00E8que"
@@ -33,8 +33,10 @@
     "logout": "Se d\u00E9connecter",
     "lang": "Langue"
   },
-  "email": "Courriel",
+  "email": "Courriel / Nom d'utilisateur",
   "password": "Mot de passe",
+  "first-name": "Pr\u00E9nom",
+  "last-name": "Nom",
   "login": {
     "title": "Se connecter",
     "remember": "Se souvenir de moi"

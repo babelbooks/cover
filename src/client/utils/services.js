@@ -20,7 +20,7 @@ export default {
   signup: (context, user) => {
     return context
       .$http
-      .post(SIGNUP_URL, { user: user });
+      .put(SIGNUP_URL, { user: user });
   },
 
   getCurrentUser: (context) => {

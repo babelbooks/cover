@@ -23,7 +23,7 @@ export default {
           });
       })
       .catch((err) => {
-        context.error = err.message;
+        context.error = err.body.error.message || err.body.error.error;
       });
   },
 
@@ -38,7 +38,7 @@ export default {
         }
       })
       .catch((err) => {
-        context.error = err.message;
+        context.error = err.body.error.message || err.body.error.error;
       });
   },
 
@@ -49,7 +49,7 @@ export default {
         return store.dispatch('logoutUser');
       })
       .catch((err) => {
-        context.error = err.message;
+        context.error = err.body.error.message || err.body.error.error;
         return store.dispatch('logoutUser');
       });
   }

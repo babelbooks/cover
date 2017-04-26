@@ -8,6 +8,9 @@
         <div class="main">
 
           <h3>{{ l('signup.title') }}</h3>
+          <div class="alert alert-danger" v-if=error>
+            <p>{{ error }}</p>
+          </div>
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
               <a href="#" class="btn btn-lg btn-primary btn-block">Facebook</a>
@@ -21,18 +24,26 @@
           </div>
           <div class="form-group">
             <label for="inputUsernameEmail">{{ l('email') }}</label>
-            <input type="text" class="form-control" id="inputUsernameEmail">
+            <input type="text" class="form-control" id="inputUsernameEmail" v-model=user.username>
+          </div>
+          <div class="form-group">
+            <label for="inputFirstName">{{ l('first-name') }}</label>
+            <input type="text" class="form-control" id="inputFirstName" v-model=user.firstName>
+          </div>
+          <div class="form-group">
+            <label for="inputFirstName">{{ l('last-name') }}</label>
+            <input type="text" class="form-control" id="inputLastName" v-model=user.lastName>
           </div>
           <div class="form-group">
             <label for="inputPassword">{{ l('password') }}</label>
-            <input type="password" class="form-control" id="inputPassword">
+            <input type="password" class="form-control" id="inputPassword" v-model=user.password>
           </div>
           <div class="form-group">
             <label for="inputPassword">{{ l('signup.repeatPassword') }}</label>
-            <input type="password" class="form-control" id="inputPassword">
+            <input type="password" class="form-control" id="inputPassword-check">
           </div>
           <div>
-            <button class="btn btn btn-primary">
+            <button class="btn btn btn-primary" @click="submit()">
               {{ l('signup.title') }}
             </button>
           </div>
@@ -45,11 +56,24 @@
 </template>
 
 <script>
+import auth from '../utils/auth';
+
 export default {
   name: 'signup',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      user: {
+        username: '',
+        password: '',
+        firstName: '',
+        lastName: ''
+      },
+      error: ''
+    }
+  },
+  methods: {
+    submit() {
+      return auth.signup(this, this.user, 'login');
     }
   }
 }
