@@ -1,8 +1,8 @@
-import config   from './config';
+import config from './config';
 
 const LOGIN_URL   = config.apiUrl + 'login';
 const LOGOUT_URL  = config.apiUrl + 'logout';
-const SIGNUP_URL  = config.apiUrl + 'users/';   // Not implemented yet
+const SIGNUP_URL  = config.apiUrl + 'signup';
 
 export default {
   login: (context, credentials) => {
@@ -18,7 +18,9 @@ export default {
   },
 
   signup: (context, user) => {
-
+    return context
+      .$http
+      .post(SIGNUP_URL, { user: user });
   },
 
   getCurrentUser: (context) => {

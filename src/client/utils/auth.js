@@ -23,28 +23,23 @@ export default {
           });
       })
       .catch((err) => {
-        context.error = err
+        context.error = err.message;
       });
   },
 
-  signup(context, creds, redirect) {
-
-
-    // TODO connect with backend
-    /*
-    context.$http.post(SIGNUP_URL, creds, (data) => {
-      localStorage.setItem('id_token', data.id_token)
-
-      this.user.authenticated = true
-
-      if(redirect) {
-        router.go(redirect)
-      }
-
-    }).error((err) => {
-      context.error = err
-    })
-    */
+  signup(context, user, redirect) {
+    let self = this;
+    return services
+      .signup(context, user)
+      .then(() => {
+        self.user.authenticated = true;
+        if(redirect) {
+          context.$router.push({ name: redirect });
+        }
+      })
+      .catch((err) => {
+        context.error = err.message;
+      });
   },
 
   logout(context) {
@@ -54,14 +49,8 @@ export default {
         return store.dispatch('logoutUser');
       })
       .catch((err) => {
-        context.error = err;
+        context.error = err.message;
         return store.dispatch('logoutUser');
       });
-  },
-
-  getAuthHeader() {
-    return {
-      'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-    }
   }
 }
