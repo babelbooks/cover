@@ -21,11 +21,11 @@
             </div>
             <div class="form-group">
               <label for="inputUsernameEmail">{{ l('email') }}</label>
-              <input type="text" class="form-control" v-model="credentials.username">
+              <input id="inputUsernameEmail" type="text" class="form-control" v-model=credentials.username>
             </div>
             <div class="form-group">
               <label for="inputPassword">{{ l('password') }}</label>
-              <input type="password" class="form-control" v-model="credentials.password">
+              <input id="inputPassword" type="password" class="form-control" v-model=credentials.password>
             </div>
             <div>
               <button class="btn btn btn-primary" @click="submit()">
@@ -60,12 +60,8 @@ export default {
     }
   },
   methods:{
-    submit: function(){
-      var credentials = {
-        username: this.credentials.username,
-        password: this.credentials.password
-      }
-      auth.login(this, credentials, 'mylibrary')
+    submit () {
+      return auth.login(this, this.credentials, 'mylibrary');
     }
   }
 }
