@@ -8,6 +8,7 @@
     "start": "cross-env NODE_ENV=production gulp build && node dist/server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "gulp hot && cross-env NODE_ENV=hot-dev webpack-dev-server --open --hot",
+    "prod": "gulp build && cross-env NODE_ENV=prod node dist/server/server.js",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
