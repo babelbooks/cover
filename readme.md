@@ -21,6 +21,12 @@ npm run dev
 ```
 This will serve with hot reload at `localhost:8080`.
 
+## Deploy
+```shell
+docker build -t babelbooks/cover .
+docker run babelbooks/cover
+```
+
 ## API
 ### POST /api/login
 `Content-Type: application/json`
