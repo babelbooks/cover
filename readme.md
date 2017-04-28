@@ -30,7 +30,7 @@ docker run babelbooks/cover
 ## API
 ### POST /api/login
 `Content-Type: application/json`
-```json
+```
 {
     "user": {
        "username": ID,
@@ -41,6 +41,31 @@ docker run babelbooks/cover
 
 ### POST /api/logout
 ### GET /api/user/me
+### PUT /api/user/me/book
+The given object must have the following shape:
+```
+{
+   isbn: ID,
+   available: boolean
+}
+```
+**OR**
+```
+{
+   metadata: {
+     title: string,
+     abstract: string,
+     genres: string[],
+     author: string,
+     edition: string,
+     majorForm: string,
+     cover: string
+   },
+   available: boolean
+}
+```
+It inserts the book along with its metadata if provided for the current user.
+
 ### GET /api/user/:userId/books
 ### GET /api/user/:userId/books/reading
 ### GET /api/user/:userId/books/borrowed
