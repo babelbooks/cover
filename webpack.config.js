@@ -54,7 +54,7 @@ if (process.env.NODE_ENV === 'prod') {
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: 'prod'
+        NODE_ENV: "'prod'"
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
