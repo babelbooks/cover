@@ -3,10 +3,10 @@ const webpack   = require('webpack');
 const colors    = require('colors');
 
 module.exports = {
-  entry: './src/client/main.js',
+  entry: './src/main.js',
   output: {
-    path: path.resolve(__dirname, './dist/client'),
-    filename: 'build.js'
+    path: path.resolve(__dirname, './dist'),
+    filename: 'cover.js'
   },
   module: {
     rules: [
@@ -42,35 +42,19 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js'
     }
   },
-  devServer: {
-    contentBase: './src/client/',
-    //publicPath: '/src/client/',
-    historyApiFallback: true,
-    noInfo: true,
-    setup: (app) => {
-      try {
-        const apiConfig = require('./dist/server/server.config');
-        apiConfig.configureApp(app);
-      } catch (err) {
-        console.log('WARN'.yellow + ': Server config not found. Did you build it?');
-        console.log('WARN'.yellow + ': Skipping server config...');
-      }
-    },
-    port: 3001
-  },
   performance: {
     hints: false
   },
   devtool: '#eval-source-map'
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'prod') {
   module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        NODE_ENV: 'prod'
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
@@ -82,5 +66,5 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
-  ])
+  ]);
 }
