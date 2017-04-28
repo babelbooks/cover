@@ -79,6 +79,68 @@ export function getCurrentUser(options?: any): Bluebird<any> {
 }
 
 /**
+ * Adds the given book into BabelBooks for the current user.
+ * The book must EITHER have a field metadata or a field isbn.
+ * If the book contains a field metadata, the object will be indexed.
+ * If the book contains a field isbn, it will check that the isbn exist
+ * in our index.
+ * Returns the added book upon success along with its metadata if they
+ * were indexed too.
+ * Returns a promise rejection upon failure.
+ * @param book The book to add.
+ * @param options Request's options.
+ * @returns {Bluebird<any>}
+ */
+export function addBook(book: any, options?: any): Bluebird<any> {
+  let headers: any = options ? options.headers : undefined;
+  let metadata = book.metadata;
+  delete book.metadata;
+  return Bluebird
+    .try(() => {
+      if (metadata ? book.isbn === undefined : book.isbn !== undefined) {
+        if (book.isbn !== undefined) {
+          return request({
+            method: 'GET',
+            url: engineURL + '/elastic/book/' + book.isbn,
+            json: true
+          });
+        }
+      } else {
+        return Bluebird.reject(new Error('The given book must either have a metadata OR an isbn field.'));
+      }
+    })
+    .then(() => {
+      return getCurrentUser(options);
+    })
+    .then((res: any) => {
+      book.origin = res.username;
+      return request({
+        method: 'PUT',
+        url: babelURL + '/book/add',
+        json: true,
+        body: book,
+        headers: headers
+      });
+    })
+    .then((res: any) => {
+      if(metadata) {
+        metadata.id = res.isbn;
+        return request({
+          method: 'PUT',
+          url: engineURL + '/elastic/book',
+          json: true,
+          body: {book: metadata}
+        })
+        .then((data: any) => {
+          res.metadata = data;
+          return res;
+        });
+      }
+      return res;
+    });
+}
+
+/**
  * Gathers all information about the books originally owned
  * by the given user.
  * @param userId The user's Id from which retrieve the books.

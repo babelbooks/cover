@@ -74,7 +74,7 @@ router.post('/logout', (req: express.Request, res: express.Response) => {
 
 /**
  * POST /signup
- * user : {
+ * user: {
  *    username: ID,
  *    password: string,
  *    lastName: string,
@@ -103,7 +103,7 @@ router.put('/signup', (req: express.Request, res: express.Response) => {
  * Retrieves information about the current user,
  * and returns it alongside a 200 status code
  * if successful.
- * Otherwise, returns a 400 status code along with a object
+ * Otherwise, returns a 400 status code along with an object
  * describing the error.
  */
 router.get('/user/me', (req: express.Request, res: express.Response) => {
@@ -113,6 +113,43 @@ router.get('/user/me', (req: express.Request, res: express.Response) => {
     })
     .then((resp: any) => {
       return res.status(200).json(resp);
+    })
+    .catch((err: Error) => {
+      return res.status(400).json(err);
+    });
+});
+
+/**
+ * PUT /user/me/book
+ * {
+ *    isbn: ID,
+ *    available: boolean
+ * }
+ * OR
+ * {
+ *    metadata: {
+ *      title: string,
+ *      abstract: string,
+ *      genres: string[],
+ *      author: string,
+ *      edition: string,
+ *      majorForm: string,
+ *      cover: string
+ *    },
+ *    available: boolean
+ * }
+ *
+ * Adds the given book to BabelBooks along with its metadata if provided.
+ * Returns the created object alongside a 201 status code upon success,
+ * or a 400 status code along with an object describing the error.
+ */
+router.put('/user/me/book', (req: express.Request, res: express.Response) => {
+  return services
+    .addBook(req.body.book, {headers: {
+      cookie: req.headers['cookie']}
+    })
+    .then((resp: any) => {
+      return res.status(201).json(resp);
     })
     .catch((err: Error) => {
       return res.status(400).json(err);
