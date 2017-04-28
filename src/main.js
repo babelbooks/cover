@@ -12,7 +12,7 @@ import router from './utils/router';
 // Import components
 import Icon         from 'vue-awesome/components/Icon.vue';
 import App          from './App.vue';
-import BookDisplay  from './Components/BookDisplay.vue'
+import BookDisplay  from './components/BookDisplay.vue'
 
 // Import all icons (don't care about bundle size)
 import 'vue-awesome/icons';

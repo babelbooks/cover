@@ -1,13 +1,13 @@
 import VueRouter  from 'vue-router';
 
 // Import all components needed
-import Home       from '../Components/Home.vue';
-import Login      from '../Components/Login.vue';
-import Signup     from '../Components/Signup.vue';
-import MyLibrary  from '../Components/MyLibrary.vue';
-import Profile    from '../Components/Profile.vue';
-import Search     from '../Components/Search.vue';
-import Book       from '../Components/Book.vue';
+import Home       from '../components/Home.vue';
+import Login      from '../components/Login.vue';
+import Signup     from '../components/Signup.vue';
+import MyLibrary  from '../components/MyLibrary.vue';
+import Profile    from '../components/Profile.vue';
+import Search     from '../components/Search.vue';
+import Book       from '../components/Book.vue';
 
 /**
  * Client side router.
