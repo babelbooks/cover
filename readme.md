@@ -53,13 +53,13 @@ The given object must have the following shape:
 ```
 {
    metadata: {
-     title: string,
-     abstract: string,
-     genres: string[],
-     author: string,
-     edition: string,
-     majorForm: string,
-     cover: string
+        title: string,
+        abstract: string,
+        genres: string[],
+        author: string,
+        edition: string,
+        majorForm: string,
+        cover: string
    },
    available: boolean
 }
@@ -69,6 +69,26 @@ It inserts the book along with its metadata if provided for the current user.
 ### GET /api/user/:userId/books
 ### GET /api/user/:userId/books/reading
 ### GET /api/user/:userId/books/borrowed
+### GET /book/all/available/:limit?/:offset?
+The result will be an array of object with the following shape:
+```
+{
+    bookId: ID,
+    isbn: ID,
+    available: boolean,
+    origin: ID,
+    metadata: {
+        id: ID,
+        title: string,
+        abstract: string,
+        genres: string[],
+        author: string,
+        edition: string,
+        majorForm: string,
+        cover: string
+    }
+}
+```
 
 ## Build commands
 ### Build the server
