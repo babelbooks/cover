@@ -141,6 +141,38 @@ export function addBook(book: any, options?: any): Bluebird<any> {
 }
 
 /**
+ * Gathers all available books and associated metadata from the given offset
+ * or the internal offset used by the service an limited by the given
+ * limit or the internal limit used by the service.
+ * Returns an array with the data upon success, or a promise rejection otherwise.
+ * @param limit The optional max number of books to retrieve.
+ * @param offset The optional offset from which retrieve books.
+ * @param options Request's options.
+ * @returns {Bluebird<any>}
+ */
+export function getAllAvailableBooks(limit?: number, offset?: number, options?: any): Bluebird<any> {
+  let headers: any = options ? options.headers : undefined;
+  return Bluebird
+    .resolve(request({
+      method: 'GET',
+      url: babelURL + 'book/all/available/' + (limit ? (limit + '/' + (offset ? offset : '')) : ''),
+      json: true,
+      headers: headers
+    }))
+    .map((book: any) => {
+      return request({
+          method: 'GET',
+          url: engineURL + '/book/' + book.isbn,
+          json: true
+        })
+        .then((data: any) => {
+          book.metadata = data;
+          return book;
+        });
+    });
+}
+
+/**
  * Gathers all information about the books originally owned
  * by the given user.
  * @param userId The user's Id from which retrieve the books.

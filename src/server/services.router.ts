@@ -230,3 +230,28 @@ router.get('/user/:userId/books/borrowed', (req: express.Request, res: express.R
       return res.status(400).json(err);
     });
 });
+
+/**
+ * GET /book/all/available/:limit?/:offset?
+ *
+ * Gathers all available books and associated metadata from the given offset
+ * or the internal offset used by the service an limited by the given
+ * limit or the internal limit used by the service.
+ * Returns a 200 status code alongside an array of results upon success
+ * (including empty array) or a 400 status code along with an object
+ * describing the error.
+ */
+router.get('/book/all/available/:limit?/:offset?', (req: express.Request, res: express.Response) => {
+  let limit   = +req.params['limit'];
+  let offset  = +req.params['offset'];
+  return services
+    .getAllAvailableBooks(isNaN(limit) ? undefined : limit, isNaN(offset) ? undefined : offset, {headers: {
+      cookie: req.headers['cookie']}
+    })
+    .then((resp: any) => {
+      return res.status(200).json(resp);
+    })
+    .catch((err: Error) => {
+      return res.status(400).json(err);
+    });
+});
