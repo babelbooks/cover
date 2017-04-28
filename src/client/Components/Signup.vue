@@ -1,6 +1,12 @@
 <template>
-  <div id="top" class="login-fixed-background">
+<div style="height:100%">
+  <div id="top" class="login-header">
+      <div class="header-bg">
+      </div>
+
     <h2><img src="assets/img/logo-bb-title.svg" height="100px" alt="Babelbooks" class="svg"></h2>
+
+
 
     <div class="container col-xs-12 col-md-6 col-md-offset-3 login-container">
       <div class="row" style="opacity:1;">
@@ -53,6 +59,8 @@
       </div>
     </div>
   </div>
+  
+</div>
 </template>
 
 <script>

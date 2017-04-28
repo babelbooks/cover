@@ -171,6 +171,37 @@ center-title
   color:white;
 }
 
+form-group {
+  text-align:center
+}
+
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+.login-input {
+  max-width: 500px;
+  height: 2em;
+  font-size: 2em;
+  margin: auto;
+}
+
 
 /*.flex-col {
   width: 100%;
@@ -284,4 +315,9 @@ path {
     0% {top: 0px;}
     50% {top: 1px;}
     100% {top: 0px;}
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
 }
