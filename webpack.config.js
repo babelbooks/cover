@@ -1,6 +1,6 @@
-const path      = require('path');
-const webpack   = require('webpack');
-const colors    = require('colors');
+const path    = require('path');
+const webpack = require('webpack');
+const colors  = require('colors');
 
 module.exports = {
   entry: './src/main.js',
@@ -49,7 +49,7 @@ module.exports = {
 };
 
 if (process.env.NODE_ENV === 'prod') {
-  module.exports.devtool = '#source-map';
+  module.exports.devtool = 'cheap-module-source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
