@@ -14,7 +14,7 @@
                   <li class="list-group-item">
                     <div class="row">
                       <div class="col-xs-3">
-                        <b>{{l('profile.points')}} <icon name="beer"></icon></b>
+                        <b>{{l('profile.points')}}</b>
                       </div>
                       <div class="col-xs-9">
                         {{user.points}}

@@ -2,6 +2,18 @@
   <div>
     <div id="pages-header">
       <h3>{{book.title}}</h3>
+      <br>
+      <div class="row">
+        <div class="col-xs-4">
+          <span class="glyphicon glyphicon-send" aria-hidden="true"></span> 1
+        </div>
+        <div class="col-xs-4">
+          <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 22
+        </div>
+        <div class="col-xs-4">
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 6
+        </div>
+      </div>
     </div>
     <div class="container">
       <div v-if="myBook">
@@ -73,15 +85,44 @@
           </div>
         </div>
       </div>
+      <hr>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>
+            Comments
+          </h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li v-for="comment in comments" class="list-group-item">
+              <table style="width:100%;height:100%">
+                <tr>
+                  <td style="width:25%;">
+                    <router-link :to="{ name: 'profile', params: { userId: comment.user.id }}">
+                      <avatar style="display:inline-block;" v-bind:username="comment.user.firstname + ' ' + comment.user.lastname"></avatar>
+                    </router-link>
+                  </td>
+                  <td class="text-left">
+                    <h5>{{comment.comment}}</h5>
+                  </td>
+                </tr>
+              </table>
+            </li>
+          </ul>
+          <textarea class="form-control" placeholder="Ecrire un commmentaire" rows="3"></textarea>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Avatar from 'vue-avatar'
 
 export default {
   name: 'Book',
   components: {
+    avatar: Avatar.Avatar
   },
   computed: {
     user() {
@@ -93,15 +134,41 @@ export default {
       myBook: false,
       readyToRent: false,
       book: {
-   "isbn": 9782266232999,
-   "title": "Le Seigneur des Anneaux / Intégrale",
-   "abstract": "...",
-   "genres": ["Fantasy","Science-Fiction"],
-   "author": "J. R. R. Tolkien",
-   "edition": "Pocket",
-   "majorForm": "Novel",
-   "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
-}
+         "isbn": 9782266232999,
+         "title": "Le Seigneur des Anneaux / Intégrale",
+         "abstract": "...",
+         "genres": ["Fantasy","Science-Fiction"],
+         "author": "J. R. R. Tolkien",
+         "edition": "Pocket",
+         "majorForm": "Novel",
+         "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
+      },
+      comments:[
+        {
+          "user":{
+            "id": 1,
+            "firstname": "Ce",
+            "lastname": "Ta"
+          },
+          "comment": "Stai bon"
+        },
+        {
+          "user":{
+            "id": 2,
+            "firstname": "Se",
+            "lastname": "Va"
+          },
+          "comment": "Stai tres bon"
+        },
+        {
+          "user":{
+            "id": 3,
+            "firstname": "Re",
+            "lastname": "Ya"
+          },
+          "comment": "Stai vraiment bon"
+        }
+      ]
     }
   }
 }

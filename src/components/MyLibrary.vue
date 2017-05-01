@@ -26,74 +26,60 @@
         <div v-if="viewBlocks">
           <h3>Livres en votre possession (en cours de lecture)</h3>
           <div class="row">
-            <div v-for="(book,index) in booksReading" class="col-xs-12 col-sm-6 col-md-4">
+            <div v-for="book in booksReading" class="col-xs-12 col-sm-6 col-md-4">
               <book-display :book="book"></book-display>
             </div>
           </div>
           <br>
           <h3>Livres en votre possession (en attente d'emprunt)</h3>
-          <!-- <div class="row">
-            <div v-for="(book,index) in booksRenting" class="col-xs-12 col-sm-6 col-md-4">
-              <div class="panel panel-default">
-                <router-link to="/book/1">
-                  <div class="book-wrapper">
-                    <img src="https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api" class="book-img" alt="" />
-                    <div class="book-txt-wrapper">
-                      <h4>
-                        <b>Titre {{book.title}}</b>
-                      </h4>
-                    </div>
-                  </div>
-                </router-link>
-                <div class="panel-footer">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <span class="glyphicon glyphicon-send" aria-hidden="true"></span> 1
-                    </div>
-                    <div class="col-xs-4">
-                      <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 22
-                    </div>
-                    <div class="col-xs-4">
-                      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 6
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="row">
+            <div v-for="book in booksRenting" class="col-xs-12 col-sm-6 col-md-4">
+              <book-display :book="book"></book-display>
             </div>
           </div>
-          <br> -->
           <h3>Livres que vous avez mis en circulation</h3>
-          <!-- <div class="row">
-            <div v-for="(book,index) in booksInitiated" class="col-xs-12 col-sm-6 col-md-4">
-              <div class="panel panel-default">
-                <router-link to="/book/1">
-                  <div class="book-wrapper">
-                    <img v-bind:src="book.cover" class="book-img" alt="" />
-                    <div class="book-txt-wrapper">
-                      <h4>
-                        <b>Titre {{index}}</b>
-                      </h4>
-                    </div>
-                  </div>
-                </router-link>
-                <div class="panel-footer">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <span class="glyphicon glyphicon-send" aria-hidden="true"></span> 1
-                    </div>
-                    <div class="col-xs-4">
-                      <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 22
-                    </div>
-                    <div class="col-xs-4">
-                      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 6
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="row">
+            <div v-for="book in booksInitiated" class="col-xs-12 col-sm-6 col-md-4">
+              <book-display :book="book"></book-display>
             </div>
-          </div> -->
+          </div>
         </div>
         <div v-else>
+          <h3>Livres en votre possession (en cours de lecture)</h3>
+          <ul class="list-group">
+            <li v-for="(book,index) in booksReading" class="list-group-item">
+              <table style="width:100%">
+                <tr>
+                  <td style="padding-top:15px;padding-bottom:15px;" class="text-left">
+                    <b>{{book.title}}</b>
+                  </td>
+                  <td style="padding-top:15px;padding-bottom:15px;" class="text-right">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span> 1
+                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 22
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 6
+                  </td>
+                </tr>
+              </table>
+            </li>
+          </ul>
+          <h3>Livres en votre possession (en attente d'emprunt)</h3>
+          <ul class="list-group">
+            <li v-for="(book,index) in booksRenting" class="list-group-item">
+              <table style="width:100%">
+                <tr>
+                  <td style="padding-top:15px;padding-bottom:15px;" class="text-left">
+                    <b>{{book.title}}</b>
+                  </td>
+                  <td style="padding-top:15px;padding-bottom:15px;" class="text-right">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span> 1
+                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 22
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 6
+                  </td>
+                </tr>
+              </table>
+            </li>
+          </ul>
+          <h3>Livres que vous avez mis en circulation</h3>
           <ul class="list-group">
             <li v-for="(book,index) in booksInitiated" class="list-group-item">
               <table style="width:100%">
@@ -143,7 +129,15 @@ export default {
         self.booksReading = res;
       });
   },
-
+  methods:{
+    switchBookView: function(){
+      if (this.bookView === 'blocks'){
+        this.bookView = 'list'
+      }else{
+        this.bookView = 'blocks'
+      }
+    }
+  },
   computed: {
     user() {
       return this.$store.state.user
@@ -151,30 +145,13 @@ export default {
     viewBlocks(){
       return this.bookView === 'blocks'
     }
-  },
-
-  created: function () {
-    const USER_URL = config.apiUrl + 'user/' + this.user.username + '/books/';
-//    let self = this;
-//    this.$http.get(USER_URL).then(response => {
-//      console.log('---------- RESPONSE FROM SERVER: ');
-//      console.log(response.data);
-//      if (response.data.length > 0) {
-//        self.books = response.data;
-////        for (let i = 0; i < response.data.books.length; i++){
-////          self.books.push();
-////        }
-//      }
-//    }, response => {
-//      // self.error = "Cannot contact server"
-//    });
   }
 }
 </script>
 
 <style lang="sass">
 @import "../assets/css/babelbooks";
-  
+
 .book-wrapper{
   background: rgb(30, 30, 30);
   width:100%;

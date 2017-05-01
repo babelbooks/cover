@@ -1,21 +1,18 @@
 import Vue    from 'vue';
-import config from '../utils/config';
+import services from '../utils/services';
 
 /**
  * Tries to update the current user.
  * If no user is currently logged in,
  * returns a promise rejection.
  * TODO: should we really return a promise rejection ?
- * TODO: use service
  * @param commit The function to validate the transaction.
  * @returns {Promise}
  */
 export const updateUser = ({ commit }) => {
   return new Promise((resolve, reject) => {
-    const USER_URL = config.apiUrl + 'user/me';
-    return Vue
-      .http
-      .get(USER_URL)
+    return services
+      .getCurrentUser(Vue)
       .then(response => {
         response.data.authenticated = true;
         commit('UPDATE_USER', response.data);

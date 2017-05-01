@@ -8,11 +8,8 @@
             <div class="alert alert-danger" v-if="error">
               <p>{{ error }}</p>
             </div>
-
-
             <div class="form-group col-md-8 col-sm-12 col-centered">
               <label for="inputUsernameEmail"></label>
-                
               <div class="form-group" >
                 <div class="input-group">
                   <div class="input-group-addon">
@@ -21,7 +18,6 @@
                   <input type="text" class="form-control input-lg" v-model="credentials.username" v-bind:placeholder="l('email')">
                 </div>
               </div>
-
               <div class="form-group" >
                 <div class="input-group">
                   <div class="input-group-addon">
@@ -31,28 +27,17 @@
                 </div>
               </div>
             </div>
-            <div class="login-or">
-              <hr class="hr-or">
-            </div>
-            <div class="form-group">
-              <label for="inputUsernameEmail">{{ l('email') }}</label>
-              <input id="inputUsernameEmail" type="text" class="form-control" v-model=credentials.username>
-            </div>
-            <div class="form-group">
-              <label for="inputPassword">{{ l('password') }}</label>
-              <input id="inputPassword" type="password" class="form-control" v-model=credentials.password>
-            </div>
+
             <div>
               <button class="btn btn-lg btn-primary" @click="submit()">
                 {{ l('login.title') }}
               </button>
               <div class="checkbox">
-              <label>
-                <input type="checkbox">
-                {{ l('login.remember') }} </label>
+                <label>
+                  <input type="checkbox">
+                  {{ l('login.remember') }} </label>
+              </div>
             </div>
-            </div>
-            
 
             <div class="login-or">
               <hr class="hr-or">
