@@ -108,6 +108,24 @@ export default {
       console.log("Error");
       //TODO
     });
+  },
+
+  /**
+   * Get all the books the user gave to the library. This doesn't mean that the user still
+   * has the book. See getUserBorrowedBook and getUserReadBook for more details.
+   * @param context the context promise
+   * @param username the userId of the user
+   */
+  getUserOriginalBook: (context, username) => {
+    return context
+    .$http
+    .get(config.apiUrl + 'user/' + username + '/books')
+    .then((response) => {
+      console.log("Getting original books from user " + username);
+    })
+    .catch(() => {
+      console.log("Error");
+    })
   }
 
 }
