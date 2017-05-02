@@ -70,6 +70,24 @@ export default {
           //TODO
         })
     })
+  },
+
+/**
+ * Get the books currently borrowed by the user and which are not 
+ * read yet, then not available.
+ * @param context the context promise
+ * @param username the userId of the user
+ */
+  getUserReadingBook: (context, username) => {
+    return context
+    .$http
+    .get(config.apiUrl + 'user/' + username + 'books/reading')
+    .then(() => {
+      console.log("Getting reading books from user " + username);
+    })
+    .catch(() => {
+      console.log("Error");
+    })
   }
 }
 
