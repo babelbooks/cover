@@ -87,8 +87,103 @@ export default {
     })
     .catch(() => {
       console.log("Error");
+      // TODO
+    })
+  },
+
+/**
+ * Update the user points by adding n.
+ * @param context the context promise
+ * @param number the number to add to the user points (have to be 
+ * a number, not an object)
+ */
+  updateUserPoints: (context, number) => {
+    return context
+    .$http
+    .post(config.apiUrl + "user/me/points", { "n" : number })
+    .then(() => {
+      console.log("Updating user points adding " + number);
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
+  },
+
+  /**
+ * Update the user score by adding n.
+ * @param context the context promise
+ * @param number the number to add to the user score (have to be 
+ * a number, not an object)
+ */
+  updateUserScore: (context, number) => {
+    return context
+    .$http
+    .post(config.apiUrl + "user/me/score", { "n" : number })
+    .then(() => {
+      console.log("Updating user score adding " + number);
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
+  },
+
+/**
+ * Get the user identified by username
+ * @param context the context promise
+ * @param username the userId of the user to return
+ */
+  getUser: (context, username) => {
+    return context
+    .$http
+    .get(config.apiUrl + "user/other/" + username)
+    .then(() => {
+      console.log("Getting user " + username);
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
+  },
+
+/**
+ * Get the book identified by bookId
+ * @param context the context promise
+ * @param bookId the bookId of the book to return
+ */
+  getBook: (context, bookId) => {
+    return context
+    .$http
+    .get(config.apiUrl + "book/" + bookId)
+    .then(() => {
+      console.log("Getting book " + bookId);
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
+  },
+
+/**
+ * Set the book identifed by bookId as read (meaning that the 
+ * book is now available).
+ * @param context the context promise
+ * @param bookId the bookId of the book which is set as read
+ */
+  setBookAsRead: (context, bookId) => {
+    return context
+    .$http
+    .post(config.apiUrl + "read", { "bookId" : bookId })
+    .then(() => {
+      console.log("Setting the book " + bookId + " as read");
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
     })
   }
+  
 }
 
 function getHardBook() {
