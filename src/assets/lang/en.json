@@ -18,8 +18,28 @@
     "submit": "Submit"
   },
   "myLibrary": {
-    "title": "My library"
+    "title": "My library",
+    "addBook": {
+       "title":"Add a book",
+       "isbn": "Enter the ISBN as it appears at the back of your book",
+       "noIsbn": "There is no ISBN at the back of your book?",
+       "noIsbnButton": "No ISBN",
+       "infoGood":"Are these informations good?",
+       "enterInfo": "Enter the informations of the book"
+    }
   },
+  "book":{
+    "title": "Title",
+    "abstract": "Abstract",
+    "genres": "Genres",
+    "author": "Author",
+    "edition": "Edition",
+    "majorForm": "Major form",
+    "cover": "Cover"
+  },
+  "previous": "Previous",
+  "next": "next",
+  "cancel": "Cancel",
   "profile":{
     "infos": "My information",
     "appointment": "My appointments",

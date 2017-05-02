@@ -39,7 +39,7 @@
               </div>
             </div>
 
-            <div class="login-or">
+            <!--<div class="login-or">
               <hr class="hr-or">
             </div>
             <div class="row">
@@ -49,7 +49,7 @@
               <div class="col-xs-12 col-sm-6 col-md-6">
                 <a href="#" class="btn btn-lg btn-info btn-block">Google</a>
               </div>
-            </div>
+            </div>-->
 
           </div>
 

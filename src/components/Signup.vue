@@ -17,7 +17,7 @@
           <div class="alert alert-danger" v-if=error>
             <p>{{ error }}</p>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
               <a href="#" class="btn btn-lg btn-primary btn-block">Facebook</a>
             </div>
@@ -27,7 +27,7 @@
           </div>
           <div class="login-or">
             <hr class="hr-or">
-          </div>
+          </div>-->
           <div class="form-group">
             <label for="inputUsernameEmail">{{ l('email') }}</label>
             <input type="text" class="form-control" id="inputUsernameEmail" v-model=user.username>
@@ -59,7 +59,7 @@
       </div>
     </div>
   </div>
-  
+
 </div>
 </template>
 

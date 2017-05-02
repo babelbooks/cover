@@ -6,7 +6,7 @@
     <table style="width:100%">
       <tr>
         <td style="padding-top:15px;padding-left:15px;vertical-align:middle;" class="text-left">
-          <button type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+          <button @click="showAddBook = true" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
           <button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
         </td>
         <td style="padding-top:15px;padding-right:15px;vertical-align:middle;" class="text-right">
@@ -81,7 +81,7 @@
           </ul>
           <h3>Livres que vous avez mis en circulation</h3>
           <ul class="list-group">
-            <li v-for="(book,index) in booksInitiated" class="list-group-item">
+            <li v-for="book in booksInitiated" class="list-group-item">
               <table style="width:100%">
                 <tr>
                   <td style="padding-top:15px;padding-bottom:15px;" class="text-left">
@@ -102,22 +102,28 @@
         <icon name="spinner" spin scale="2"></icon>
       </div>
     </div>
+    <add-book :show.sync="showAddBook"></add-book>
   </div>
 </template>
 
 <script>
-import config   from '../utils/config';
 import services from '../utils/services';
+import addBook from './AddBook.vue'
 
 export default {
   name: 'myLibrary',
+  components:{
+    addBook
+  },
   data () {
     return {
       serverResponded: false,
       bookView: 'blocks',
       booksReading: [],
       booksRenting: [],
-      booksInitiated: []
+      booksInitiated: [],
+      error: '',
+      showAddBook: false
     }
   },
   mounted: function(){
@@ -136,6 +142,28 @@ export default {
       }else{
         this.bookView = 'blocks'
       }
+    },
+    previous: function(){
+      if (this.addBookIncrement > 0){
+        this.addBookIncrement--;
+      }
+    },
+    next: function(){
+      if (this.addBookIncrement < 3){
+        this.addBookIncrement++;
+        if (this.addBookIncrement === 1){
+          this.getBookInfo();
+        }
+      }
+    },
+    getBookInfo: function(){
+      let self = this;
+      return services
+        .getBookInfo(self,this.isbn)
+        .then((res) => {
+          self.serverRespondedIsbn = true;
+          self.bookAdded = res;
+        });
     }
   },
   computed: {

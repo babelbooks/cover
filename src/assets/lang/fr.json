@@ -18,8 +18,28 @@
     "submit": "Envoyer"
   },
   "myLibrary": {
-    "title": "Ma biblioth\u00E8que"
+    "title": "Ma biblioth\u00E8que",
+    "addBook": {
+       "title":"Ajouter un livre",
+       "isbn": "Rentrez l'ISBN tel qu'il appara\u00EEt \u00E0 l'arri\u00E8re de votre livre",
+       "noIsbn": "Il n'y a pas d'ISBN \u00E0 l'arri\u00E8re de votre livre?",
+       "noIsbnButton": "Pas d'ISBN",
+       "infoGood":"Ces informations sont-elles exactes?",
+       "enterInfo": "Entrez les informations du livre"
+    }
   },
+  "book":{
+    "title": "Titre",
+    "abstract": "R\u00E9sum\u00E9",
+    "genres": "Genres",
+    "author": "Auteur",
+    "edition": "\u00C9dition",
+    "majorForm": "Forme majeure",
+    "cover": "Couverture"
+  },
+  "previous": "Pr\u00E9c\u00E9dent",
+  "next": "Suivant",
+  "cancel": "Annuler",
   "profile":{
     "infos": "Mes infos",
     "appointment": "Mes rendez-vous",

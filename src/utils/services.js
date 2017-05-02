@@ -4,6 +4,8 @@ const LOGIN_URL   = config.apiUrl + 'login';
 const LOGOUT_URL  = config.apiUrl + 'logout';
 const SIGNUP_URL  = config.apiUrl + 'signup';
 
+const BOOK_URL = config.engineUrl + 'isbn/'
+
 export default {
   login: (context, credentials) => {
     return context
@@ -34,6 +36,26 @@ export default {
     // return context
     //   .$http
     //   .get(config.apiUrl + 'user/me/books');
+  },
+
+  getBookInfo: (context, isbn) => {
+    return Promise.resolve(getHardBook());
+    // TODO: connect with backend
+    // return context
+    //   .$http
+    //   .get(BOOK_URL + isbn);
+  }
+}
+
+function getHardBook() {
+  return {
+    title: 'Test',
+    abstract: 'Testtset',
+    genres: ['test1','test2','test3'],
+    author: 'test',
+    edition: 'test',
+    majorForm: 'test',
+    cover: ''
   }
 }
 
