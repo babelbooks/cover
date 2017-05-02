@@ -70,8 +70,28 @@ export default {
           //TODO
         })
     })
+  },
+
+  /**
+   * Insert metadata in elastic search to be indexed.
+   * @param context the context promise
+   * @param book the metadata to add in a json obect (see engine readme for correct formatting)
+   */
+  putBookInfo: (context, book) => {
+    return context
+    .$http
+    .put(config.apiUrl + 'elastic/book', book)
+    .then((response) => {
+      console.log("Inserting book metadata to ES.");
+    })
+    .catch(() => {
+      console.log("Error");
+      //TODO
+    });
   }
+
 }
+
 
 function getHardBook() {
   return {
