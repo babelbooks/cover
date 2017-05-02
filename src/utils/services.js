@@ -39,11 +39,37 @@ export default {
   },
 
   getBookInfo: (context, isbn) => {
-    return Promise.resolve(getHardBook());
+    // return Promise.resolve(getHardBook());
     // TODO: connect with backend
     // return context
     //   .$http
     //   .get(BOOK_URL + isbn);
+
+    context
+    .$http
+    .get(config.engineUrl + 'elastic/book/' + isbn)
+    .then((bookMetadata) => {
+        console.log("Book " + isbn + " is indexed");
+        bookMetadata = { 'book': bookMetadata };
+        bookMetadata['isIndexed'] = true;
+        return bookMetadata;
+    })
+    .catch(() => { 
+        console.log("Book " + isbn + " is not indexed, looking data with google api");
+        context
+        .$http
+        .get(config.engineUrl + 'isbn/' + isbn)
+        .then((bookMetadataGoogle) => {
+          console.log("Book " + isbn + " is indexed");
+          bookMetadata = { 'book': bookMetadataGoogle };
+          bookMetadata['isIndexed'] = false;
+          return bookMetadataGoogle;
+        })
+        .catch(() => {
+          console.log("Fatal error");
+          //TODO
+        })
+    })
   }
 }
 
