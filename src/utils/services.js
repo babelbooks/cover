@@ -88,6 +88,26 @@ export default {
       console.log("Error");
       //TODO
     });
+  },
+
+  /**
+   * Get the books currently borrowed by the user, that is the book that the user
+   * has already read (waiting for another user to be borrowed) and the book that
+   * the user is currently reading.
+   * @param context the context promise
+   * @param username the userId of the user
+   */
+  getUserBorrowedBook: (context, username) => {
+    return context
+    .$http
+    .get(config.apiUrl + 'user/' + username + '/books/borrowed')
+    .then((response) => {
+      console.log("Getting borrowed books from user " + username);
+    })
+    .catch(() => {
+      console.log("Error");
+      //TODO
+    });
   }
 
 }
