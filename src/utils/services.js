@@ -80,7 +80,7 @@ export default {
   putBookInfo: (context, book) => {
     return context
     .$http
-    .put(config.apiUrl + 'elastic/book', book)
+    .put(config.engineUrl + 'elastic/book', book)
     .then((response) => {
       console.log("Inserting book metadata to ES.");
     })
