@@ -19,13 +19,17 @@
   },
   "myLibrary": {
     "title": "My library",
+    "validIsbn": "Enter a valid ISBN",
     "addBook": {
        "title":"Add a book",
        "isbn": "Enter the ISBN as it appears at the back of your book",
        "noIsbn": "There is no ISBN at the back of your book?",
        "noIsbnButton": "No ISBN",
        "infoGood":"Are these informations good?",
-       "enterInfo": "Enter the informations of the book"
+       "enterInfo": "Enter the informations of the book",
+       "modify": "Modify",
+       "isAvailable": "Do you want to put it in circulation?",
+       "available": "Available"
     }
   },
   "book":{
@@ -40,6 +44,7 @@
   "previous": "Previous",
   "next": "next",
   "cancel": "Cancel",
+  "done": "Done",
   "profile":{
     "infos": "My information",
     "appointment": "My appointments",

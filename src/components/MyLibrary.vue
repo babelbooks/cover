@@ -7,7 +7,7 @@
       <tr>
         <td style="padding-top:15px;padding-left:15px;vertical-align:middle;" class="text-left">
           <button @click="showAddBook = true" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-          <button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+          <!--<button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>-->
         </td>
         <td style="padding-top:15px;padding-right:15px;vertical-align:middle;" class="text-right">
           <button @click="switchBookView()" type="button" class="btn btn-default btn-lg">
@@ -29,6 +29,9 @@
             <div v-for="book in booksReading" class="col-xs-12 col-sm-6 col-md-4">
               <book-display :book="book"></book-display>
             </div>
+            <div v-if="!booksReadingAvailable" class="alert alert-info" role="alert">
+              Vous n'avez pas de livre en cours de lecture
+            </div>
           </div>
           <br>
           <h3>Livres en votre possession (en attente d'emprunt)</h3>
@@ -36,11 +39,17 @@
             <div v-for="book in booksRenting" class="col-xs-12 col-sm-6 col-md-4">
               <book-display :book="book"></book-display>
             </div>
+            <div v-if="!booksRentingAvailable" class="alert alert-info" role="alert">
+              Vous n'avez pas de livre en pret a etre emprunter
+            </div>
           </div>
           <h3>Livres que vous avez mis en circulation</h3>
           <div class="row">
             <div v-for="book in booksInitiated" class="col-xs-12 col-sm-6 col-md-4">
               <book-display :book="book"></book-display>
+            </div>
+            <div v-if="!booksInitiatedAvailable" class="alert alert-info" role="alert">
+              Vous n'avez pas mis de livre en circulation
             </div>
           </div>
         </div>
@@ -102,7 +111,7 @@
         <icon name="spinner" spin scale="2"></icon>
       </div>
     </div>
-    <add-book :show.sync="showAddBook"></add-book>
+    <add-book v-model="showAddBook"></add-book>
   </div>
 </template>
 
@@ -127,12 +136,23 @@ export default {
     }
   },
   mounted: function(){
-    let self = this;
+    var self = this;
+
     return services
-      .getCurrentUserLib(self)
-      .then((res) => {
-        self.serverResponded = true;
-        self.booksReading = res;
+      .getUserReadingBook(self,this.user.username)
+      .then((res1) => {
+        self.booksReading = res1;
+        services
+          .getUserReadBook(self,this.user.username)
+          .then((res2) => {
+            self.booksRenting = res2;
+            services
+              .getUserOriginalBook(self,this.user.username)
+              .then((res3) => {
+                self.serverResponded = true;
+                self.booksInitiated = res3;
+              });
+          });
       });
   },
   methods:{
@@ -142,28 +162,6 @@ export default {
       }else{
         this.bookView = 'blocks'
       }
-    },
-    previous: function(){
-      if (this.addBookIncrement > 0){
-        this.addBookIncrement--;
-      }
-    },
-    next: function(){
-      if (this.addBookIncrement < 3){
-        this.addBookIncrement++;
-        if (this.addBookIncrement === 1){
-          this.getBookInfo();
-        }
-      }
-    },
-    getBookInfo: function(){
-      let self = this;
-      return services
-        .getBookInfo(self,this.isbn)
-        .then((res) => {
-          self.serverRespondedIsbn = true;
-          self.bookAdded = res;
-        });
     }
   },
   computed: {
@@ -172,6 +170,30 @@ export default {
     },
     viewBlocks(){
       return this.bookView === 'blocks'
+    },
+    booksReadingAvailable(){
+      if (this.booksReading){
+        if (this.booksReading.length > 0){
+          return true;
+        }
+      }
+      return false;
+    },
+    booksRentingAvailable(){
+      if (this.booksRenting){
+        if (this.booksRenting.length > 0){
+          return true;
+        }
+      }
+      return false;
+    },
+    booksInitiatedAvailable(){
+      if (this.booksInitiated){
+        if (this.booksInitiated.length > 0){
+          return true;
+        }
+      }
+      return false;
     }
   }
 }
