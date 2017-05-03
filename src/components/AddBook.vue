@@ -218,6 +218,7 @@ export default {
         return services
           .addBook(this,book)
           .then((res) => {
+            // services.updateUserPoints(self,2);
             self.serverRespondedAddBook = true;
             self.showModal = false;
             self.$emit('bookAdded')
@@ -233,6 +234,7 @@ export default {
             services
               .addBook(this,book)
               .then((res) => {
+                // services.updateUserPoints(self,2);
                 self.serverRespondedAddBook = true;
                 self.showModal = false;
                 self.$emit('bookAdded')

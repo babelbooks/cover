@@ -16,6 +16,19 @@
       </div>
     </div>
     <div class="container">
+      <div v-if="iOwnThisBook">
+        <h4 class="text-center">Vous possedez presentement ce livre
+          <span v-if="readyToRent">
+            <i>(En attente d'emprunt)</i>
+            <!-- <button type="button" style="margin-left:15px;" class="btn btn-primary">Retirer de la circulation</button> -->
+          </span>
+          <span v-else>
+            <i>(En cours de lecture)</i>
+            <button @click="setBookRead" type="button" style="margin-left:15px;" class="btn btn-primary">Mettre en circulation</button>
+          </span>
+        </h4>
+        <hr style="width:50%;">
+      </div>
       <div class="row">
         <div class="col-xs-12 col-sm-4" style="margin-bottom:20px;">
           <img v-bind:src="book.cover" id="book-img" alt="" />
@@ -55,17 +68,13 @@
               <b>ISBN</b>
             </div>
             <div class="col-xs-12 col-sm-8">
-              {{this.$route.params.id}}
+              {{$route.params.id}}
             </div>
           </div>
         </div>
       </div>
       <hr>
-
-
       <!-- OWNERS -->
-      
-
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3>
@@ -74,7 +83,6 @@
         </div>
         <div class="panel-body">
           <ul class="list-group">
-
             <table class="table owner">
                 <thead>
                   <tr>
@@ -84,18 +92,24 @@
                 </thead>
                 <tbody v-for="owner in owners">
                   <tr>
-                    <td>{{owner.user.id}}</td>
-                    <td class="right"><button type="button" class="btn btn-default">Réserver</button></td>
+                    <td><b>{{owner.username}}</b> <span v-show="iOwnThisBook">({{ l('me') }})</span></td>
+                    <td class="right"><button type="button" class="btn btn-primary" :disabled="iOwnThisBook">{{ l('book.rent') }}</button></td>
                   </tr>
                 </tbody>
+
             </table>
+            <div v-if="!ownersAvailable">
+              <br>
+              <div v-if="userAuthenticated" class="alert alert-info" role="alert">
+                {{ l('book.notAvailable') }}
+              </div>
+              <div v-else class="alert alert-info" role="alert">
+                {{ l('needToBeConnected') }}
+              </div>
+            </div>
           </ul>
         </div>
       </div>
-
-
-
-
       <!-- COMMENTS -->
 
       <div class="panel panel-default">
@@ -124,7 +138,6 @@
           <textarea class="form-control" placeholder="Ecrire un commmentaire" rows="3"></textarea>
         </div>
       </div>
-
       <!-- END OF STUFF -->
 
     </div>
@@ -143,24 +156,62 @@ export default {
   computed: {
     user() {
       return this.$store.state.user
+    },
+    userAuthenticated(){
+      if (this.user.authenticated){
+        return true
+      }else{
+        return false
+      }
+    },
+    ownersAvailable() {
+      if (this.owners){
+        if (this.owners.length > 0){
+          return true;
+        }
+      }
+      return false;
     }
   },
-        mounted: function(){
+  methods:{
+    setBookRead: function(){
       var self = this;
-      console.log("mounted");
       return services
-        .getBookInfo(self,this.$route.params.id)
+        .setBookRead(self,this.$route.params.id)
         .then((res1) => {
-          self.book = res1.book;
-          console.log(res1);
+
         })
+    }
+  },
+  mounted: function(){
+    var self = this;
+    return services
+      .getBookInfo(self,this.$route.params.id)
+      .then((res1) => {
+        self.book = res1.book;
+        console.log(res1);
+        if (self.user.authenticated){
+          return services
+            .doIOwnThisBook(self,self.book.id,self.user.username)
+            .then((res2) => {
+              self.iOwnThisBook = res2.myBook;
+              self.readyToRent = res2.available;
+              return services
+                .getCurrentOwners(self,self.$route.params.id)
+                .then((res3) => {
+                  self.owners = res3;
+                })
+            })
+        }
+      })
   },
   data () {
     return {
-      myBook: false,
+      iOwnThisBook: false,
       readyToRent: false,
       book: {
          "title": "Please wait ...",
+         "id": "",
          "abstract": "...",
          "genres": ["..."],
          "author": "...",
@@ -194,22 +245,7 @@ export default {
           "comment": "Stai vraiment bon"
         }
       ],
-      owners:[
-        {
-          "user":{
-            "id": "Ceyb",
-            "firstname": "Ceyb",
-            "lastname": "le Roxxor"
-          }
-        },
-        {
-          "user":{
-            "id": "Le Poney",
-            "firstname": "Ceyb",
-            "lastname": "le Roxxor"
-          }
-        }
-      ]
+      owners:[]
     }
   } // getBookInfo
 }

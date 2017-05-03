@@ -43,8 +43,12 @@
     "author": "Author",
     "edition": "Edition",
     "majorForm": "Major form",
-    "cover": "Cover"
+    "cover": "Cover",
+    "rent": "Rent",
+    "notAvailable": "This book is currently not available"
   },
+  "needToBeConnected": "You need to be connected!",
+  "me": "Me",
   "previous": "Previous",
   "next": "next",
   "cancel": "Cancel",
@@ -55,7 +59,10 @@
     "param": "Params",
     "points": "My points",
     "level": "My score",
-    "memberSince": "Member since"
+    "memberSince": "Member since",
+    "appointmentsFor": "Appointments in which you are giving the book",
+    "appointmentsWith": "Appointments in which you are borrowing the book",
+    "noAppointments": "No appointments"
   },
   "navbar": {
     "myProfil": "My profil",
