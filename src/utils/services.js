@@ -148,6 +148,25 @@ export default {
     })
   },
 
+  /**
+  * Get the books currently borrowed by the user and which are 
+  * read yet, then available.
+  * @param context the context promise
+  * @param username the userId of the user
+  */
+  getUserReadBook: (context, username) => {
+    return context
+    .$http
+    .get(config.apiUrl + 'user/' + username + 'books/read')
+    .then(() => {
+      console.log("Getting borrowed read books from user " + username);
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
+  },
+
 /**
  * Update the user points by adding n.
  * @param context the context promise
