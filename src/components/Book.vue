@@ -16,31 +16,6 @@
       </div>
     </div>
     <div class="container">
-      <div v-if="myBook">
-        <h4 class="text-left">Vous possedez presentement ce livre
-          <span v-if="readyToRent">
-            <i>(En attente d'emprunt)</i> :
-            <button type="button" style="margin-left:15px;" class="btn btn-primary">Retirer de la circulation</button>
-          </span>
-          <span v-else>
-            <i>(En cours de lecture)</i> :
-            <button type="button" style="margin-left:15px;" class="btn btn-primary">Mettre en circulation</button>
-          </span>
-        </h4>
-      </div>
-      <div v-else>
-        <h4 class="text-left">Ce livre appartient presentement a <a href="#">Lui</a>
-          <span v-if="readyToRent">
-            <i>(Pret a etre emprunter)</i> :
-            <button type="button" style="margin-left:15px;" class="btn btn-primary">Faire une demande d'emprunt</button>
-          </span>
-          <span v-else>
-            <i>(En cours de lecture)</i> :
-            <button type="button" style="margin-left:15px;" class="btn btn-primary">Reserver</button>
-          </span>
-        </h4>
-      </div>
-      <hr>
       <div class="row">
         <div class="col-xs-12 col-sm-4" style="margin-bottom:20px;">
           <img v-bind:src="book.cover" id="book-img" alt="" />
@@ -80,12 +55,49 @@
               <b>ISBN</b>
             </div>
             <div class="col-xs-12 col-sm-8">
-              {{book.isbn}}
+              {{this.$route.params.id}}
             </div>
           </div>
         </div>
       </div>
       <hr>
+
+
+      <!-- OWNERS -->
+      
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>
+            Livres disponibles :
+          </h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+
+            <table class="table owner">
+                <thead>
+                  <tr>
+                    <th>Propriétaire</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody v-for="owner in owners">
+                  <tr>
+                    <td>{{owner.user.id}}</td>
+                    <td class="right"><button type="button" class="btn btn-default">Réserver</button></td>
+                  </tr>
+                </tbody>
+            </table>
+          </ul>
+        </div>
+      </div>
+
+
+
+
+      <!-- COMMENTS -->
+
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3>
@@ -112,12 +124,16 @@
           <textarea class="form-control" placeholder="Ecrire un commmentaire" rows="3"></textarea>
         </div>
       </div>
+
+      <!-- END OF STUFF -->
+
     </div>
   </div>
 </template>
 
 <script>
 import Avatar from 'vue-avatar'
+import services from '../utils/services';
 
 export default {
   name: 'Book',
@@ -129,19 +145,28 @@ export default {
       return this.$store.state.user
     }
   },
+        mounted: function(){
+      var self = this;
+      console.log("mounted");
+      return services
+        .getBookInfo(self,this.$route.params.id)
+        .then((res1) => {
+          self.book = res1.book;
+          console.log(res1);
+        })
+  },
   data () {
     return {
       myBook: false,
       readyToRent: false,
       book: {
-         "isbn": 9782266232999,
-         "title": "Le Seigneur des Anneaux / Intégrale",
+         "title": "Please wait ...",
          "abstract": "...",
-         "genres": ["Fantasy","Science-Fiction"],
-         "author": "J. R. R. Tolkien",
-         "edition": "Pocket",
-         "majorForm": "Novel",
-         "cover": "http://books.google.com/books/content?id=AMHUSAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+         "genres": ["..."],
+         "author": "...",
+         "edition": "...",
+         "majorForm": "...",
+         "cover": ""
       },
       comments:[
         {
@@ -168,9 +193,25 @@ export default {
           },
           "comment": "Stai vraiment bon"
         }
+      ],
+      owners:[
+        {
+          "user":{
+            "id": "Ceyb",
+            "firstname": "Ceyb",
+            "lastname": "le Roxxor"
+          }
+        },
+        {
+          "user":{
+            "id": "Le Poney",
+            "firstname": "Ceyb",
+            "lastname": "le Roxxor"
+          }
+        }
       ]
     }
-  }
+  } // getBookInfo
 }
 </script>
 
@@ -188,6 +229,31 @@ export default {
     height: 500px;
   }
 }
+
+td {
+  text-align: left;
+}
+
+td.right {
+  text-align: right;
+}
+
+.owner {
+  width: 100%;
+  margin: auto;
+}
+
+.owner tr {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+@media(min-width:768px){
+  .owner{
+    width: 50%;
+  }
+}
+
 
 
 </style>
