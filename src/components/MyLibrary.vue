@@ -29,6 +29,9 @@
             <div v-for="book in booksReading" class="col-xs-12 col-sm-6 col-md-4">
               <book-display :book="book"></book-display>
             </div>
+            <div v-if="!booksReadingAvailable" class="alert alert-info" role="alert">
+              Vous n'avez pas de livre en cours de lecture
+            </div>
           </div>
           <br>
           <h3>Livres en votre possession (en attente d'emprunt)</h3>
@@ -36,11 +39,17 @@
             <div v-for="book in booksRenting" class="col-xs-12 col-sm-6 col-md-4">
               <book-display :book="book"></book-display>
             </div>
+            <div v-if="!booksRentingAvailable" class="alert alert-info" role="alert">
+              Vous n'avez pas de livre en pret a etre emprunter
+            </div>
           </div>
           <h3>Livres que vous avez mis en circulation</h3>
           <div class="row">
             <div v-for="book in booksInitiated" class="col-xs-12 col-sm-6 col-md-4">
               <book-display :book="book"></book-display>
+            </div>
+            <div v-if="!booksInitiatedAvailable" class="alert alert-info" role="alert">
+              Vous n'avez pas mis de livre en circulation
             </div>
           </div>
         </div>
@@ -127,12 +136,23 @@ export default {
     }
   },
   mounted: function(){
-    let self = this;
+    var self = this;
+
     return services
-      .getCurrentUserLib(self)
-      .then((res) => {
-        self.serverResponded = true;
-        self.booksReading = res;
+      .getUserReadingBook(self,this.user.username)
+      .then((res1) => {
+        self.booksReading = res1;
+        services
+          .getUserBorrowedBook(self,this.user.username)
+          .then((res2) => {
+            self.booksRenting = res2;
+            services
+              .getUserOriginalBook(self,this.user.username)
+              .then((res3) => {
+                self.serverResponded = true;
+                self.booksInitiated = res3;
+              });
+          });
       });
   },
   methods:{
@@ -150,6 +170,30 @@ export default {
     },
     viewBlocks(){
       return this.bookView === 'blocks'
+    },
+    booksReadingAvailable(){
+      if (this.booksReading){
+        if (this.booksReading.length > 0){
+          return true;
+        }
+      }
+      return false;
+    },
+    booksRentingAvailable(){
+      if (this.booksRenting){
+        if (this.booksRenting.length > 0){
+          return true;
+        }
+      }
+      return false;
+    },
+    booksInitiatedAvailable(){
+      if (this.booksInitiated){
+        if (this.booksInitiated.length > 0){
+          return true;
+        }
+      }
+      return false;
     }
   }
 }

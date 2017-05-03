@@ -103,6 +103,7 @@ export default {
     .get(config.apiUrl + 'user/' + username + '/books/borrowed')
     .then((response) => {
       console.log("Getting borrowed books from user " + username);
+      return response.data
     })
     .catch(() => {
       console.log("Error");
@@ -122,6 +123,7 @@ export default {
     .get(config.apiUrl + 'user/' + username + '/books')
     .then((response) => {
       console.log("Getting original books from user " + username);
+      return response.data;
     })
     .catch(() => {
       console.log("Error");
@@ -138,9 +140,10 @@ export default {
   getUserReadingBook: (context, username) => {
     return context
     .$http
-    .get(config.apiUrl + 'user/' + username + 'books/reading')
-    .then(() => {
+    .get(config.apiUrl + 'user/' + username + '/books/reading')
+    .then((response) => {
       console.log("Getting reading books from user " + username);
+      return response.data
     })
     .catch(() => {
       console.log("Error");
@@ -158,8 +161,9 @@ export default {
     return context
     .$http
     .post(config.apiUrl + "user/me/points", { "n" : number })
-    .then(() => {
+    .then((response) => {
       console.log("Updating user points adding " + number);
+      return response.data
     })
     .catch(() => {
       console.log("Error");
