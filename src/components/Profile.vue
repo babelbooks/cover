@@ -45,13 +45,13 @@
               </tab>
               <tab v-bind:header="l('profile.appointment')">
                 <h3> Appointments in which you are giving the book </h3>
-                <div v-for="(appointment,index) in appointmentsFor" class="panel panel-info">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Appointment #{{index}} with:
-                      Date: 21/03/1992
-                    </h3>
-                  </div>
-                  <div class="panel-body">
+                <accordion :one-at-atime="true" type="info">
+                  <panel v-for="(appointment,index) in appointmentsFor" type="primary">
+                    <strong slot="header">Appointment #{{index}}<br>
+                      With: Tabernac<br>
+                      When: 10/01/2017<br>
+                      Where: Insa
+                    </strong>
                     <gmap-map
                       :center="center"
                       :zoom="7"
@@ -65,8 +65,8 @@
                         @click="center=marker.position"
                       ></gmap-marker>
                     </gmap-map>
-                  </div>
-                </div>
+                  </panel>
+                </accordion>
               </tab>
               <tab v-bind:header="l('profile.param')">
                 ...
@@ -81,14 +81,16 @@
 
 <script>
 import Avatar from 'vue-avatar'
-import { tabs,tab } from 'vue-strap'
+import { tabs,tab,accordion,panel } from 'vue-strap'
 
 export default {
   name: 'Profile',
   components: {
     avatar: Avatar.Avatar,
     tabs,
-    tab
+    tab,
+    accordion,
+    panel
   },
   computed: {
     user() {
