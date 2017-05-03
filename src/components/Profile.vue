@@ -44,16 +44,29 @@
                 </ul>
               </tab>
               <tab v-bind:header="l('profile.appointment')">
-                <div class="panel panel-success">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Appointment #1</h3>
-                  </div>
-                  <div class="panel-body">
-                    <p> <a href="#">Chez Roger</a> - 20/04/2017 14:00 </p>
-                    <hr>
-
-                  </div>
-                </div>
+                <h3> Appointments in which you are giving the book </h3>
+                <accordion :one-at-atime="true" type="info">
+                  <panel v-for="(appointment,index) in appointmentsFor" type="primary">
+                    <strong slot="header">Appointment #{{index}}<br>
+                      With: Tabernac<br>
+                      When: 10/01/2017<br>
+                      Where: Insa
+                    </strong>
+                    <gmap-map
+                      :center="center"
+                      :zoom="7"
+                      style="width: 100%; height: 400px"
+                    >
+                      <gmap-marker
+                        :key="index"
+                        :position="marker.position"
+                        :clickable="true"
+                        :draggable="true"
+                        @click="center=marker.position"
+                      ></gmap-marker>
+                    </gmap-map>
+                  </panel>
+                </accordion>
               </tab>
               <tab v-bind:header="l('profile.param')">
                 ...
@@ -68,14 +81,16 @@
 
 <script>
 import Avatar from 'vue-avatar'
-import { tabs,tab } from 'vue-strap'
+import { tabs,tab,accordion,panel } from 'vue-strap'
 
 export default {
   name: 'Profile',
   components: {
     avatar: Avatar.Avatar,
     tabs,
-    tab
+    tab,
+    accordion,
+    panel
   },
   computed: {
     user() {
@@ -92,7 +107,13 @@ export default {
   },
   data () {
     return {
-      activeTab: 0
+      activeTab: 0,
+      appointmentsFor: [''],
+      appointmentsWith: [],
+      center: {lat: 10.0, lng: 10.0},
+      marker: {
+        position: {lat: 10.0, lng: 10.0}
+      }
     }
   }
 }
@@ -105,10 +126,6 @@ export default {
   margin-top:20px;
   padding:20px;
   border: 1px solid #eee;
-}
-
-.tableau-cell{
-  width:33%;
 }
 
 </style>
