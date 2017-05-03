@@ -290,6 +290,25 @@ export default {
       console.log("Error");
       // TODO
     })
+  },
+
+/**
+ * Get available books.
+ * @param context the context promise
+ * @param limit the maximal number of books returned
+ * @param offset the offset of the books returned
+ */
+  getAvailableBooks: (context, limit = undefined, offset = undefined) => {
+    return context
+    .$http
+    .get(config.apiUrl + "all/available/" + limit + "/" + offset)
+    .then(() => {
+      console.log("Consulting available books");
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
   }
 }
 
