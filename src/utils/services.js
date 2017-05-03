@@ -303,8 +303,9 @@ export default {
     return context
     .$http
     .put(config.apiUrl + "book/add", book)
-    .then(() => {
+    .then((response) => {
       console.log("Adding book");
+      return response.data;
     })
     .catch(() => {
       console.log("Error");
