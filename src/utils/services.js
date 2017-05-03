@@ -266,32 +266,6 @@ export default {
     })
   },
 
-/**
- * Add a user.
- * @param context the context promise
- * @param user the user to add, must have the following shape
- * {
- *  "user" : {
- *    "username": ID,
- *    "password": string,
- *    "lastName": string,
- *    "firstName": string
- *  }
- * }
- */
-  addUser: (context, user) => {
-    return context
-    .$http
-    .put(config.apiUrl + "user/add", user)
-    .then(() => {
-      console.log("Adding user");
-    })
-    .catch(() => {
-      console.log("Error");
-      // TODO
-    })
-  },
-
   /**
  * Add a book.
  * @param context the context promise
@@ -335,8 +309,29 @@ export default {
       console.log("Error");
       // TODO
     })
+  },
+
+/**
+ * Get available books.
+ * @param context the context promise
+ * @param limit the maximal number of books returned
+ * @param offset the offset of the books returned
+ */
+  getCurrentOwners: (context, isbn) => {
+    return context
+    .$http
+    .get(config.apiUrl + "owners/" + isbn)
+    .then((response) => {
+      console.log("Consulting all owners");
+      return response;
+    })
+    .catch(() => {
+      console.log("Error");
+    })
   }
 }
+
+
 
 
 function getHardBook() {
