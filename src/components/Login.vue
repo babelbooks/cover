@@ -23,7 +23,7 @@
                   <div class="input-group-addon">
                     <i class="  glyphicon glyphicon-lock"></i>
                   </div>
-                  <input type="password" class="form-control input-lg" v-model="credentials.password" v-bind:placeholder="l('password')">
+                  <input type="password" class="form-control input-lg" v-model="credentials.password" v-bind:placeholder="l('password')" v-on:keyup.enter="submit()">
                 </div>
               </div>
             </div>

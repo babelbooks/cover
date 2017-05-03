@@ -52,7 +52,7 @@
             <b>{{l('book.abstract')}}</b>
           </div>
           <div class="col-xs-12 col-sm-8">
-            <textarea class="form-control" rows="2" v-model="bookAdded.abstract" v-bind:placeholder="l('book.abstract')" :disabled="!modify"></textarea>
+            <textarea class="form-control" rows="4" v-model="bookAdded.abstract" v-bind:placeholder="l('book.abstract')" :disabled="!modify"></textarea>
           </div>
         </div>
         <br>
@@ -119,10 +119,13 @@
       </div>
     </div>
     <div slot="modal-footer" class="modal-footer">
-      <button type="button" class="btn btn-danger" @click="show = false">{{l('cancel')}}</button>
+      <button type="button" class="btn btn-danger" @click="showModal = false">{{l('cancel')}}</button>
       <button v-if="addBookIncrement > 0" type="button" class="btn btn-default" @click="previous">{{l('previous')}}</button>
       <button v-if="addBookIncrement < 1" type="button" class="btn btn-success" @click="next">{{l('next')}}</button>
-      <button v-else type="button" class="btn btn-success" @click="done">{{l('done')}}</button>
+      <button v-else type="button" class="btn btn-success" @click="done">
+        <span v-if="serverRespondedAddBook">{{l('done')}}</span>
+        <span v-else><icon name="spinner" spin></icon></span>
+      </button>
     </div>
   </modal>
 </template>
@@ -147,6 +150,7 @@ export default {
       validIsbn: true,
       isbnPresent: true,
       modify: true,
+      serverRespondedAddBook: true,
       bookAdded: {
         title: '',
         abstract: '',
@@ -158,6 +162,11 @@ export default {
       },
       isIndexed: false,
       isAvailable: true
+    }
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
     }
   },
   methods:{
@@ -197,27 +206,39 @@ export default {
     done: function(){
       let self = this;
       var isbnFormatted = this.isbn.replace(/\D/g,'');
-      if (isIndexed){
-        // return services
-        //   .addBook(this,this.)
-        //   .then((res) => {
-        //     self.serverRespondedIsbn = true;
-        //     self.bookAdded = res;
-        //   });
+      this.serverRespondedAddBook = false;
+      var book = {
+        book: {
+          isbn: isbnFormatted,
+          origin: this.user.username,
+          available: this.isAvailable
+        }
+      };
+      if (this.isIndexed){
+        return services
+          .addBook(this,book)
+          .then((res) => {
+            self.serverRespondedAddBook = true;
+            self.showModal = false;
+            self.$emit('bookAdded')
+          });
       }else{
-        // return services
-        //   .addBook(this,this.bookAdded)
-        //   .then((res) => {
-        //     self.serverRespondedIsbn = true;
-        //     self.bookAdded = res;
-        //   });
+        var bookMetadata = {
+          book: this.bookAdded
+        };
+        bookMetadata.book.id = isbnFormatted;
+        return services
+          .putBookInfo(this,bookMetadata)
+          .then((res) => {
+            services
+              .addBook(this,book)
+              .then((res) => {
+                self.serverRespondedAddBook = true;
+                self.showModal = false;
+                self.$emit('bookAdded')
+              });
+          });
       }
-      // return services
-      //   .addBook(this,this.bookAdded)
-      //   .then((res) => {
-      //     self.serverRespondedIsbn = true;
-      //     self.bookAdded = res;
-      //   });
     },
     getBookInfo: function(){
       let self = this;

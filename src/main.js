@@ -17,6 +17,17 @@ import BookDisplay  from './components/BookDisplay.vue'
 // Import all icons (don't care about bundle size)
 import 'vue-awesome/icons';
 
+// Import Google maps vue componentimport * as VueGoogleMaps from 'vue2-google-maps';
+import * as VueGoogleMaps from 'vue2-google-maps';
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyDY-ER3DsUJQFrNumCqChQbDCDIaCxPoq0'
+    // v: 'OPTIONAL VERSION NUMBER',
+    // libraries: 'places', //// If you need to use place input
+  }
+});
+
 // Register components
 Vue.component('icon', Icon);
 Vue.component('book-display', BookDisplay);
