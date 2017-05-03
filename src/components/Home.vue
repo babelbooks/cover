@@ -31,7 +31,7 @@
     <h2>{{ l('home.title2') }}</h2>
     <div class="col-12 col-md-4 column">
       <span class="glyphicon glyphicon-book"></span>
-      <p>{{ l('home.Description1') }} <p>
+      <p>{{ l('home.Description1') }} </p>
       
    </div>
     <div class="col-12 col-md-4 column">
