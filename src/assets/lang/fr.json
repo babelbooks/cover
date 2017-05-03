@@ -43,8 +43,12 @@
     "author": "Auteur",
     "edition": "\u00C9dition",
     "majorForm": "Forme majeure",
-    "cover": "Couverture"
+    "cover": "Couverture",
+    "rent": "Emprunter",
+    "notAvailable": "Ce livre n'est actuellement pas disponible"
   },
+  "needToBeConnected": "Vous devez \u00EAtre connecter!",
+  "me": "Moi",
   "previous": "Pr\u00E9c\u00E9dent",
   "next": "Suivant",
   "cancel": "Annuler",
@@ -55,7 +59,10 @@
     "param": "Param\u00E8tre",
     "points": "Mes points",
     "level": "Mon score",
-    "memberSince": "Membre depuis"
+    "memberSince": "Membre depuis",
+    "appointmentsFor": "Rendez-vous dans lesquels vous donnez le livre",
+    "appointmentsWith": "Rendez-vous dans lesquels vous empruntez le livre",
+    "noAppointments": "Aucun rendez-vous"
   },
   "navbar": {
     "myProfil": "Mon profile",

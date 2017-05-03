@@ -39,12 +39,6 @@ export default {
   },
 
   getBookInfo: (context, isbn) => {
-    // return Promise.resolve(getHardBook());
-    // TODO: connect with backend
-    // return context
-    //   .$http
-    //   .get(BOOK_URL + isbn);
-
     return context
       .$http
       .get(config.engineUrl + 'elastic/book/' + isbn)
@@ -180,7 +174,7 @@ export default {
   updateUserPoints: (context, number) => {
     return context
     .$http
-    .post(config.apiUrl + "user/me/points", { "n" : number })
+    .put(config.apiUrl + "user/me/points", { "n" : number })
     .then((response) => {
       console.log("Updating user points adding " + number);
       return response.data
@@ -323,7 +317,7 @@ export default {
     .get(config.apiUrl + "owners/" + isbn)
     .then((response) => {
       console.log("Consulting all owners");
-      return response;
+      return response.data;
     })
     .catch(() => {
       console.log("Error");
@@ -354,6 +348,74 @@ export default {
       })
       .catch(() => {
         console.log("Error");
+        // TODO
+      })
+  },
+
+  doIOwnThisBook(context,isbn,username){
+    return this
+      .getUserReadingBook(context,username)
+      .then((response) => {
+        console.log("Do I own this book Reading");
+        var booksReading = response
+        var arrayLength = booksReading.length;
+        for (var i = 0; i < arrayLength; i++) {
+          if (booksReading[i].id === isbn){
+            return {
+              myBook: true,
+              available: false
+            };
+          }
+        }
+        return this
+          .getUserReadBook(context,username)
+          .then((response2) => {
+            var booksRenting = response2
+            var arrayLength = booksRenting.length;
+            for (var i = 0; i < arrayLength; i++) {
+              if (booksRenting[i].id === isbn){
+                return {
+                  myBook: true,
+                  available: true
+                };
+              }
+            }
+            return {
+              myBook: false,
+              available: false,
+            }
+          })
+      })
+      .catch((err) => {
+        console.log("Error: " + err);
+        // TODO
+      })
+  },
+
+  setBookRead(context, bookId){
+    return context
+      .$http
+      .post(config.apiUrl + "book/read", bookId)
+      .then((response) => {
+        console.log("Set Book Read");
+        return response.data
+      })
+      .catch((err) => {
+        console.log("Error: " + err);
+        // TODO
+      })
+  },
+
+  searchByTitle: (context, title) => {
+    return context
+      .$http
+      .get(config.engineUrl + 'elastic/book/title/' + title)
+      .then((response) => {
+        console.log("Set Book Read");
+        return response.data
+      })
+      .catch((err) => {
+        console.log("Error: " + err);
         // TODO
       })
   }
