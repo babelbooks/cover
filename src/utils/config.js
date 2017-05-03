@@ -1,4 +1,5 @@
 export default{
   environment: 'DEV',
-  apiUrl: 'http://vps.elementrealm.com:3001/api/'
+  apiUrl: 'http://babelbooks.tk/api/',
+  engineUrl: 'http://babelbooks.tk:8080/'
 }
