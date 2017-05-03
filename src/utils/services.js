@@ -39,10 +39,6 @@ export default {
   },
 
   getBookInfo: (context, isbn) => {
-<<<<<<< HEAD
-
-=======
->>>>>>> 1e2444bff958839052e3cee9911c3cb26f2be835
     return context
       .$http
       .get(config.engineUrl + 'elastic/book/' + isbn)
@@ -321,7 +317,7 @@ export default {
     .get(config.apiUrl + "owners/" + isbn)
     .then((response) => {
       console.log("Consulting all owners");
-      return response;
+      return response.data;
     })
     .catch(() => {
       console.log("Error");
@@ -409,8 +405,8 @@ export default {
         // TODO
       })
   },
-  
-  searchByTile: (context, title) => {
+
+  searchByTitle: (context, title) => {
     return context
       .$http
       .get(config.engineUrl + 'elastic/book/title/' + title);

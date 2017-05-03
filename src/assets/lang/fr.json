@@ -43,8 +43,11 @@
     "author": "Auteur",
     "edition": "\u00C9dition",
     "majorForm": "Forme majeure",
-    "cover": "Couverture"
+    "cover": "Couverture",
+    "rent": "Emprunter",
+    "notAvailable": "Ce livre n'est actuellement pas disponible"
   },
+  "me": "Moi",
   "previous": "Pr\u00E9c\u00E9dent",
   "next": "Suivant",
   "cancel": "Annuler",

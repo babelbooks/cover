@@ -43,8 +43,11 @@
     "author": "Author",
     "edition": "Edition",
     "majorForm": "Major form",
-    "cover": "Cover"
+    "cover": "Cover",
+    "rent": "Rent",
+    "notAvailable": "This book is currently not available"
   },
+  "me": "Me",
   "previous": "Previous",
   "next": "next",
   "cancel": "Cancel",
