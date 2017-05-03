@@ -1,4 +1,3 @@
-import Vue    from 'vue';
 import services from '../utils/services';
 
 /**
@@ -9,10 +8,10 @@ import services from '../utils/services';
  * @param commit The function to validate the transaction.
  * @returns {Promise}
  */
-export const updateUser = ({ commit }) => {
+export const updateUser = ({ commit },context) => {
   return new Promise((resolve, reject) => {
     return services
-      .getCurrentUser(Vue)
+      .getCurrentUser(context)
       .then(response => {
         response.data.authenticated = true;
         commit('UPDATE_USER', response.data);

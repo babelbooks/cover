@@ -7,7 +7,7 @@
       <tr>
         <td style="padding-top:15px;padding-left:15px;vertical-align:middle;" class="text-left">
           <button @click="showAddBook = true" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-          <button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+          <!--<button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>-->
         </td>
         <td style="padding-top:15px;padding-right:15px;vertical-align:middle;" class="text-right">
           <button @click="switchBookView()" type="button" class="btn btn-default btn-lg">
@@ -102,7 +102,7 @@
         <icon name="spinner" spin scale="2"></icon>
       </div>
     </div>
-    <add-book :show.sync="showAddBook"></add-book>
+    <add-book v-model="showAddBook"></add-book>
   </div>
 </template>
 
@@ -142,28 +142,6 @@ export default {
       }else{
         this.bookView = 'blocks'
       }
-    },
-    previous: function(){
-      if (this.addBookIncrement > 0){
-        this.addBookIncrement--;
-      }
-    },
-    next: function(){
-      if (this.addBookIncrement < 3){
-        this.addBookIncrement++;
-        if (this.addBookIncrement === 1){
-          this.getBookInfo();
-        }
-      }
-    },
-    getBookInfo: function(){
-      let self = this;
-      return services
-        .getBookInfo(self,this.isbn)
-        .then((res) => {
-          self.serverRespondedIsbn = true;
-          self.bookAdded = res;
-        });
     }
   },
   computed: {
