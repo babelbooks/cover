@@ -257,7 +257,7 @@ export default {
   addUser: (context, user) => {
     return context
     .$http
-    .post(config.apiUrl + "user/add", user)
+    .put(config.apiUrl + "user/add", user)
     .then(() => {
       console.log("Adding user");
     })
@@ -282,7 +282,7 @@ export default {
   addBook: (context, book) => {
     return context
     .$http
-    .post(config.apiUrl + "book/add", book)
+    .put(config.apiUrl + "book/add", book)
     .then(() => {
       console.log("Adding book");
     })
