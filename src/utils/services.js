@@ -409,6 +409,14 @@ export default {
   searchByTitle: (context, title) => {
     return context
       .$http
-      .get(config.engineUrl + 'elastic/book/title/' + title);
+      .get(config.engineUrl + 'elastic/book/title/' + title)
+      .then((response) => {
+        console.log("Set Book Read");
+        return response.data
+      })
+      .catch((err) => {
+        console.log("Error: " + err);
+        // TODO
+      })
   }
 }
