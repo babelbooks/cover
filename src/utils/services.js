@@ -105,6 +105,20 @@ export default {
     });
   },
 
+  getUserBorrowedBookRaw: (context, username) => {
+    return context
+    .$http
+    .get(config.apiUrl + 'user/' + username + '/books/borrowed/raw')
+    .then((response) => {
+      console.log("Getting raw borrowed books from user " + username);
+      return response.data
+    })
+    .catch(() => {
+      console.log("Error");
+      //TODO
+    });
+  },
+
   /**
    * Get all the books the user gave to the library. This doesn't mean that the user still
    * has the book. See getUserBorrowedBook and getUserReadBook for more details.
@@ -145,6 +159,20 @@ export default {
     })
   },
 
+    getUserReadingBookRaw: (context, username) => {
+    return context
+    .$http
+    .get(config.apiUrl + 'user/' + username + '/books/reading/raw')
+    .then((response) => {
+      console.log("Getting raw reading books from user " + username);
+      return response.data
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
+  },
+
   /**
   * Get the books currently borrowed by the user and which are
   * read yet, then available.
@@ -157,6 +185,20 @@ export default {
     .get(config.apiUrl + 'user/' + username + '/books/read')
     .then((response) => {
       console.log("Getting borrowed read books from user " + username);
+      return response.data;
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
+  },
+
+    getUserReadBookRaw: (context, username) => {
+    return context
+    .$http
+    .get(config.apiUrl + 'user/' + username + '/books/read/raw')
+    .then((response) => {
+      console.log("Getting raw borrowed read books from user " + username);
       return response.data;
     })
     .catch(() => {

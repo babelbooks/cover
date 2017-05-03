@@ -56,7 +56,7 @@
   "profile":{
     "infos": "Mes infos",
     "appointment": "Mes rendez-vous",
-    "param": "Param\u00E8tre",
+    "param": "Param\u00E8tres",
     "points": "Mes points",
     "level": "Mon score",
     "memberSince": "Membre depuis",
@@ -65,7 +65,7 @@
     "noAppointments": "Aucun rendez-vous"
   },
   "navbar": {
-    "myProfil": "Mon profile",
+    "myProfil": "Mon profil",
     "logout": "Se d\u00E9connecter",
     "lang": "Langue"
   },
