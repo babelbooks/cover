@@ -39,7 +39,10 @@ export default {
   },
 
   getBookInfo: (context, isbn) => {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1e2444bff958839052e3cee9911c3cb26f2be835
     return context
       .$http
       .get(config.engineUrl + 'elastic/book/' + isbn)
@@ -261,32 +264,6 @@ export default {
     })
   },
 
-/**
- * Add a user.
- * @param context the context promise
- * @param user the user to add, must have the following shape
- * {
- *  "user" : {
- *    "username": ID,
- *    "password": string,
- *    "lastName": string,
- *    "firstName": string
- *  }
- * }
- */
-  addUser: (context, user) => {
-    return context
-    .$http
-    .put(config.apiUrl + "user/add", user)
-    .then(() => {
-      console.log("Adding user");
-    })
-    .catch(() => {
-      console.log("Error");
-      // TODO
-    })
-  },
-
   /**
  * Add a book.
  * @param context the context promise
@@ -329,6 +306,25 @@ export default {
     .catch(() => {
       console.log("Error");
       // TODO
+    })
+  },
+
+/**
+ * Get available books.
+ * @param context the context promise
+ * @param limit the maximal number of books returned
+ * @param offset the offset of the books returned
+ */
+  getCurrentOwners: (context, isbn) => {
+    return context
+    .$http
+    .get(config.apiUrl + "owners/" + isbn)
+    .then((response) => {
+      console.log("Consulting all owners");
+      return response;
+    })
+    .catch(() => {
+      console.log("Error");
     })
   },
 
@@ -399,6 +395,7 @@ export default {
         // TODO
       })
   },
+
   setBookRead(context, bookId){
     return context
       .$http
@@ -411,5 +408,11 @@ export default {
         console.log("Error: " + err);
         // TODO
       })
+  },
+  
+  searchByTile: (context, title) => {
+    return context
+      .$http
+      .get(config.engineUrl + 'elastic/book/title/' + title);
   }
 }
