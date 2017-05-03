@@ -151,6 +151,26 @@ export default {
     })
   },
 
+  /**
+  * Get the books currently borrowed by the user and which are 
+  * read yet, then available.
+  * @param context the context promise
+  * @param username the userId of the user
+  */
+  getUserReadBook: (context, username) => {
+    return context
+    .$http
+    .get(config.apiUrl + 'user/' + username + 'books/read')
+    .then((response) => {
+      console.log("Getting borrowed read books from user " + username);
+      return response.data;
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
+  },
+
 /**
  * Update the user points by adding n.
  * @param context the context promise
@@ -238,6 +258,76 @@ export default {
     .post(config.apiUrl + "read", { "bookId" : bookId })
     .then(() => {
       console.log("Setting the book " + bookId + " as read");
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
+  },
+
+/**
+ * Add a user.
+ * @param context the context promise
+ * @param user the user to add, must have the following shape
+ * {
+ *  "user" : {
+ *    "username": ID,
+ *    "password": string,
+ *    "lastName": string,
+ *    "firstName": string
+ *  }
+ * }
+ */
+  addUser: (context, user) => {
+    return context
+    .$http
+    .put(config.apiUrl + "user/add", user)
+    .then(() => {
+      console.log("Adding user");
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
+  },
+
+  /**
+ * Add a book.
+ * @param context the context promise
+ * @param book the book to add, must have the following shape
+ * {
+ *  "book": {
+ *    "origin" : ID,
+ *    "isbn": ID | null,
+ *    "available": boolean
+ *  }
+ * }
+ */
+  addBook: (context, book) => {
+    return context
+    .$http
+    .put(config.apiUrl + "book/add", book)
+    .then(() => {
+      console.log("Adding book");
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
+  },
+
+/**
+ * Get available books.
+ * @param context the context promise
+ * @param limit the maximal number of books returned
+ * @param offset the offset of the books returned
+ */
+  getAvailableBooks: (context, limit = undefined, offset = undefined) => {
+    return context
+    .$http
+    .get(config.apiUrl + "all/available/" + limit + "/" + offset)
+    .then(() => {
+      console.log("Consulting available books");
     })
     .catch(() => {
       console.log("Error");
