@@ -4,6 +4,10 @@ const colors  = require('colors');
 
 module.exports = {
   entry: './src/main.js',
+  devServer: {
+    contentBase: "./dist",
+    hot: true
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'cover.js'

@@ -1,9 +1,8 @@
-<template>  
+<template>
   <div class="panel panel-default">
-    <router-link to="/book/1">
+    <router-link :to="{ name: 'book', params: { id: book.id }}">
       <div class="book-wrapper">
         <img v-bind:src="book.cover" class="book-img" alt="" />
-        <span class="glyphicon glyphicon-option-horizontal more-options"></span>
         <div class="book-txt-wrapper">
           <h4>
             <b>{{book.title}}</b>
@@ -32,6 +31,10 @@ import config from '../utils/config'
 
 export default {
   name: 'book-display',
+  mounted: function()
+  {
+    console.log(this.book);
+  },
   data () {
     return {
 

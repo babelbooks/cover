@@ -15,23 +15,54 @@
     "yourName": "Your name",
     "yourEmail": "Your email",
     "yourMessage": "Your message",
-    "submit": "Submit"
-	"Description1": "Do your books get dusty in your library? BabelsBooks is a shared and collaborative library, where each user shares his books freely with everyone. Babelbooks lets you borrow books thourought the city and makes it easy to find new discoveries",
-	"Description2": "With Babel Books, You represent the library, as well as all the other members of the community! Two choices are available: give your books or borrow others, you choose.",
-	"Description3": "At Babelbooks, we believe that a green world is a good place to live. For this reason,We have partnership agreements with recycling companies. If a book gets too much dusty,It will be recycled.",
-    "Description4": " More than 87,549 users and 20,879,780 books shared.",
+    "submit": "Submit",
+    "Description1": "Do your books get dusty in your library? BabelsBooks is a shared and collaborative library, where each user shares his books freely with everyone. Babelbooks lets you borrow books thourought the city and makes it easy to find new discoveries",
+  	"Description2": "With Babel Books, You represent the library, as well as all the other members of the community! Two choices are available: give your books or borrow others, you choose.",
+  	"Description3": "At Babelbooks, we believe that a green world is a good place to live. For this reason,We have partnership agreements with recycling companies. If a book gets too much dusty,It will be recycled.",
+    "Description4": " More than 87,549 users and 20,879,780 books shared."
   },
-  
   "myLibrary": {
-    "title": "My library"
+    "title": "My library",
+    "validIsbn": "Enter a valid ISBN",
+    "addBook": {
+       "title":"Add a book",
+       "isbn": "Enter the ISBN as it appears at the back of your book",
+       "noIsbn": "There is no ISBN at the back of your book?",
+       "noIsbnButton": "No ISBN",
+       "infoGood":"Are these informations good?",
+       "enterInfo": "Enter the informations of the book",
+       "modify": "Modify",
+       "isAvailable": "Do you want to put it in circulation?",
+       "available": "Available"
+    }
   },
+  "book":{
+    "title": "Title",
+    "abstract": "Abstract",
+    "genres": "Genres",
+    "author": "Author",
+    "edition": "Edition",
+    "majorForm": "Major form",
+    "cover": "Cover",
+    "rent": "Rent",
+    "notAvailable": "This book is currently not available"
+  },
+  "needToBeConnected": "You need to be connected!",
+  "me": "Me",
+  "previous": "Previous",
+  "next": "next",
+  "cancel": "Cancel",
+  "done": "Done",
   "profile":{
     "infos": "My information",
     "appointment": "My appointments",
     "param": "Params",
     "points": "My points",
     "level": "My score",
-    "memberSince": "Member since"
+    "memberSince": "Member since",
+    "appointmentsFor": "Appointments in which you are giving the book",
+    "appointmentsWith": "Appointments in which you are borrowing the book",
+    "noAppointments": "No appointments"
   },
   "navbar": {
     "myProfil": "My profil",
@@ -51,5 +82,4 @@
     "repeatPassword": "Repeat password"
   },
   "loading": "Loading..."
-  },
-  "
+}

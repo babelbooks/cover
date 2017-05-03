@@ -18,41 +18,17 @@
       <div v-if="serverResponded" class="container">
         <div class="row">
           <div v-if="viewBlocks">
-            <div v-for="(result,index) in results" class="col-xs-12 col-sm-6 col-md-4">
-              <div class="panel panel-default">
-                <router-link to="/book/1">
-                  <div class="book-wrapper">
-                    <img src="https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api" class="book-img" alt="" />
-                    <div class="book-txt-wrapper">
-                      <h4>
-                        <b>Titre {{index}}</b>
-                      </h4>
-                    </div>
-                  </div>
-                </router-link>
-                <div class="panel-footer">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <span class="glyphicon glyphicon-send" aria-hidden="true"></span> 1
-                    </div>
-                    <div class="col-xs-4">
-                      <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 22
-                    </div>
-                    <div class="col-xs-4">
-                      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 6
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div v-for="book in results" class="col-xs-12 col-sm-6 col-md-4">
+              <book-display :book="book"></book-display>
             </div>
           </div>
           <div v-else>
             <ul class="list-group">
-              <li v-for="(result,index) in results" class="list-group-item">
+              <li v-for="(book,index) in results" class="list-group-item">
                 <table style="width:100%">
                   <tr>
                     <td style="padding-top:15px;padding-bottom:15px;" class="text-left">
-                      <b>Titre {{index}}</b>
+                      <b>{{book.title}}</b>
                     </td>
                     <td style="padding-top:15px;padding-bottom:15px;" class="text-right">
                       <span class="glyphicon glyphicon-send" aria-hidden="true"></span> 1
@@ -74,19 +50,24 @@
 </template>
 
 <script>
+import services from '../utils/services';
 
 export default {
   name: 'Search',
   mounted: function(){
     var self = this;
-    setTimeout(function(){
-      self.serverResponded = true;
-    }, 1000);
+    return services
+      .searchByTitle(this,this.$route.params.search)
+      .then((res) => {
+        // services.updateUserPoints(self,2);
+        self.results = res;
+        self.serverResponded = true;
+      });
   },
   data () {
     return {
       serverResponded: false,
-      results: ['','',''],
+      results: [],
       bookView: 'blocks'
     }
   },
@@ -109,10 +90,13 @@ export default {
       this.results = [];
       this.serverResponded = false;
       var self = this;
-      setTimeout(function(){
-        self.results = ['','']
-        self.serverResponded = true;
-      }, 1000);
+      return services
+        .searchByTitle(this,this.$route.params.search)
+        .then((res) => {
+          // services.updateUserPoints(self,2);
+          self.results = res;
+          self.serverResponded = true;
+        });
     }
   }
 }

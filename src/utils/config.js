@@ -1,5 +1,5 @@
 export default{
   environment: 'DEV',
-  apiUrl: 'http://babelbooks.tk/api/',
-  engineUrl: 'http://babelbooks.tk:8080/'
+  apiUrl: 'http://localhost:3001/api/',
+  engineUrl: 'http://localhost:3002/'
 }

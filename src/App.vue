@@ -15,7 +15,7 @@
         </div>
       <ul slot="right" class="nav navbar-nav navbar-right">
         <dropdown v-if="user.authenticated" v-bind:text="user.username" role="menu">
-          <li><router-link to="/profile">{{ l('navbar.myProfil') }}</router-link></li>
+          <li><router-link :to="{ name: 'profile', params: { id: user.username }}">{{ l('navbar.myProfil') }}</router-link></li>
           <li><router-link to="/mylibrary">{{ l('myLibrary.title') }}</router-link></li>
           <li><a href="#" @click="logout()">{{ l('navbar.logout') }}</a></li>
         </dropdown>

@@ -45,7 +45,7 @@
   </div>
 
     <div class="fixed-bg " style="background: url('../assets/img/books.jpeg') no-repeat center center fixed;">
-        <h3 class="heading text-vertical-center">Plus de 87,549 utilisateurs et 20,879,780 livres partagés</h3>
+        <h3 class="heading text-vertical-center">Découvrez et partagez des livres en toute simplicitée</h3>
     </div>
     <div class="container block" id="block">
       <h2>
@@ -75,7 +75,8 @@
     </div>
 
     <div class="footer">
-
+      <p>Babelbooks, une application SMART développée par H4113</p>
+      <p><a href="https://github.com/babelbooks" title="Github">Github</a></p>
     </div>
 </div>
 
