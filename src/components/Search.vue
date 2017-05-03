@@ -22,7 +22,7 @@
               <div class="panel panel-default">
                 <router-link to="/book/1">
                   <div class="book-wrapper">
-                    <img src="https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api" class="book-img" alt="" />
+                    <img src="http://books.google.com/books/content?id=AMHUSAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" class="book-img" alt="" />
                     <div class="book-txt-wrapper">
                       <h4>
                         <b>Titre {{index}}</b>

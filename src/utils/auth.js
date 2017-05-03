@@ -12,7 +12,7 @@ export default {
       .then(() => {
         // Get User information to store in cache
         return store
-          .dispatch('updateUser')
+          .dispatch('updateUser',context)
           .then(() => {
             if(redirect) {
               context.$router.push({ name: redirect });
