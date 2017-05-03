@@ -31,13 +31,6 @@ export default {
       .get(config.apiUrl + 'user/me');
   },
 
-  getCurrentUserLib: (context) => {
-    return Promise.resolve(getHardUserLib());
-    // return context
-    //   .$http
-    //   .get(config.apiUrl + 'user/me/books');
-  },
-
   getBookInfo: (context, isbn) => {
     return context
       .$http
@@ -159,7 +152,7 @@ export default {
     })
   },
 
-    getUserReadingBookRaw: (context, username) => {
+  getUserReadingBookRaw: (context, username) => {
     return context
     .$http
     .get(config.apiUrl + 'user/' + username + '/books/reading/raw')
@@ -193,18 +186,18 @@ export default {
     })
   },
 
-    getUserReadBookRaw: (context, username) => {
+  getUserReadBookRaw: (context, username) => {
     return context
-    .$http
-    .get(config.apiUrl + 'user/' + username + '/books/read/raw')
-    .then((response) => {
-      console.log("Getting raw borrowed read books from user " + username);
-      return response.data;
-    })
-    .catch(() => {
-      console.log("Error");
-      // TODO
-    })
+      .$http
+      .get(config.apiUrl + 'user/' + username + '/books/read/raw')
+      .then((response) => {
+        console.log("Getting raw borrowed read books from user " + username);
+        return response.data;
+      })
+      .catch(() => {
+        console.log("Error");
+        // TODO
+      })
   },
 
 /**
@@ -384,6 +377,27 @@ export default {
     return context
       .$http
       .get(config.apiUrl + "user/me/appointments/with")
+      .then((response) => {
+        console.log("Adding book");
+        return response.data
+      })
+      .catch(() => {
+        console.log("Error");
+        // TODO
+      })
+  },
+
+  setAppointment: (context, currentOwnerId, bookId, depositLocation) => {
+    var meeting = {
+      meeting:{
+        currentOwnerId: currentOwnerId,
+        bookId: bookId,
+        depositLocation: depositLocation
+      }
+    }
+    return context
+      .$http
+      .put(config.apiUrl + "/user/me/appointments", meeting)
       .then((response) => {
         console.log("Adding book");
         return response.data

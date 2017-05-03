@@ -92,11 +92,10 @@
                 </thead>
                 <tbody v-for="owner in owners">
                   <tr>
-                    <td><b>{{owner.username}}</b> <span v-show="iOwnThisBook">({{ l('me') }})</span></td>
-                    <td class="right"><button type="button" class="btn btn-primary" :disabled="iOwnThisBook">{{ l('book.rent') }}</button></td>
+                    <td><b>{{owner.username}}</b> <span v-show="amIThisUser(owner.username)">({{ l('me') }})</span></td>
+                    <td class="right"><button type="button" class="btn btn-primary" @click="borrowBook(owner.username)" :disabled="amIThisUser(owner.username)">{{ l('book.rent') }}</button></td>
                   </tr>
                 </tbody>
-
             </table>
             <div v-if="!ownersAvailable">
               <br>
@@ -177,10 +176,47 @@ export default {
     setBookRead: function(){
       var self = this;
       return services
-        .setBookRead(self,this.$route.params.id)
-        .then((res1) => {
-
+        .getUserReadingBookRaw(this,this.user.username)
+        .then((response) => {
+          var books = response.books
+          var arrayLength = books.length;
+          for (var i = 0; i < arrayLength; i++) {
+            if (books[i].isbn === this.$route.params.id){
+              var bookId = {
+                bookId: books[i].bookId
+              }
+              return services
+                .setBookRead(self,bookId)
+                .then((res1) => {
+                  alert(res1)
+                })
+            }
+          }
         })
+    },
+    borrowBook(username){
+      var self = this;
+      return services
+        .getUserReadBookRaw(this,username)
+        .then((response) => {
+          var books = response.books
+          var arrayLength = books.length;
+          for (var i = 0; i < arrayLength; i++) {
+            if (books[i].isbn === this.$route.params.id){
+              var depositLocation = {
+                depositLocationId: 2
+              }
+              return services
+                .setAppointment(self, username, books[i].bookId, depositLocation)
+                .then((response) => {
+                  self.$router.push({ name: 'mylibrary' });
+                })
+            }
+          }
+        })
+    },
+    amIThisUser(username){
+      return this.user.username === username
     }
   },
   mounted: function(){
