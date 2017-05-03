@@ -177,8 +177,9 @@ export default {
     return context
     .$http
     .post(config.apiUrl + "user/me/score", { "n" : number })
-    .then(() => {
-      console.log("Updating user score adding " + number);
+    .then((response) => {
+      console.log("Updating user score, adding " + number);
+      return response.data;
     })
     .catch(() => {
       console.log("Error");
