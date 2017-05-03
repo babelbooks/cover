@@ -39,12 +39,6 @@ export default {
   },
 
   getBookInfo: (context, isbn) => {
-    // return Promise.resolve(getHardBook());
-    // TODO: connect with backend
-    // return context
-    //   .$http
-    //   .get(BOOK_URL + isbn);
-
     return context
       .$http
       .get(config.engineUrl + 'elastic/book/' + isbn)
@@ -356,5 +350,11 @@ export default {
         console.log("Error");
         // TODO
       })
-  }
+  },
+
+  searchByTile: (context, title) => {
+    return context
+      .$http
+      .get(config.engineUrl + 'elastic/book/title/' + title);
+  },
 }
