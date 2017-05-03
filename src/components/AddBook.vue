@@ -220,6 +220,7 @@ export default {
           .then((res) => {
             self.serverRespondedAddBook = true;
             self.showModal = false;
+            self.$emit('bookAdded')
           });
       }else{
         var bookMetadata = {
@@ -234,6 +235,7 @@ export default {
               .then((res) => {
                 self.serverRespondedAddBook = true;
                 self.showModal = false;
+                self.$emit('bookAdded')
               });
           });
       }

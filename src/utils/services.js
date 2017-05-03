@@ -337,7 +337,7 @@ export default {
     })
   },
 
-  getUserAppointmentsFor(context) => {
+  getUserAppointmentsFor: (context) => {
     return context
       .$http
       .get(config.apiUrl + "user/me/appointments/for")
@@ -351,7 +351,7 @@ export default {
       })
   },
 
-  getUserAppointmentsWith(context) => {
+  getUserAppointmentsWith: (context) => {
     return context
       .$http
       .get(config.apiUrl + "user/me/appointments/with")

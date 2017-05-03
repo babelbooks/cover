@@ -45,14 +45,26 @@
               </tab>
               <tab v-bind:header="l('profile.appointment')">
                 <h3> Appointments in which you are giving the book </h3>
-                <div v-for="appointment in appointmentsFor" class="panel panel-info">
+                <div v-for="(appointment,index) in appointmentsFor" class="panel panel-info">
                   <div class="panel-heading">
-                    <h3 class="panel-title">Appointment #1</h3>
+                    <h3 class="panel-title">Appointment #{{index}} with:
+                      Date: 21/03/1992
+                    </h3>
                   </div>
                   <div class="panel-body">
-                    <p> <a href="#">Chez Roger</a> - 20/04/2017 14:00 </p>
-                    <hr>
-
+                    <gmap-map
+                      :center="center"
+                      :zoom="7"
+                      style="width: 100%; height: 400px"
+                    >
+                      <gmap-marker
+                        :key="index"
+                        :position="marker.position"
+                        :clickable="true"
+                        :draggable="true"
+                        @click="center=marker.position"
+                      ></gmap-marker>
+                    </gmap-map>
                   </div>
                 </div>
               </tab>
@@ -94,8 +106,12 @@ export default {
   data () {
     return {
       activeTab: 0,
-      appointmentsFor: [],
-      appointmentsWith: []
+      appointmentsFor: [''],
+      appointmentsWith: [],
+      center: {lat: 10.0, lng: 10.0},
+      marker: {
+        position: {lat: 10.0, lng: 10.0}
+      }
     }
   }
 }
