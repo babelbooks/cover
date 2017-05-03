@@ -60,7 +60,7 @@ export default {
         .$http
         .get(config.engineUrl + 'isbn/' + isbn)
         .then((bookMetadataGoogle) => {
-          console.log("Book " + isbn + " is indexed");
+          console.log("Book " + isbn + " is indexed in Google");
           bookMetadataGoogle = { 'book': bookMetadataGoogle.data };
           bookMetadataGoogle['isIndexed'] = false;
           return bookMetadataGoogle;
@@ -335,61 +335,33 @@ export default {
       console.log("Error");
       // TODO
     })
+  },
+
+  getUserAppointmentsFor(context) => {
+    return context
+      .$http
+      .get(config.apiUrl + "user/me/appointments/for")
+      .then((response) => {
+        console.log("Adding book");
+        return response.data
+      })
+      .catch(() => {
+        console.log("Error");
+        // TODO
+      })
+  },
+
+  getUserAppointmentsWith(context) => {
+    return context
+      .$http
+      .get(config.apiUrl + "user/me/appointments/with")
+      .then((response) => {
+        console.log("Adding book");
+        return response.data
+      })
+      .catch(() => {
+        console.log("Error");
+        // TODO
+      })
   }
-}
-
-
-function getHardBook() {
-  return {
-    "title": "Le Seigneur des Anneaux / Intégrale",
-    "abstract": "...",
-    "genres": ["Fantasy","Science-Fiction"],
-    "author": "J. R. R. Tolkien",
-    "edition": "Pocket",
-    "majorForm": "Novel",
-    "cover": "http://books.google.com/books/content?id=AMHUSAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-  }
-}
-
-function getHardUserLib() {
-  return [{
-      "isbn": 9782266232999,
-      "title": "Le Seigneur des Anneaux / Intégrale",
-      "abstract": "...",
-      "genres": ["Fantasy","Science-Fiction"],
-      "author": "J. R. R. Tolkien",
-      "edition": "Pocket",
-      "majorForm": "Novel",
-      "cover": "http://books.google.com/books/content?id=AMHUSAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-    },
-    {
-      "isbn": 9782266232999,
-      "title": "Le Seigneur des Anneaux / Intégrale",
-      "abstract": "...",
-      "genres": ["Fantasy","Science-Fiction"],
-      "author": "J. R. R. Tolkien",
-      "edition": "Pocket",
-      "majorForm": "Novel",
-      "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
-    },
-    {
-      "isbn": 9782266232999,
-      "title": "Le Seigneur des Anneaux / Intégrale",
-      "abstract": "...",
-      "genres": ["Fantasy","Science-Fiction"],
-      "author": "J. R. R. Tolkien",
-      "edition": "Pocket",
-      "majorForm": "Novel",
-      "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
-    },
-    {
-      "isbn": 9782266232999,
-      "title": "Le Seigneur des Anneaux / Intégrale",
-      "abstract": "...",
-      "genres": ["Fantasy","Science-Fiction"],
-      "author": "J. R. R. Tolkien",
-      "edition": "Pocket",
-      "majorForm": "Novel",
-      "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
-    }];
 }

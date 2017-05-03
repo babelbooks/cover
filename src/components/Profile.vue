@@ -44,7 +44,8 @@
                 </ul>
               </tab>
               <tab v-bind:header="l('profile.appointment')">
-                <div class="panel panel-success">
+                <h3> Appointments in which you are giving the book </h3>
+                <div v-for="appointment in appointmentsFor" class="panel panel-info">
                   <div class="panel-heading">
                     <h3 class="panel-title">Appointment #1</h3>
                   </div>
@@ -92,7 +93,9 @@ export default {
   },
   data () {
     return {
-      activeTab: 0
+      activeTab: 0,
+      appointmentsFor: [],
+      appointmentsWith: []
     }
   }
 }
@@ -105,10 +108,6 @@ export default {
   margin-top:20px;
   padding:20px;
   border: 1px solid #eee;
-}
-
-.tableau-cell{
-  width:33%;
 }
 
 </style>
