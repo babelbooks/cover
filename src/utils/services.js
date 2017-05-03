@@ -158,8 +158,9 @@ export default {
     return context
     .$http
     .get(config.apiUrl + 'user/' + username + 'books/read')
-    .then(() => {
+    .then((response) => {
       console.log("Getting borrowed read books from user " + username);
+      return response.data;
     })
     .catch(() => {
       console.log("Error");
