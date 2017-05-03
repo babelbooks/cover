@@ -239,6 +239,57 @@ export default {
       console.log("Error");
       // TODO
     })
+  },
+
+/**
+ * Add a user.
+ * @param context the context promise
+ * @param user the user to add, must have the following shape
+ * {
+ *  "user" : {
+ *    "username": ID,
+ *    "password": string,
+ *    "lastName": string,
+ *    "firstName": string
+ *  }
+ * }
+ */
+  addUser: (context, user) => {
+    return context
+    .$http
+    .post(config.apiUrl + "user/add", user)
+    .then(() => {
+      console.log("Adding user");
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
+  },
+
+  /**
+ * Add a book.
+ * @param context the context promise
+ * @param book the book to add, must have the following shape
+ * {
+ *  "book": {
+ *    "origin" : ID,
+ *    "isbn": ID | null,
+ *    "available": boolean
+ *  }
+ * }
+ */
+  addBook: (context, book) => {
+    return context
+    .$http
+    .post(config.apiUrl + "book/add", book)
+    .then(() => {
+      console.log("Adding book");
+    })
+    .catch(() => {
+      console.log("Error");
+      // TODO
+    })
   }
 }
 
