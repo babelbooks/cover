@@ -15,11 +15,11 @@
     "yourName": "Votre nom",
     "yourEmail": "Votre courriel",
     "yourMessage": "Votre message",
-    "submit": "Envoyer"
-	"Description1": "Vos livres prennent la poussi\u00E8re dans votre biblioth\u00E8que u\003F BabelBooks est une librarie partag\u00E9e et collaborative o\u00F9 chaque utilisateur met \u00E0 disposition ses livres pour tout le monde.Vous pouvez emprunter des livres dans toute la ville et faire de nouvelles d\u00E9couvertes litt\u00E9raires",
-	"Description2": "Avec Babelbooks, vous \u00EAtes la biblioth\u00E8que, ainsi que tous les autres membres de la communaut\u00E9.Deux choix s'offrent \u00E0 vous: donner vos livres ou emprunter d'autres, \u00E0 vous de choisir.",
-	"Description3": "Chez Babelbooks, nous croyons qu'un monde vert est un monde o\u00F9 il fait bon vivre. C'est pourquoi nous avons des ententes de partenariat avec des firmes de recyclage. Si un livre accumule trop la poussi\u00E8re,il sera recycl\u00E9.",
-	"Description4": "Plus de 87,549 utilisateurs et 20,879,780 livres partag\u00E9s",
+    "submit": "Envoyer",
+    "Description1": "Vos livres prennent la poussi\u00E8re dans votre biblioth\u00E8que \u003F BabelBooks est une librarie partag\u00E9e et collaborative o\u00F9 chaque utilisateur met \u00E0 disposition ses livres pour tout le monde.Vous pouvez emprunter des livres dans toute la ville et faire de nouvelles d\u00E9couvertes litt\u00E9raires",
+  	"Description2": "Avec Babelbooks, vous \u00EAtes la biblioth\u00E8que, ainsi que tous les autres membres de la communaut\u00E9.Deux choix s'offrent \u00E0 vous: donner vos livres ou emprunter d'autres, \u00E0 vous de choisir.",
+  	"Description3": "Chez Babelbooks, nous croyons qu'un monde vert est un monde o\u00F9 il fait bon vivre. C'est pourquoi nous avons des ententes de partenariat avec des firmes de recyclage. Si un livre accumule trop la poussi\u00E8re,il sera recycl\u00E9.",
+  	"Description4": "Plus de 87,549 utilisateurs et 20,879,780 livres partag\u00E9s"
   },
   "myLibrary": {
     "title": "Ma biblioth\u00E8que",
@@ -75,8 +75,4 @@
     "repeatPassword": "R\u00E9p\u00E9ter le mot de passe"
   },
   "loading": "Chargement..."
-  
-  }
-  
-  
-	
+}
