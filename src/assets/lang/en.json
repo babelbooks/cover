@@ -47,6 +47,7 @@
     "rent": "Rent",
     "notAvailable": "This book is currently not available"
   },
+  "needToBeConnected": "You need to be connected!",
   "me": "Me",
   "previous": "Previous",
   "next": "next",

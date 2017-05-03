@@ -100,8 +100,11 @@
             </table>
             <div v-if="!ownersAvailable">
               <br>
-              <div class="alert alert-info" role="alert">
+              <div v-if="userAuthenticated" class="alert alert-info" role="alert">
                 {{ l('book.notAvailable') }}
+              </div>
+              <div v-else class="alert alert-info" role="alert">
+                {{ l('needToBeConnected') }}
               </div>
             </div>
           </ul>
@@ -153,6 +156,13 @@ export default {
   computed: {
     user() {
       return this.$store.state.user
+    },
+    userAuthenticated(){
+      if (this.user.authenticated){
+        return true
+      }else{
+        return false
+      }
     },
     ownersAvailable() {
       if (this.owners){
