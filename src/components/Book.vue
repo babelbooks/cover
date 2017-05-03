@@ -141,7 +141,7 @@ export default {
          "author": "J. R. R. Tolkien",
          "edition": "Pocket",
          "majorForm": "Novel",
-         "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
+         "cover": "http://books.google.com/books/content?id=AMHUSAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
       },
       comments:[
         {

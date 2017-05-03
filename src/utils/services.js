@@ -45,31 +45,31 @@ export default {
     //   .$http
     //   .get(BOOK_URL + isbn);
 
-    context
-    .$http
-    .get(config.engineUrl + 'elastic/book/' + isbn)
-    .then((bookMetadata) => {
+    return context
+      .$http
+      .get(config.engineUrl + 'elastic/book/' + isbn)
+      .then((bookMetadata) => {
         console.log("Book " + isbn + " is indexed");
-        bookMetadata = { 'book': bookMetadata };
+        bookMetadata = { 'book': bookMetadata.data };
         bookMetadata['isIndexed'] = true;
         return bookMetadata;
-    })
-    .catch(() => { 
+      })
+      .catch(() => {
         console.log("Book " + isbn + " is not indexed, looking data with google api");
-        context
+        return context
         .$http
         .get(config.engineUrl + 'isbn/' + isbn)
         .then((bookMetadataGoogle) => {
           console.log("Book " + isbn + " is indexed");
-          bookMetadata = { 'book': bookMetadataGoogle };
-          bookMetadata['isIndexed'] = false;
+          bookMetadataGoogle = { 'book': bookMetadataGoogle.data };
+          bookMetadataGoogle['isIndexed'] = false;
           return bookMetadataGoogle;
         })
         .catch(() => {
           console.log("Fatal error");
           //TODO
         })
-    })
+      })
   },
 
   /**
@@ -130,7 +130,7 @@ export default {
 
 
  /**
-  * Get the books currently borrowed by the user and which are not 
+  * Get the books currently borrowed by the user and which are not
   * read yet, then not available.
   * @param context the context promise
   * @param username the userId of the user
@@ -151,7 +151,7 @@ export default {
 /**
  * Update the user points by adding n.
  * @param context the context promise
- * @param number the number to add to the user points (have to be 
+ * @param number the number to add to the user points (have to be
  * a number, not an object)
  */
   updateUserPoints: (context, number) => {
@@ -170,7 +170,7 @@ export default {
   /**
  * Update the user score by adding n.
  * @param context the context promise
- * @param number the number to add to the user score (have to be 
+ * @param number the number to add to the user score (have to be
  * a number, not an object)
  */
   updateUserScore: (context, number) => {
@@ -223,7 +223,7 @@ export default {
   },
 
 /**
- * Set the book identifed by bookId as read (meaning that the 
+ * Set the book identifed by bookId as read (meaning that the
  * book is now available).
  * @param context the context promise
  * @param bookId the bookId of the book which is set as read
@@ -245,13 +245,13 @@ export default {
 
 function getHardBook() {
   return {
-    title: 'Test',
-    abstract: 'Testtset',
-    genres: ['test1','test2','test3'],
-    author: 'test',
-    edition: 'test',
-    majorForm: 'test',
-    cover: ''
+    "title": "Le Seigneur des Anneaux / Intégrale",
+    "abstract": "...",
+    "genres": ["Fantasy","Science-Fiction"],
+    "author": "J. R. R. Tolkien",
+    "edition": "Pocket",
+    "majorForm": "Novel",
+    "cover": "http://books.google.com/books/content?id=AMHUSAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
   }
 }
 
@@ -264,7 +264,7 @@ function getHardUserLib() {
       "author": "J. R. R. Tolkien",
       "edition": "Pocket",
       "majorForm": "Novel",
-      "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
+      "cover": "http://books.google.com/books/content?id=AMHUSAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
     },
     {
       "isbn": 9782266232999,
