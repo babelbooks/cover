@@ -31,21 +31,16 @@
     <h2>{{ l('home.title2') }}</h2>
     <div class="col-12 col-md-4 column">
       <span class="glyphicon glyphicon-book"></span>
-      <p>Vos livres prennent la poussière dans votre bibliotheque ? BabelBooks est une librarie partagée et
-    collaborative où chaque utilisateur mets à disposition ses libres pour tout le monde.
-    Vous pouvez emprunter des livres dans toute la ville et faire de nouvelles découvertes
-    litéraires.</p>
-    </div>
+      <p>{{ l('home.Description1') }} <p>
+      
+   </div>
     <div class="col-12 col-md-4 column">
     <span class="glyphicon glyphicon-link"></span>
-      <p>Avec Babelbooks, vous etes la bibliotheque, ainsi que tous les autres membres de la communaute!
-      Deux choix s'offrent a vous: donner vos livres ou les emprunter, a vous de choisir.</p>
+      <p>{{ l('home.Description2') }} </p>
     </div>
     <div class="col-12 col-md-4 column">
     <span><icon name="recycle" scale="3"></icon></span>
-      <p>Chez Babelbooks, nous croyons qu'un monde vert est un monde ou il fait bon vivre. C'est pourquoi
-      nous avons des ententes de partenariat avec des firmes de recyclage. Si un livre accumule trop la poussiere,
-      il sera recycle.</p>
+      <p>{{ l('home.Description3') }} </p>
     </div>
   </div>
 
