@@ -16,6 +16,19 @@
       </div>
     </div>
     <div class="container">
+      <div v-if="iOwnThisBook">
+        <h4 class="text-center">Vous possedez presentement ce livre
+          <span v-if="readyToRent">
+            <i>(En attente d'emprunt)</i>
+            <!-- <button type="button" style="margin-left:15px;" class="btn btn-primary">Retirer de la circulation</button> -->
+          </span>
+          <span v-else>
+            <i>(En cours de lecture)</i> 
+            <button @click="setBookRead" type="button" style="margin-left:15px;" class="btn btn-primary">Mettre en circulation</button>
+          </span>
+        </h4>
+        <hr style="width:50%;">
+      </div>
       <div class="row">
         <div class="col-xs-12 col-sm-4" style="margin-bottom:20px;">
           <img v-bind:src="book.cover" id="book-img" alt="" />
@@ -61,11 +74,7 @@
         </div>
       </div>
       <hr>
-
-
       <!-- OWNERS -->
-      
-
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3>
@@ -145,22 +154,40 @@ export default {
       return this.$store.state.user
     }
   },
-        mounted: function(){
+  methods:{
+    setBookRead: function(){
       var self = this;
-      console.log("mounted");
       return services
-        .getBookInfo(self,this.$route.params.id)
+        .setBookRead(self,this.$route.params.id)
         .then((res1) => {
-          self.book = res1.book;
-          console.log(res1);
+
         })
+    }
+  },
+  mounted: function(){
+    var self = this;
+    return services
+      .getBookInfo(self,this.$route.params.id)
+      .then((res1) => {
+        self.book = res1.book;
+        console.log(res1);
+        if (self.user.authenticated){
+          services
+            .doIOwnThisBook(self,self.book.id,self.user.username)
+            .then((res2) => {
+              self.iOwnThisBook = res2.myBook;
+              self.readyToRent = res2.available;
+            })
+        }
+      })
   },
   data () {
     return {
-      myBook: false,
+      iOwnThisBook: false,
       readyToRent: false,
       book: {
          "title": "Please wait ...",
+         "id": "",
          "abstract": "...",
          "genres": ["..."],
          "author": "...",

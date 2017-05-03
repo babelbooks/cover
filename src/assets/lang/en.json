@@ -55,7 +55,10 @@
     "param": "Params",
     "points": "My points",
     "level": "My score",
-    "memberSince": "Member since"
+    "memberSince": "Member since",
+    "appointmentsFor": "Appointments in which you are giving the book",
+    "appointmentsWith": "Appointments in which you are borrowing the book",
+    "noAppointments": "No appointments"
   },
   "navbar": {
     "myProfil": "My profil",
