@@ -27,7 +27,7 @@
                         <b>{{l('profile.level')}}</b>
                       </div>
                       <div class="col-xs-9">
-                        {{user.score}}
+                        0
                       </div>
                     </div>
                   </li>
@@ -44,20 +44,66 @@
                 </ul>
               </tab>
               <tab v-bind:header="l('profile.appointment')">
-                <div class="panel panel-success">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Appointment #1</h3>
-                  </div>
-                  <div class="panel-body">
-                    <p> <a href="#">Chez Roger</a> - 20/04/2017 14:00 </p>
-                    <hr>
-
-                  </div>
+                <h3>{{l('profile.appointmentsFor')}}</h3>
+                <div v-if="appointmentsForAvailable">
+                  <accordion :one-at-atime="true" type="info">
+                    <panel v-for="appointment in appointmentsFor" type="primary">
+                      <span slot="header">
+                        <b>With:</b> Tabernac<br>
+                        <b>When:</b> 10/01/2017<br>
+                        <b>Where:</b> Insa
+                      </span>
+                      <gmap-map
+                        :center="center"
+                        :zoom="7"
+                        style="width: 100%; height: 400px"
+                      >
+                        <gmap-marker
+                          :key="index"
+                          :position="marker.position"
+                          :clickable="true"
+                          :draggable="true"
+                          @click="center=marker.position"
+                        ></gmap-marker>
+                      </gmap-map>
+                    </panel>
+                  </accordion>
+                </div>
+                <div v-else class="alert alert-info" role="alert">
+                  {{l('profile.noAppointments')}}
+                </div>
+                <h3>{{l('profile.appointmentsWith')}}</h3>
+                <div v-if="appointmentsWithAvailable">
+                  <accordion :one-at-atime="true" type="info">
+                    <panel v-for="appointment in appointmentsWith" type="primary">
+                      <span slot="header">
+                        <b>With:</b> Tabernac<br>
+                        <b>When:</b> 10/01/2017<br>
+                        <b>Where:</b> Insa
+                      </span>
+                      <gmap-map
+                        :center="center"
+                        :zoom="7"
+                        style="width: 100%; height: 400px"
+                      >
+                        <gmap-marker
+                          :key="index"
+                          :position="marker.position"
+                          :clickable="true"
+                          :draggable="true"
+                          @click="center=marker.position"
+                        ></gmap-marker>
+                      </gmap-map>
+                    </panel>
+                  </accordion>
+                </div>
+                <div v-else class="alert alert-info" role="alert">
+                  {{l('profile.noAppointments')}}
                 </div>
               </tab>
-              <tab v-bind:header="l('profile.param')">
+              <!--<tab v-bind:header="l('profile.param')">
                 ...
-              </tab>
+              </tab>-->
             </tabs>
           </div>
         </div>
@@ -67,33 +113,70 @@
 </template>
 
 <script>
+import services from '../utils/services';
 import Avatar from 'vue-avatar'
-import { tabs,tab } from 'vue-strap'
+import { tabs,tab,accordion,panel } from 'vue-strap'
 
 export default {
   name: 'Profile',
   components: {
     avatar: Avatar.Avatar,
     tabs,
-    tab
+    tab,
+    accordion,
+    panel
   },
   computed: {
     user() {
       return this.$store.state.user
     },
     formatDate() {
-
       var d = new Date(this.$store.state.user.signUpDate);
       var day = d.getDate();
       var monthIndex = d.getMonth();
       var year = d.getFullYear();
       return day + ' ' + this.$store.state.mlang.monthNames[monthIndex] + ' ' + year;
+    },
+    appointmentsForAvailable(){
+      if (this.appointmentsFor){
+        if (this.appointmentsFor.length > 0){
+          return true;
+        }
+      }
+      return false;
+    },
+    appointmentsWithAvailable(){
+      if (this.appointmentsWith){
+        if (this.appointmentsWith.length > 0){
+          return true;
+        }
+      }
+      return false;
     }
   },
   data () {
     return {
-      activeTab: 0
+      activeTab: 0,
+      appointmentsFor: [],
+      appointmentsWith: [],
+      center: {lat: 10.0, lng: 10.0},
+      marker: {
+        position: {lat: 10.0, lng: 10.0}
+      }
     }
+  },
+  mounted: function(){
+    var self = this;
+    return services
+      .getUserAppointmentsFor(self)
+      .then((res1) => {
+        self.appointmentsFor = res1;
+        services
+          .getUserAppointmentsWith(self)
+          .then((res2) => {
+            self.appointmentsWith = res2;
+          });
+      });
   }
 }
 </script>
@@ -105,10 +188,6 @@ export default {
   margin-top:20px;
   padding:20px;
   border: 1px solid #eee;
-}
-
-.tableau-cell{
-  width:33%;
 }
 
 </style>

@@ -39,12 +39,6 @@ export default {
   },
 
   getBookInfo: (context, isbn) => {
-    // return Promise.resolve(getHardBook());
-    // TODO: connect with backend
-    // return context
-    //   .$http
-    //   .get(BOOK_URL + isbn);
-
     return context
       .$http
       .get(config.engineUrl + 'elastic/book/' + isbn)
@@ -60,7 +54,7 @@ export default {
         .$http
         .get(config.engineUrl + 'isbn/' + isbn)
         .then((bookMetadataGoogle) => {
-          console.log("Book " + isbn + " is indexed");
+          console.log("Book " + isbn + " is indexed in Google");
           bookMetadataGoogle = { 'book': bookMetadataGoogle.data };
           bookMetadataGoogle['isIndexed'] = false;
           return bookMetadataGoogle;
@@ -222,7 +216,7 @@ export default {
   updateUserPoints: (context, number) => {
     return context
     .$http
-    .post(config.apiUrl + "user/me/points", { "n" : number })
+    .put(config.apiUrl + "user/me/points", { "n" : number })
     .then((response) => {
       console.log("Updating user points adding " + number);
       return response.data
@@ -308,32 +302,6 @@ export default {
     })
   },
 
-/**
- * Add a user.
- * @param context the context promise
- * @param user the user to add, must have the following shape
- * {
- *  "user" : {
- *    "username": ID,
- *    "password": string,
- *    "lastName": string,
- *    "firstName": string
- *  }
- * }
- */
-  addUser: (context, user) => {
-    return context
-    .$http
-    .put(config.apiUrl + "user/add", user)
-    .then(() => {
-      console.log("Adding user");
-    })
-    .catch(() => {
-      console.log("Error");
-      // TODO
-    })
-  },
-
   /**
  * Add a book.
  * @param context the context promise
@@ -377,61 +345,120 @@ export default {
       console.log("Error");
       // TODO
     })
+  },
+
+/**
+ * Get available books.
+ * @param context the context promise
+ * @param limit the maximal number of books returned
+ * @param offset the offset of the books returned
+ */
+  getCurrentOwners: (context, isbn) => {
+    return context
+    .$http
+    .get(config.apiUrl + "owners/" + isbn)
+    .then((response) => {
+      console.log("Consulting all owners");
+      return response.data;
+    })
+    .catch(() => {
+      console.log("Error");
+    })
+  },
+
+  getUserAppointmentsFor: (context) => {
+    return context
+      .$http
+      .get(config.apiUrl + "user/me/appointments/for")
+      .then((response) => {
+        console.log("Adding book");
+        return response.data
+      })
+      .catch(() => {
+        console.log("Error");
+        // TODO
+      })
+  },
+
+  getUserAppointmentsWith: (context) => {
+    return context
+      .$http
+      .get(config.apiUrl + "user/me/appointments/with")
+      .then((response) => {
+        console.log("Adding book");
+        return response.data
+      })
+      .catch(() => {
+        console.log("Error");
+        // TODO
+      })
+  },
+
+  doIOwnThisBook(context,isbn,username){
+    return this
+      .getUserReadingBook(context,username)
+      .then((response) => {
+        console.log("Do I own this book Reading");
+        var booksReading = response
+        var arrayLength = booksReading.length;
+        for (var i = 0; i < arrayLength; i++) {
+          if (booksReading[i].id === isbn){
+            return {
+              myBook: true,
+              available: false
+            };
+          }
+        }
+        return this
+          .getUserReadBook(context,username)
+          .then((response2) => {
+            var booksRenting = response2
+            var arrayLength = booksRenting.length;
+            for (var i = 0; i < arrayLength; i++) {
+              if (booksRenting[i].id === isbn){
+                return {
+                  myBook: true,
+                  available: true
+                };
+              }
+            }
+            return {
+              myBook: false,
+              available: false,
+            }
+          })
+      })
+      .catch((err) => {
+        console.log("Error: " + err);
+        // TODO
+      })
+  },
+
+  setBookRead(context, bookId){
+    return context
+      .$http
+      .post(config.apiUrl + "book/read", bookId)
+      .then((response) => {
+        console.log("Set Book Read");
+        return response.data
+      })
+      .catch((err) => {
+        console.log("Error: " + err);
+        // TODO
+      })
+  },
+
+  searchByTitle: (context, title) => {
+    return context
+      .$http
+      .get(config.engineUrl + 'elastic/book/title/' + title)
+      .then((response) => {
+        console.log("Set Book Read");
+        return response.data
+      })
+      .catch((err) => {
+        console.log("Error: " + err);
+        // TODO
+      })
   }
-}
-
-
-function getHardBook() {
-  return {
-    "title": "Le Seigneur des Anneaux / Intégrale",
-    "abstract": "...",
-    "genres": ["Fantasy","Science-Fiction"],
-    "author": "J. R. R. Tolkien",
-    "edition": "Pocket",
-    "majorForm": "Novel",
-    "cover": "http://books.google.com/books/content?id=AMHUSAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-  }
-}
-
-function getHardUserLib() {
-  return [{
-      "isbn": 9782266232999,
-      "title": "Le Seigneur des Anneaux / Intégrale",
-      "abstract": "...",
-      "genres": ["Fantasy","Science-Fiction"],
-      "author": "J. R. R. Tolkien",
-      "edition": "Pocket",
-      "majorForm": "Novel",
-      "cover": "http://books.google.com/books/content?id=AMHUSAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-    },
-    {
-      "isbn": 9782266232999,
-      "title": "Le Seigneur des Anneaux / Intégrale",
-      "abstract": "...",
-      "genres": ["Fantasy","Science-Fiction"],
-      "author": "J. R. R. Tolkien",
-      "edition": "Pocket",
-      "majorForm": "Novel",
-      "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
-    },
-    {
-      "isbn": 9782266232999,
-      "title": "Le Seigneur des Anneaux / Intégrale",
-      "abstract": "...",
-      "genres": ["Fantasy","Science-Fiction"],
-      "author": "J. R. R. Tolkien",
-      "edition": "Pocket",
-      "majorForm": "Novel",
-      "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
-    },
-    {
-      "isbn": 9782266232999,
-      "title": "Le Seigneur des Anneaux / Intégrale",
-      "abstract": "...",
-      "genres": ["Fantasy","Science-Fiction"],
-      "author": "J. R. R. Tolkien",
-      "edition": "Pocket",
-      "majorForm": "Novel",
-      "cover": "https://images-na.ssl-images-amazon.com/images/I/518AcPBLUcL._SX348_BO1,204,203,200_.jpg"
-    }];
 }

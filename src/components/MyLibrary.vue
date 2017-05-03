@@ -13,8 +13,9 @@
           <button @click="switchBookView()" type="button" class="btn btn-default btn-lg">
             <span v-bind:class="['glyphicon', viewBlocks ? 'glyphicon-th-list':  'glyphicon glyphicon-th-large']" aria-hidden="true"></span>
           </button>
-          <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span></button>
-          <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></button>        </td>
+          <!--<button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span></button>
+          <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></button>-->
+        </td>
       </tr>
     </table>
     <hr>
@@ -111,7 +112,7 @@
         <icon name="spinner" spin scale="2"></icon>
       </div>
     </div>
-    <add-book v-model="showAddBook"></add-book>
+    <add-book v-model="showAddBook" v-on:bookAdded="bookAdded"></add-book>
   </div>
 </template>
 
@@ -136,24 +137,7 @@ export default {
     }
   },
   mounted: function(){
-    var self = this;
-
-    return services
-      .getUserReadingBook(self,this.user.username)
-      .then((res1) => {
-        self.booksReading = res1;
-        services
-          .getUserReadBook(self,this.user.username)
-          .then((res2) => {
-            self.booksRenting = res2;
-            services
-              .getUserOriginalBook(self,this.user.username)
-              .then((res3) => {
-                self.serverResponded = true;
-                self.booksInitiated = res3;
-              });
-          });
-      });
+    this.updateBooks();
   },
   methods:{
     switchBookView: function(){
@@ -162,6 +146,33 @@ export default {
       }else{
         this.bookView = 'blocks'
       }
+    },
+    updateBooks: function(){
+      var self = this;
+      this.booksReading = [];
+      this.booksRenting = [];
+      this.booksInitiated = [];
+      return services
+        .getUserReadingBook(self,self.user.username)
+        .then((res1) => {
+          self.booksReading = res1;
+          services
+            .getUserReadBook(self,self.user.username)
+            .then((res2) => {
+              self.booksRenting = res2;
+              services
+                .getUserOriginalBook(self,self.user.username)
+                .then((res3) => {
+                  self.serverResponded = true;
+                  self.booksInitiated = res3;
+                });
+            });
+        });
+    },
+    bookAdded: function(){
+      console.log('A book has been added, refreshing books')
+      this.serverResponded = true;
+      this.updateBooks();
     }
   },
   computed: {

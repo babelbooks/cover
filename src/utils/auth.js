@@ -28,14 +28,10 @@ export default {
   },
 
   signup(context, user, redirect) {
-    let self = this;
     return services
       .signup(context, user)
-      .then(() => {
-        self.user.authenticated = true;
-        if(redirect) {
-          context.$router.push({ name: redirect });
-        }
+      .then((response) => {
+        context.$router.push({ name: redirect });
       })
       .catch((err) => {
         context.error = err.body.error.message || err.body.error.error;
