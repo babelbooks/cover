@@ -152,7 +152,7 @@ export default {
   },
 
   /**
-  * Get the books currently borrowed by the user and which are 
+  * Get the books currently borrowed by the user and which are
   * read yet, then available.
   * @param context the context promise
   * @param username the userId of the user
@@ -160,7 +160,7 @@ export default {
   getUserReadBook: (context, username) => {
     return context
     .$http
-    .get(config.apiUrl + 'user/' + username + 'books/read')
+    .get(config.apiUrl + 'user/' + username + '/books/read')
     .then((response) => {
       console.log("Getting borrowed read books from user " + username);
       return response.data;
@@ -307,8 +307,9 @@ export default {
     return context
     .$http
     .put(config.apiUrl + "book/add", book)
-    .then(() => {
+    .then((response) => {
       console.log("Adding book");
+      return response.data
     })
     .catch(() => {
       console.log("Error");

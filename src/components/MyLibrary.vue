@@ -143,7 +143,7 @@ export default {
       .then((res1) => {
         self.booksReading = res1;
         services
-          .getUserBorrowedBook(self,this.user.username)
+          .getUserReadBook(self,this.user.username)
           .then((res2) => {
             self.booksRenting = res2;
             services
