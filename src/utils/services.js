@@ -103,6 +103,7 @@ export default {
     .get(config.apiUrl + 'user/' + username + '/books/borrowed')
     .then((response) => {
       console.log("Getting borrowed books from user " + username);
+      return response.data
     })
     .catch(() => {
       console.log("Error");
@@ -122,6 +123,7 @@ export default {
     .get(config.apiUrl + 'user/' + username + '/books')
     .then((response) => {
       console.log("Getting original books from user " + username);
+      return response.data;
     })
     .catch(() => {
       console.log("Error");
@@ -138,9 +140,10 @@ export default {
   getUserReadingBook: (context, username) => {
     return context
     .$http
-    .get(config.apiUrl + 'user/' + username + 'books/reading')
-    .then(() => {
+    .get(config.apiUrl + 'user/' + username + '/books/reading')
+    .then((response) => {
       console.log("Getting reading books from user " + username);
+      return response.data
     })
     .catch(() => {
       console.log("Error");
@@ -149,7 +152,7 @@ export default {
   },
 
   /**
-  * Get the books currently borrowed by the user and which are 
+  * Get the books currently borrowed by the user and which are
   * read yet, then available.
   * @param context the context promise
   * @param username the userId of the user
@@ -157,7 +160,7 @@ export default {
   getUserReadBook: (context, username) => {
     return context
     .$http
-    .get(config.apiUrl + 'user/' + username + 'books/read')
+    .get(config.apiUrl + 'user/' + username + '/books/read')
     .then((response) => {
       console.log("Getting borrowed read books from user " + username);
       return response.data;
@@ -178,8 +181,9 @@ export default {
     return context
     .$http
     .post(config.apiUrl + "user/me/points", { "n" : number })
-    .then(() => {
+    .then((response) => {
       console.log("Updating user points adding " + number);
+      return response.data
     })
     .catch(() => {
       console.log("Error");
@@ -197,8 +201,9 @@ export default {
     return context
     .$http
     .post(config.apiUrl + "user/me/score", { "n" : number })
-    .then(() => {
-      console.log("Updating user score adding " + number);
+    .then((response) => {
+      console.log("Updating user score, adding " + number);
+      return response.data;
     })
     .catch(() => {
       console.log("Error");
