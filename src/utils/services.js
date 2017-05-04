@@ -285,7 +285,7 @@ export default {
   setBookAsRead: (context, bookId) => {
     return context
     .$http
-    .post(config.apiUrl + "read", { "bookId" : bookId })
+    .post(config.apiUrl + "read/" + bookId)
     .then(() => {
       console.log("Setting the book " + bookId + " as read");
     })
