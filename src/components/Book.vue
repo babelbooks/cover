@@ -24,7 +24,7 @@
           </span>
           <span v-else>
             <i>(En cours de lecture)</i>
-            <button @click="setBookRead" type="button" style="margin-left:15px;" class="btn btn-primary">Mettre en circulation</button>
+            <button @click="setBookAsRead" type="button" style="margin-left:15px;" class="btn btn-primary">Mettre en circulation</button>
           </span>
         </h4>
         <hr style="width:50%;">
@@ -173,7 +173,7 @@ export default {
     }
   },
   methods:{
-    setBookRead: function(){
+    setBookAsRead: function(){
       var self = this;
       return services
         .getUserReadingBookRaw(this,this.user.username)
@@ -186,7 +186,7 @@ export default {
                 bookId: books[i].bookId
               }
               return services
-                .setBookRead(self,bookId)
+                .setBookAsRead(self,bookId)
                 .then((res1) => {
                   alert(res1)
                 })

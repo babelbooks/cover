@@ -286,11 +286,12 @@ export default {
     return context
     .$http
     .post(config.apiUrl + "read/" + bookId)
-    .then(() => {
+    .then((response) => {
+      console.log(response)
       console.log("Setting the book " + bookId + " as read");
     })
-    .catch(() => {
-      console.log("Error");
+    .catch((err) => {
+      console.log("Error: " + err);
       // TODO
     })
   },
