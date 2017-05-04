@@ -17,13 +17,13 @@
     </div>
     <div class="container">
       <div v-if="iOwnThisBook">
-        <h4 class="text-center">Vous possedez presentement ce livre
+        <h4 class="text-center">{{ l('book.iOwnThisBook') }}
           <span v-if="readyToRent">
-            <i>(En attente d'emprunt)</i>
+            <i>({{ l('book.readyToRent') }})</i>
             <!-- <button type="button" style="margin-left:15px;" class="btn btn-primary">Retirer de la circulation</button> -->
           </span>
           <span v-else>
-            <i>(En cours de lecture)</i>
+            <i>({{ l('book.notReadyToRent') }})</i>
             <button @click="setBookAsRead" type="button" style="margin-left:15px;" class="btn btn-primary">Mettre en circulation</button>
           </span>
         </h4>
@@ -36,7 +36,7 @@
         <div class="col-xs-12 col-sm-8">
           <div class="row">
             <div class="col-xs-12 col-sm-4">
-              <b>Auteur</b>
+              <b>{{ l('book.author') }}</b>
             </div>
             <div class="col-xs-12 col-sm-8">
               {{book.author}}
@@ -45,7 +45,7 @@
           <hr>
           <div class="row">
             <div class="col-xs-12 col-sm-4">
-              <b>Description</b>
+              <b>{{ l('book.abstract') }}</b>
             </div>
             <div class="col-xs-12 col-sm-8">
               {{book.abstract}}
@@ -54,7 +54,7 @@
           <hr>
           <div class="row">
             <div class="col-xs-12 col-sm-4">
-              <b>Genre(s)</b>
+              <b>{{ l('book.genres') }}</b>
             </div>
             <div class="col-xs-12 col-sm-8">
               <div v-for="genre in book.genres">
@@ -78,7 +78,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3>
-            Livres disponibles :
+            {{ l('book.booksAvailable') }}
           </h3>
         </div>
         <div class="panel-body">
@@ -86,7 +86,7 @@
             <table class="table owner">
                 <thead>
                   <tr>
-                    <th>Propriétaire</th>
+                    <th>{{ l('book.owners') }}</th>
                     <th></th>
                   </tr>
                 </thead>

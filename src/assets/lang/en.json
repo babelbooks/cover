@@ -26,6 +26,10 @@
   "myLibrary": {
     "title": "My library",
     "validIsbn": "Enter a valid ISBN",
+    "booksReading": "Books that you are currently reading",
+    "booksRenting": "Books that you have that you have done reading",
+    "booksInitiated": "Books you have put in the circulation",
+    "noBooks": "No bookss",
     "addBook": {
        "title":"Add a book",
        "isbn": "Enter the ISBN as it appears at the back of your book",
@@ -47,6 +51,11 @@
     "majorForm": "Major form",
     "cover": "Cover",
     "rent": "Rent",
+    "iOwnThisBook": "You currently own this book",
+    "readyToRent": "Ready to rent",
+    "notReadyToRent": "Currently reading",
+    "booksAvailable":"Books available",
+    "owners": "Owners",
     "notAvailable": "This book is currently not available"
   },
   "needToBeConnected": "You need to be connected!",
@@ -78,6 +87,10 @@
   "login": {
     "title": "Log in",
     "remember": "Remember me"
+  },
+  "search":{
+    "resultsFor": "Results for",
+    "noResults": "No results for this search"
   },
   "signup":{
     "title": "Signup",

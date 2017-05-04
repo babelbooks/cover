@@ -410,7 +410,7 @@ export default {
       })
   },
 
-  doIOwnThisBook(context,isbn,username){
+  doIOwnThisBook: (context,isbn,username) => {
     return this
       .getUserReadingBook(context,username)
       .then((response) => {
@@ -443,20 +443,6 @@ export default {
               available: false,
             }
           })
-      })
-      .catch((err) => {
-        console.log("Error: " + err);
-        // TODO
-      })
-  },
-
-  setBookRead(context, bookId){
-    return context
-      .$http
-      .post(config.apiUrl + "book/read", bookId)
-      .then((response) => {
-        console.log("Set Book Read");
-        return response.data
       })
       .catch((err) => {
         console.log("Error: " + err);

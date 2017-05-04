@@ -27,6 +27,10 @@
   "myLibrary": {
     "title": "Ma biblioth\u00E8que",
     "validIsbn": "Entrez un ISBN valide",
+    "booksReading": "Livres en votre possession (en cours de lecture)",
+    "booksRenting": "Livres en votre possession (en attente d'emprunt)",
+    "booksInitiated": "Livres que vous avez mis en circulation",
+    "noBooks": "Aucun livres",
     "addBook": {
        "title":"Ajouter un livre",
        "isbn": "Rentrez l'ISBN tel qu'il appara\u00EEt \u00E0 l'arri\u00E8re de votre livre",
@@ -48,7 +52,16 @@
     "majorForm": "Forme majeure",
     "cover": "Couverture",
     "rent": "Emprunter",
+    "iOwnThisBook": "Vous possedez presentement ce livre",
+    "readyToRent": "En attente d'emprunt",
+    "notReadyToRent": "En cours de lecture",
+    "owners": "Propri\u00E9taires",
+    "booksAvailable":"Livres disponibles",
     "notAvailable": "Ce livre n'est actuellement pas disponible"
+  },
+  "search":{
+    "resultsFor": "R\u00E9sultats pour",
+    "noResults": "Pas de r\u00E9sultats pour cette recherche"
   },
   "needToBeConnected": "Vous devez \u00EAtre connecter!",
   "me": "Moi",

@@ -54,16 +54,16 @@
                         <b>Where:</b> Insa
                       </span>
                       <gmap-map
-                        :center="center"
-                        :zoom="7"
+                        :center="appointment.center"
+                        :zoom="9"
                         style="width: 100%; height: 400px"
                       >
                         <gmap-marker
                           :key="index"
-                          :position="marker.position"
+                          :position="appointment.marker.position"
                           :clickable="true"
                           :draggable="true"
-                          @click="center=marker.position"
+                          @click="center=appointment.marker.position"
                         ></gmap-marker>
                       </gmap-map>
                     </panel>
@@ -82,16 +82,16 @@
                         <b>Where:</b> Insa
                       </span>
                       <gmap-map
-                        :center="center"
+                        :center="appointment.center"
                         :zoom="7"
                         style="width: 100%; height: 400px"
                       >
                         <gmap-marker
                           :key="index"
-                          :position="marker.position"
+                          :position="appointment.marker.position"
                           :clickable="true"
                           :draggable="true"
-                          @click="center=marker.position"
+                          @click="center=appointment.marker.position"
                         ></gmap-marker>
                       </gmap-map>
                     </panel>
@@ -158,11 +158,7 @@ export default {
     return {
       activeTab: 0,
       appointmentsFor: [],
-      appointmentsWith: [],
-      center: {lat: 10.0, lng: 10.0},
-      marker: {
-        position: {lat: 10.0, lng: 10.0}
-      }
+      appointmentsWith: []
     }
   },
   mounted: function(){
@@ -170,7 +166,20 @@ export default {
     return services
       .getUserAppointmentsFor(self)
       .then((res1) => {
-        self.appointmentsFor = res1;
+        self.appointmentsFor = [
+            {
+              center: {lat: 45.782, lng: 4.878},
+              marker: {
+                position: {lat: 45.782, lng: 4.878}
+              }
+            },
+            {
+              center: {lat: 45.782, lng: 4.878},
+              marker: {
+                position: {lat: 45.782, lng: 4.878}
+              }
+            }
+          ]
         services
           .getUserAppointmentsWith(self)
           .then((res2) => {

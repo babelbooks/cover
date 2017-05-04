@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="pages-header">
-      <p><h3>Results for: <b>{{ $route.params.search }}</b></h3></p>
+      <p><h3>{{ l('search.resultsFor') }}: <b>{{ $route.params.search }}</b></h3></p>
     </div>
     <div>
       <button type="button" style="visibility:hidden;" class="btn btn-default btn-lg">h</button>
@@ -40,6 +40,9 @@
               </li>
             </ul>
           </div>
+          <div v-if="!noResults" class="alert alert-info" role="alert">
+            {{ l('search.noResults') }}
+          </div>
         </div>
       </div>
       <div v-else>
@@ -74,7 +77,15 @@ export default {
   computed:{
     viewBlocks(){
       return this.bookView === 'blocks'
-    }
+    },
+    noResults(){
+      if (this.results){
+        if (this.results.length > 0){
+          return true;
+        }
+      }
+      return false;
+    },
   },
   methods:{
     switchBookView: function(){
