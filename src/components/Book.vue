@@ -182,13 +182,10 @@ export default {
           var arrayLength = books.length;
           for (var i = 0; i < arrayLength; i++) {
             if (books[i].isbn === this.$route.params.id){
-              var bookId = {
-                bookId: books[i].bookId
-              }
               return services
-                .setBookAsRead(self,bookId)
+                .setBookAsRead(self, books[i].bookId)
                 .then((res1) => {
-                  alert(res1)
+                  self.$router.push({ name: 'mylibrary' });
                 })
             }
           }
