@@ -31,7 +31,7 @@
     <h2>{{ l('home.title2') }}</h2>
     <div class="col-12 col-md-4 column">
       <span class="glyphicon glyphicon-book"></span>
-      <p>{{ l('home.Description1') }} <p>
+      <p>{{ l('home.Description1') }} </p>
       
    </div>
     <div class="col-12 col-md-4 column">
@@ -45,7 +45,7 @@
   </div>
 
     <div class="fixed-bg " style="background: url('../assets/img/books.jpeg') no-repeat center center fixed;">
-        <h3 class="heading text-vertical-center">Découvrez et partagez des livres en toute simplicitée</h3>
+        <h3 class="heading text-vertical-center">{{l('home.quote1')}}</h3>
     </div>
     <div class="container block" id="block">
       <h2>
@@ -70,12 +70,12 @@
     </div>
 
     <div class="fixed-bg" style="background: url('../assets/img/read.jpg') no-repeat center center fixed;">
-        <h3 class="heading text-vertical-center">Plus de 87,549 utilisateurs et 20,879,780 livres partagés</h3>
+        <h3 class="heading text-vertical-center">{{l('home.quote2')}}</h3>
     </div>
     </div>
 
     <div class="footer">
-      <p>Babelbooks, une application SMART développée par H4113</p>
+      <p>{{l('home.footer')}}</p>
       <p><a href="https://github.com/babelbooks" title="Github">Github</a></p>
     </div>
 </div>

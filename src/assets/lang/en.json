@@ -19,11 +19,17 @@
     "Description1": "Do your books get dusty in your library? BabelsBooks is a shared and collaborative library, where each user shares his books freely with everyone. Babelbooks lets you borrow books thourought the city and makes it easy to find new discoveries",
   	"Description2": "With Babel Books, You represent the library, as well as all the other members of the community! Two choices are available: give your books or borrow others, you choose.",
   	"Description3": "At Babelbooks, we believe that a green world is a good place to live. For this reason,We have partnership agreements with recycling companies. If a book gets too much dusty,It will be recycled.",
-    "Description4": " More than 87,549 users and 20,879,780 books shared."
+    "quote1": "Discover and share books simply",
+    "quote2": "More than 87,549 users and 20,879,780 books shared",
+    "footer": "Babelbooks, a SMART app created by H4113"
   },
   "myLibrary": {
     "title": "My library",
     "validIsbn": "Enter a valid ISBN",
+    "booksReading": "Books that you are currently reading",
+    "booksRenting": "Books that you have that you have done reading",
+    "booksInitiated": "Books you have put in the circulation",
+    "noBooks": "No bookss",
     "addBook": {
        "title":"Add a book",
        "isbn": "Enter the ISBN as it appears at the back of your book",
@@ -45,6 +51,11 @@
     "majorForm": "Major form",
     "cover": "Cover",
     "rent": "Rent",
+    "iOwnThisBook": "You currently own this book",
+    "readyToRent": "Ready to rent",
+    "notReadyToRent": "Currently reading",
+    "booksAvailable":"Books available",
+    "owners": "Owners",
     "notAvailable": "This book is currently not available"
   },
   "needToBeConnected": "You need to be connected!",
@@ -76,6 +87,10 @@
   "login": {
     "title": "Log in",
     "remember": "Remember me"
+  },
+  "search":{
+    "resultsFor": "Results for",
+    "noResults": "No results for this search"
   },
   "signup":{
     "title": "Signup",

@@ -17,14 +17,14 @@
     </div>
     <div class="container">
       <div v-if="iOwnThisBook">
-        <h4 class="text-center">Vous possedez presentement ce livre
+        <h4 class="text-center">{{ l('book.iOwnThisBook') }}
           <span v-if="readyToRent">
-            <i>(En attente d'emprunt)</i>
+            <i>({{ l('book.readyToRent') }})</i>
             <!-- <button type="button" style="margin-left:15px;" class="btn btn-primary">Retirer de la circulation</button> -->
           </span>
           <span v-else>
-            <i>(En cours de lecture)</i>
-            <button @click="setBookRead" type="button" style="margin-left:15px;" class="btn btn-primary">Mettre en circulation</button>
+            <i>({{ l('book.notReadyToRent') }})</i>
+            <button @click="setBookAsRead" type="button" style="margin-left:15px;" class="btn btn-primary">Mettre en circulation</button>
           </span>
         </h4>
         <hr style="width:50%;">
@@ -36,7 +36,7 @@
         <div class="col-xs-12 col-sm-8">
           <div class="row">
             <div class="col-xs-12 col-sm-4">
-              <b>Auteur</b>
+              <b>{{ l('book.author') }}</b>
             </div>
             <div class="col-xs-12 col-sm-8">
               {{book.author}}
@@ -45,7 +45,7 @@
           <hr>
           <div class="row">
             <div class="col-xs-12 col-sm-4">
-              <b>Description</b>
+              <b>{{ l('book.abstract') }}</b>
             </div>
             <div class="col-xs-12 col-sm-8">
               {{book.abstract}}
@@ -54,7 +54,7 @@
           <hr>
           <div class="row">
             <div class="col-xs-12 col-sm-4">
-              <b>Genre(s)</b>
+              <b>{{ l('book.genres') }}</b>
             </div>
             <div class="col-xs-12 col-sm-8">
               <div v-for="genre in book.genres">
@@ -78,7 +78,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3>
-            Livres disponibles :
+            {{ l('book.booksAvailable') }}
           </h3>
         </div>
         <div class="panel-body">
@@ -86,17 +86,16 @@
             <table class="table owner">
                 <thead>
                   <tr>
-                    <th>Propriétaire</th>
+                    <th>{{ l('book.owners') }}</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody v-for="owner in owners">
                   <tr>
-                    <td><b>{{owner.username}}</b> <span v-show="iOwnThisBook">({{ l('me') }})</span></td>
-                    <td class="right"><button type="button" class="btn btn-primary" :disabled="iOwnThisBook">{{ l('book.rent') }}</button></td>
+                    <td><b>{{owner.username}}</b> <span v-show="amIThisUser(owner.username)">({{ l('me') }})</span></td>
+                    <td class="right"><button type="button" class="btn btn-primary" @click="borrowBook(owner.username)" :disabled="amIThisUser(owner.username)">{{ l('book.rent') }}</button></td>
                   </tr>
                 </tbody>
-
             </table>
             <div v-if="!ownersAvailable">
               <br>
@@ -174,13 +173,47 @@ export default {
     }
   },
   methods:{
-    setBookRead: function(){
+    setBookAsRead: function(){
       var self = this;
       return services
-        .setBookRead(self,this.$route.params.id)
-        .then((res1) => {
-
+        .getUserReadingBookRaw(this,this.user.username)
+        .then((response) => {
+          var books = response.books
+          var arrayLength = books.length;
+          for (var i = 0; i < arrayLength; i++) {
+            if (books[i].isbn === this.$route.params.id){
+              return services
+                .setBookAsRead(self, books[i].bookId)
+                .then((res1) => {
+                  self.$router.push({ name: 'mylibrary' });
+                })
+            }
+          }
         })
+    },
+    borrowBook(username){
+      var self = this;
+      return services
+        .getUserReadBookRaw(this,username)
+        .then((response) => {
+          var books = response.books
+          var arrayLength = books.length;
+          for (var i = 0; i < arrayLength; i++) {
+            if (books[i].isbn === this.$route.params.id){
+              var depositLocation = {
+                depositLocationId: 2
+              }
+              return services
+                .setAppointment(self, username, books[i].bookId, depositLocation)
+                .then((response) => {
+                  self.$router.push({ name: 'mylibrary' });
+                })
+            }
+          }
+        })
+    },
+    amIThisUser(username){
+      return this.user.username === username
     }
   },
   mounted: function(){

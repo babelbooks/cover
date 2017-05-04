@@ -31,13 +31,6 @@ export default {
       .get(config.apiUrl + 'user/me');
   },
 
-  getCurrentUserLib: (context) => {
-    return Promise.resolve(getHardUserLib());
-    // return context
-    //   .$http
-    //   .get(config.apiUrl + 'user/me/books');
-  },
-
   getBookInfo: (context, isbn) => {
     return context
       .$http
@@ -159,7 +152,7 @@ export default {
     })
   },
 
-    getUserReadingBookRaw: (context, username) => {
+  getUserReadingBookRaw: (context, username) => {
     return context
     .$http
     .get(config.apiUrl + 'user/' + username + '/books/reading/raw')
@@ -193,18 +186,18 @@ export default {
     })
   },
 
-    getUserReadBookRaw: (context, username) => {
+  getUserReadBookRaw: (context, username) => {
     return context
-    .$http
-    .get(config.apiUrl + 'user/' + username + '/books/read/raw')
-    .then((response) => {
-      console.log("Getting raw borrowed read books from user " + username);
-      return response.data;
-    })
-    .catch(() => {
-      console.log("Error");
-      // TODO
-    })
+      .$http
+      .get(config.apiUrl + 'user/' + username + '/books/read/raw')
+      .then((response) => {
+        console.log("Getting raw borrowed read books from user " + username);
+        return response.data;
+      })
+      .catch(() => {
+        console.log("Error");
+        // TODO
+      })
   },
 
 /**
@@ -292,16 +285,18 @@ export default {
   setBookAsRead: (context, bookId) => {
     return context
     .$http
-    .post(config.apiUrl + "read", { "bookId" : bookId })
-    .then(() => {
+    .post(config.apiUrl + "book/read/" + bookId)
+    .then((response) => {
+      console.log(response)
       console.log("Setting the book " + bookId + " as read");
     })
-    .catch(() => {
-      console.log("Error");
+    .catch((err) => {
+      console.log("Error: " + err);
       // TODO
     })
   },
 
+// test
   /**
  * Add a book.
  * @param context the context promise
@@ -394,7 +389,28 @@ export default {
       })
   },
 
-  doIOwnThisBook(context,isbn,username){
+  setAppointment: (context, currentOwnerId, bookId, depositLocation) => {
+    var meeting = {
+      meeting:{
+        currentOwnerId: currentOwnerId,
+        bookId: bookId,
+        depositLocation: depositLocation
+      }
+    }
+    return context
+      .$http
+      .put(config.apiUrl + "/user/me/appointments", meeting)
+      .then((response) => {
+        console.log("Adding book");
+        return response.data
+      })
+      .catch(() => {
+        console.log("Error");
+        // TODO
+      })
+  },
+
+  doIOwnThisBook: (context,isbn,username) => {
     return this
       .getUserReadingBook(context,username)
       .then((response) => {
@@ -427,20 +443,6 @@ export default {
               available: false,
             }
           })
-      })
-      .catch((err) => {
-        console.log("Error: " + err);
-        // TODO
-      })
-  },
-
-  setBookRead(context, bookId){
-    return context
-      .$http
-      .post(config.apiUrl + "book/read", bookId)
-      .then((response) => {
-        console.log("Set Book Read");
-        return response.data
       })
       .catch((err) => {
         console.log("Error: " + err);

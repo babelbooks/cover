@@ -24,28 +24,62 @@
           <div class="login-or">
             <hr class="hr-or">
           </div>-->
-          <div class="form-group">
-            <label for="inputUsernameEmail">{{ l('email') }}</label>
-            <input type="text" class="form-control" id="inputUsernameEmail" v-model=user.username>
-          </div>
-          <div class="form-group">
-            <label for="inputFirstName">{{ l('first-name') }}</label>
-            <input type="text" class="form-control" id="inputFirstName" v-model=user.firstName>
-          </div>
-          <div class="form-group">
-            <label for="inputFirstName">{{ l('last-name') }}</label>
-            <input type="text" class="form-control" id="inputLastName" v-model=user.lastName>
-          </div>
-          <div class="form-group">
-            <label for="inputPassword">{{ l('password') }}</label>
-            <input type="password" class="form-control" id="inputPassword" v-model=user.password>
-          </div>
-          <div class="form-group">
-            <label for="inputPassword">{{ l('signup.repeatPassword') }}</label>
-            <input type="password" class="form-control" id="inputPassword-check">
-          </div>
+
+
+            <div class="form-group col-md-8 col-sm-12 col-centered">
+              <label for="inputUsernameEmail"></label>
+              <div class="form-group" >
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </div>
+                  <input type="text" class="form-control input-lg" id="inputUsernameEmail" v-model="user.username" v-bind:placeholder="l('email')">
+                </div>
+              </div>
+
+              
+              <div class="form-group" >
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </div>
+                  <input type="text" class="form-control input-lg" id="inputUsernameEmail" v-model="user.firstName" v-bind:placeholder="l('first-name')">
+                </div>
+              </div>
+
+              <div class="form-group" >
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </div>
+                  <input type="text" class="form-control input-lg" id="inputUsernameEmail" v-model="user.lastName" v-bind:placeholder="l('last-name')">
+                </div>
+              </div>
+
+              <!-- jghsdkjg -->
+              <div class="form-group" >
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="  glyphicon glyphicon-lock"></i>
+                  </div>
+                  <input type="password" class="form-control input-lg" v-model="user.password" v-bind:placeholder="l('password')" v-on:keyup.enter="submit()">
+                </div>
+              </div>
+
+              <div class="form-group" >
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="  glyphicon glyphicon-lock"></i>
+                  </div>
+                  <input type="password" class="form-control input-lg" v-bind:placeholder="l('signup.repeatPassword')" v-on:keyup.enter="submit()">
+                </div>
+              </div>
+
+
+            </div>
+
           <div>
-            <button class="btn btn btn-primary" @click="submit()">
+            <button class="btn btn-lg btn-primary" @click="submit()">
               {{ l('signup.title') }}
             </button>
           </div>

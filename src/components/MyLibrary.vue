@@ -25,37 +25,37 @@
           <p>{{ error }}</p>
         </div>
         <div v-if="viewBlocks">
-          <h3>Livres en votre possession (en cours de lecture)</h3>
+          <h3>{{ l('myLibrary.booksReading') }}</h3>
           <div class="row">
             <div v-for="book in booksReading" class="col-xs-12 col-sm-6 col-md-4">
               <book-display :book="book"></book-display>
             </div>
             <div v-if="!booksReadingAvailable" class="alert alert-info" role="alert">
-              Vous n'avez pas de livre en cours de lecture
+              {{ l('myLibrary.noBooks') }}
             </div>
           </div>
           <br>
-          <h3>Livres en votre possession (en attente d'emprunt)</h3>
+          <h3>{{ l('myLibrary.booksRenting') }}</h3>
           <div class="row">
             <div v-for="book in booksRenting" class="col-xs-12 col-sm-6 col-md-4">
               <book-display :book="book"></book-display>
             </div>
             <div v-if="!booksRentingAvailable" class="alert alert-info" role="alert">
-              Vous n'avez pas de livre en pret a etre emprunter
+              {{ l('myLibrary.noBooks') }}
             </div>
           </div>
-          <h3>Livres que vous avez mis en circulation</h3>
+          <h3>{{ l('myLibrary.booksInitiated') }}</h3>
           <div class="row">
             <div v-for="book in booksInitiated" class="col-xs-12 col-sm-6 col-md-4">
               <book-display :book="book"></book-display>
             </div>
             <div v-if="!booksInitiatedAvailable" class="alert alert-info" role="alert">
-              Vous n'avez pas mis de livre en circulation
+              {{ l('myLibrary.noBooks') }}
             </div>
           </div>
         </div>
         <div v-else>
-          <h3>Livres en votre possession (en cours de lecture)</h3>
+          <h3>{{ l('myLibrary.booksReading') }}</h3>
           <ul class="list-group">
             <li v-for="(book,index) in booksReading" class="list-group-item">
               <table style="width:100%">
@@ -72,7 +72,7 @@
               </table>
             </li>
           </ul>
-          <h3>Livres en votre possession (en attente d'emprunt)</h3>
+          <h3>{{ l('myLibrary.booksRenting') }}</h3>
           <ul class="list-group">
             <li v-for="(book,index) in booksRenting" class="list-group-item">
               <table style="width:100%">
@@ -89,7 +89,7 @@
               </table>
             </li>
           </ul>
-          <h3>Livres que vous avez mis en circulation</h3>
+          <h3>{{ l('myLibrary.booksInitiated') }}</h3>
           <ul class="list-group">
             <li v-for="book in booksInitiated" class="list-group-item">
               <table style="width:100%">
@@ -205,6 +205,11 @@ export default {
         }
       }
       return false;
+    }
+  },
+  watch: {
+    user (val, old) {
+      this.updateBooks();
     }
   }
 }

@@ -19,11 +19,18 @@
     "Description1": "Vos livres prennent la poussi\u00E8re dans votre biblioth\u00E8que \u003F BabelBooks est une librarie partag\u00E9e et collaborative o\u00F9 chaque utilisateur met \u00E0 disposition ses livres pour tout le monde.Vous pouvez emprunter des livres dans toute la ville et faire de nouvelles d\u00E9couvertes litt\u00E9raires",
   	"Description2": "Avec Babelbooks, vous \u00EAtes la biblioth\u00E8que, ainsi que tous les autres membres de la communaut\u00E9.Deux choix s'offrent \u00E0 vous: donner vos livres ou emprunter d'autres, \u00E0 vous de choisir.",
   	"Description3": "Chez Babelbooks, nous croyons qu'un monde vert est un monde o\u00F9 il fait bon vivre. C'est pourquoi nous avons des ententes de partenariat avec des firmes de recyclage. Si un livre accumule trop la poussi\u00E8re,il sera recycl\u00E9.",
-  	"Description4": "Plus de 87,549 utilisateurs et 20,879,780 livres partag\u00E9s"
+  	"Description4": "Plus de 87,549 utilisateurs et 20,879,780 livres partag\u00E9s",
+    "quote1": "Découvrez et partagez des livres en toute simplicitée",
+    "quote2": "Plus de 87,549 utilisateurs et 20,879,780 livres partagés",
+    "footer": "Babelbooks, une application SMART développée par H4113"
   },
   "myLibrary": {
     "title": "Ma biblioth\u00E8que",
     "validIsbn": "Entrez un ISBN valide",
+    "booksReading": "Livres en votre possession (en cours de lecture)",
+    "booksRenting": "Livres en votre possession (en attente d'emprunt)",
+    "booksInitiated": "Livres que vous avez mis en circulation",
+    "noBooks": "Aucun livres",
     "addBook": {
        "title":"Ajouter un livre",
        "isbn": "Rentrez l'ISBN tel qu'il appara\u00EEt \u00E0 l'arri\u00E8re de votre livre",
@@ -45,7 +52,16 @@
     "majorForm": "Forme majeure",
     "cover": "Couverture",
     "rent": "Emprunter",
+    "iOwnThisBook": "Vous possedez presentement ce livre",
+    "readyToRent": "En attente d'emprunt",
+    "notReadyToRent": "En cours de lecture",
+    "owners": "Propri\u00E9taires",
+    "booksAvailable":"Livres disponibles",
     "notAvailable": "Ce livre n'est actuellement pas disponible"
+  },
+  "search":{
+    "resultsFor": "R\u00E9sultats pour",
+    "noResults": "Pas de r\u00E9sultats pour cette recherche"
   },
   "needToBeConnected": "Vous devez \u00EAtre connecter!",
   "me": "Moi",

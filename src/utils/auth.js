@@ -48,5 +48,17 @@ export default {
         context.error = err.body.error.message || err.body.error.error;
         return store.dispatch('logoutUser');
       });
+  },
+  checkAuth(context){
+    return store
+      .dispatch('updateUser',context)
+      .then(() => {
+        if(redirect) {
+          context.$router.push({ name: redirect });
+        }
+      })
+      .catch(() => {
+        context.error = 'Not connected';
+      });
   }
 }
