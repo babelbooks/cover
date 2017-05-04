@@ -206,6 +206,11 @@ export default {
       }
       return false;
     }
+  },
+  watch: {
+    user (val, old) {
+      this.updateBooks();
+    }
   }
 }
 </script>

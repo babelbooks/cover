@@ -85,6 +85,9 @@ export default {
       this.$router.push({ name: 'search', params: { search: this.search }})
     }
   },
+  created: function(){
+      return auth.checkAuth(this);
+  },
   mounted: function () {
       this.$nextTick(function () {
           inlineSVG.init({
